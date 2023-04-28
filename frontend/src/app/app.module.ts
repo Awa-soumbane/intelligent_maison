@@ -7,6 +7,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { DashbordComponent } from './dashbord/dashbord.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavebarComponent } from './navebar/navebar.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { NavebarComponent } from './navebar/navebar.component';
     ConnexionComponent,
     DashbordComponent,
     SidebarComponent,
-    NavebarComponent
+    NavebarComponent,
+    InscriptionComponent
   ],
   imports: [
     BrowserModule,
