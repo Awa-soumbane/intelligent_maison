@@ -1,1 +1,89 @@
 
+<body class="d-flex">
+    <div class="container w-50 my-5">
+        <form [formGroup]="formGroup" (ngSubmit)="addUsers()" id="leform" class="row g-3 my-5">
+            <h2 class="text-center text-primary">Ajouter un utilisateur</h2>
+            <ng-container *ngIf="this.errMsg">
+                <div class="alert alert-danger" role="alert"><strong> Erreur </strong> {{errMsg}}</div>
+            </ng-container>
+            <div class=" col-md-6">
+                <label for="nom">Nom</label>
+                <input formControlName="nom" type="text" class="form-control" autocomplete="on"
+                [ngClass]="{'is-invalid':submitted && formGroup.controls['nom'].errors}" formControlName="nom" >
+                <div *ngIf="formGroup.controls['nom'].dirty && formGroup.controls['nom'].errors && formGroup.controls['nom'].errors['required']" class="text-danger">
+                    Le nom est requis 
+                </div>
+                <div *ngIf="formGroup.controls['nom'].dirty && formGroup.controls['nom'].errors && formGroup.controls['nom'].errors['cannotContainSpace']" class="text-danger">
+                    Espace non autorisé
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+                <label for="prenom">Prenom</label>
+                <input  formControlName="prenom" type="text" class="form-control" autocomplete="on"
+                [ngClass]="{'is-invalid':submitted && formGroup.controls['prenom'].errors}" formControlName="prenom">
+                <div *ngIf="formGroup.controls['prenom'].dirty && formGroup.controls['prenom'].errors && formGroup.controls['prenom'].errors['required']" class="text-danger">
+                    Le nom est requis 
+                    </div>
+                    <div *ngIf="formGroup.controls['prenom'].dirty && formGroup.controls['prenom'].errors && formGroup.controls['prenom'].errors['cannotContainSpace']" class="text-danger">
+                        Espace non autorisé
+                    </div>
+            </div>
+
+             
+        <div class="col-md-6">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" autocomplete="on" formControlName="email"
+            [ngClass]="{'is-invalid':submitted && formGroup.controls['email'].errors}">
+            <div *ngIf="formGroup.controls['email'].dirty && formGroup.controls['email'].errors && formGroup.controls['email'].errors['required']" class="text-danger">
+                L' email est requis 
+            </div>
+            <div *ngIf="formGroup.controls['email'].dirty && formGroup.controls['email'].errors && formGroup.controls['email'].errors['email']" class="text-danger">
+                email est invalide
+            </div>
+        </div>
+
+            <div class="col-md-6">
+                <label for="role">Rôle</label>
+                <select class="form-select" [ngClass]="{'is-invalid':submitted && formGroup.controls['role'].errors}"
+                    formControlName="role">
+                    <option selected disabled></option>
+                    <option *ngFor="let item of listDeroulant" [value]="item">{{item}}</option>
+                </select>
+                <div *ngIf="submitted && formGroup.controls['role'].errors" class="text-danger">
+                </div>
+            </div>
+    
+            <div class=" col-md-6">
+                <label for="mot_pass">Mot de passe</label>
+                <input  formControlName="mot_pass" type="password" class="form-control"
+                [ngClass]="{'is-invalid':submitted && formGroup.controls['mot_pass'].errors}" formControlName="mot_pass">
+                    <div *ngIf="formGroup.controls['mot_pass'].dirty && formGroup.controls['mot_pass'].errors && formGroup.controls['mot_pass'].errors['required']" class="text-danger">
+                        Le mot de passe est necessaire
+                    </div>
+                    <div *ngIf="formGroup.controls['mot_pass'].dirty && formGroup.controls['mot_pass'].errors && formGroup.controls['mot_pass'].errors['minlength']" class="text-danger"    >
+                        Saisi au moins 6 caracteres
+                    </div>
+            </div>
+           
+    
+                <div class="col-md-6">
+                    <label for="passwordConfirm">Confirmation</label>
+                    <input formControlName="passwordConfirm" type="password" class="form-control" autocomplete="on"
+                        [ngClass]="{'is-invalid':submitted && formGroup.controls['passwordConfirm'].errors}"
+                        formControlName="passwordConfirm">
+                    <div *ngIf="formGroup.controls['passwordConfirm'].dirty && formGroup.controls['passwordConfirm'].errors && formGroup.controls['passwordConfirm'].errors['required']"
+                        class="text-danger">
+                        le password est necessaire
+                    </div>
+                    <div *ngIf="formGroup.controls['passwordConfirm'].dirty && formGroup.controls['passwordConfirm'].errors && formGroup.controls['passwordConfirm'].errors['mustMatch']"
+                        class="text-danger">
+                        Les mots de passes ne correspondent pas
+                    </div>
+                </div>
+            <div class="form-group" >
+                <button class="btn btn-outline-primary pull-left">Inscrire</button>
+            </div>
+        </form>
+    </div>
+    </body>
