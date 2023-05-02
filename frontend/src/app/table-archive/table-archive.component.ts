@@ -42,6 +42,33 @@ public afficher():void{
 ngOnInit(): void {
 }
 
+onUpdate(){
+  const id =  this.formGroup.value.id;
+const user ={
+prenom: this.formGroup.value.prenom,
+nom : this.formGroup.value.nom,
+email: this.formGroup.value.email
+}
+this.submitted = true;
+if(this.formGroup.invalid){
+ return;
+}
+  /* this.authService.updateUser(id, user).subscribe(
+    data=>{
+      this.ngOnInit();
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Modification réussi !',
+        showConfirmButton: false,
+        timer: 1500
+      });window.setTimeout(function(){location.reload()},1000)
+    },
+    error => {
+      this.errMsg = false
+      setTimeout(()=>{ this.errMsg = true}, 2000);
+    }); */
+}
 }
 
 

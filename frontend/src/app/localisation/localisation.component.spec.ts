@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TableActifsComponent } from './table-actif.component';
+import { LocalisationComponent } from './localisation.component';
 
-describe('TableActifComponent', () => {
-  let component: TableActifsComponent;
-  let fixture: ComponentFixture<TableActifsComponent>;
+describe('LocalisationComponent', () => {
+  let component: LocalisationComponent;
+  let fixture: ComponentFixture<LocalisationComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TableActifsComponent ]
+      declarations: [ LocalisationComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TableActifsComponent);
+    fixture = TestBed.createComponent(LocalisationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

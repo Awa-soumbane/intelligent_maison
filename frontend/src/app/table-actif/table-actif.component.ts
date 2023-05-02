@@ -41,7 +41,19 @@ public afficher():void{
 
 ngOnInit(): void {
 }
-
+onUpdate(){
+  const id =  this.formGroup.value.id;
+const user ={
+prenom: this.formGroup.value.prenom,
+nom : this.formGroup.value.nom,
+email: this.formGroup.value.email
+}
+this.submitted = true;
+if(this.formGroup.invalid){
+ return;
+}
+  
+}
 }
 
 
