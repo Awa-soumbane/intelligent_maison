@@ -8,8 +8,8 @@
             </div>
             <div class="col-6">
               <div class="form-left py-5 px-5 global">
-                <form class="row_ w-100" id="form" (submit)="onSubmit()" [formGroup]="registerForm">
-                  <h1 style="text-align: center;margin-bottom: 50px;">Connection</h1>
+                <form class="row_ w-100 " id="form" (submit)="onSubmit()" [formGroup]="registerForm">
+                  <h1 style="text-align: center;margin-bottom: 50px;" class="mt-5">Connection</h1>
 
                   <div class="col-md-12 mb-3 input-field">
                     <label>Email<span class="text-danger">*</span></label>
@@ -46,12 +46,12 @@
                           </div>
                       </div><br>
 
-                         <div class="pb-5 col-md-12">
-                          <button type="submit" class="btn btn-primary px-4 float-end mt-4 submit ">Se connecter
-                            <span class="visually" *ngIf="!spin"></span>
+                         <div class="pb-5 col-md-12 d-flex justify-content-center">
+                          <button type="submit" class="btn btn-primary px-4  mt-4 submit ">Se connecter</button>
+                          <!--   <span class="visually" *ngIf="!spin"></span>
                             <span class="spinner-border spinner-border-sm" *ngIf="spin" role="status" aria-hidden="false"
                             style="color: white;"></span>
-                          </button>
+                           -->
                         </div>
                 </form>
               </div>
