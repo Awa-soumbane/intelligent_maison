@@ -1,0 +1,205 @@
+#conteneurDash
+{
+   
+    padding: 10px 10px;
+    width: 90%;
+   /*  // margin-left: 120px; */
+    gap: 15px;
+    margin-top: -45px;
+
+}
+#sectionsParam
+{
+    height: 30%;
+   border: 1px solid black;
+    background-color: #FFFFFF;
+    gap: 16px;
+    padding: 5px 5px;   
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    
+}
+#sect1
+{
+   align-items: center;
+    width: 15%;
+    height: 60%;
+    padding: 5px 5px; text-align: center;
+    border-radius: 4px 4px 4px 4px ;
+    border: 0.3px solid black;
+    margin-top: 10px;
+    box-shadow: 1px 2px 2px #000000;
+}
+#sect1
+{
+   align-items: center;
+    width: 15%;
+    height: 60%;
+    padding: 5px 5px; text-align: center;
+    border-radius: 4px 4px 4px 4px ;
+    border: 0.3px solid black;
+    margin-top: 10px;
+    box-shadow: 1px 2px 2px #000000;
+}
+#sect2
+{
+   align-items: center;
+    width: 15%;
+    height: 60%;
+    padding: 5px 5px; text-align: center;
+    border-radius: 4px 4px 4px 4px ;
+    border: 0.3px solid black;
+    margin-top: 10px;
+    box-shadow: 1px 2px 2px #000000;
+}
+#sect3
+{
+   align-items: center;
+    width: 15%;
+    height: 60%;
+    padding: 5px 5px; text-align: center;
+    border-radius: 4px 4px 4px 4px ;
+    border: 0.3px solid black;
+    margin-top: 10px;
+    box-shadow: 1px 2px 2px #000000;
+}
+#sectTemp
+{
+   align-items: center;
+    width: 15%;
+    height: 70%;
+    padding: 5px 5px; text-align: center;
+    border-radius: 4px 4px 4px 4px ;
+    border: 0.3px solid black;
+    margin-top: 10px;
+    box-shadow: 1px 2px 2px #000000;
+}
+
+/* 
+//La section de humidité de la serre */
+#sectHum
+{
+   
+    width: 15%;
+    height: 70%;
+    padding: 5px 6px; text-align: center;
+    border-radius: 4px 4px 4px 4px ;
+    border: 0.3px solid black;
+    box-shadow: 1px 2px 2px #000000;
+ 
+    margin-top: 10px;
+}
+/* //La section de humidité sol de la serre */
+#sectHumSol
+{
+    
+    width: 15%;
+    height: 70%;
+    padding: 5px 5px; text-align: center;
+    border-radius: 4px 4px 4px 4px ;
+    border: 0.3px solid black;
+    box-shadow: 1px 2px 2px #000000;
+ 
+    margin-top: 10px;
+}
+/* //La section de luminosité de la serre */
+#sectLum
+{
+    
+    width: 15%;
+    height: 100%;
+    padding: 5px 5px; text-align: center;
+    border-radius: 4px 4px 4px 4px ;
+    border: 0.3px solid black;
+    box-shadow: 1px 2px 2px #000000;
+}
+#Temp
+{
+    
+    width: 15%;
+    height: 100%;
+    padding: 5px 5px; text-align: center;
+    border-radius: 4px 4px 4px 4px ;
+    border: 0.3px solid black;
+    box-shadow: 1px 2px 2px #000000;
+  
+}
+#BlocHaute
+{
+    width: 15%;
+    height: 50%;
+  
+    gap: 4px;
+    padding: 5px 10px;
+   
+}
+
+.deuxiemebloc{
+    display: flex;
+    justify-content: center;
+   width: 74%;
+    border-radius: 4px 4px 4px 4px ;
+    border: 0.3px solid black;
+    gap: 70px;
+}.iconeTemp{width: 35px; height: 50px;margin-top: 7px; margin-right: 2px; }
+.fontaine{width: 35px; height: 40px;margin-top: -15px; margin-right: 2px; }
+.acces{width: 35px; height: 30px;margin-top: -17px; margin-left: 45px; }
+
+#sectionsbsc{
+
+   border: 1px solid black;
+    gap: 16px;
+    padding: 15px 40px;   
+    display: flex;
+    justify-content: center;
+    border-radius: 6px 6px 6px 6px ;
+    border: 0.3px solid black;
+    
+   
+}#porte{
+    border: 1px solid black;
+  
+    width: 35%;
+    border-radius: 6px 6px 6px 6px ;
+    border: 0.3px solid black;
+      padding: 20px ;
+      box-shadow: 1px 4px 4px #000000;
+  
+}
+
+.icone{
+    width: 35px; height: 40px;margin-top: 7px; margin-right: 2px;
+  
+}#imag{
+    display: contents;
+    justify-content: center;
+width: 100%;
+}
+#mag{
+    display: flex;
+    justify-content: center;
+   gap: 34px;
+    flex-wrap: wrap ;
+    
+}.thhe
+{
+     font-weight:bold;
+     color: #000000;
+     text-align: center;
+     font-size: 15px;
+}
+.TT
+{
+     font-weight:bold;
+     color: #000000;
+     text-align: center;
+     font-size: 15px;
+}.thh
+{
+     font-weight:bold;
+     color: #000000;
+     text-align: center;
+     font-size: 15px;
+     margin-bottom: 15px;
+}

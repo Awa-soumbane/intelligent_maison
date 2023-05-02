@@ -1,0 +1,68 @@
+/* // body {
+    //     background-color: #fbfbfb;
+    //  *//*   } */
+    #sidebarMenu{
+        border-radius: 20px 0px 0px 0px;
+    }
+      
+    .bar{
+        width: 40%;
+        height: 50%;
+        display: flex;
+        justify-content: center;
+        margin-left: 50px;
+        color: #FFFF;
+        margin-bottom: 12px;
+    }
+      #icon{
+   
+        width: 10%;
+        height: 10%;
+        display: flex;
+        justify-content: center;
+        color: #FFFF;
+       
+    }.utilisateur{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+      
+    span{
+        color: #FFFF;
+    }
+    
+      
+      /* Sidebar */
+      .sidebar {
+        position: fixed;
+      height: 50%;
+      
+        padding: 0px 0 0; /* Height of navbar */
+        box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+        width: 230px;
+    /*     // z-ndex: 1000;
+        // background-color: #D1F4F0;; */
+      }
+    span{
+        font-size: 20px;
+    }
+      
+    
+      .container{
+          margin: 0 2.5%;
+          
+        
+          background-color: #9393F9;
+          margin-left: 305px;
+          border-radius: 10px 10px 10px 10px;
+          box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.2);
+          
+      }
+  
+    /* Info du serre*/
+    
+/*     @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap'); */
+    
+    
+    
