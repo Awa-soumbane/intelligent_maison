@@ -2,16 +2,16 @@
     //     background-color: #fbfbfb;
     //  *//*   } */
     #sidebarMenu{
-        border-radius: 20px 0px 0px 0px;
+        border-radius: 10px 0px 0px 0px;
     }
       
     .bar{
         width: 40%;
-        height: 50%;
+      
         display: flex;
         justify-content: center;
         margin-left: 50px;
-        color: #FFFF;
+      
         margin-bottom: 12px;
     }
       #icon{
@@ -22,10 +22,24 @@
         justify-content: center;
         color: #FFFF;
        
-    }.utilisateur{
+
+    }
+    #titr{
+        font-size: 20px;
+        
+    }
+    .non{
+        border-radius: 20px 20px 20px 20px;
+        width: 20%;
+        height: 30%;
+     
+       
+    }
+    .utilisateur{
         display: flex;
         justify-content: center;
         align-items: center;
+          color: #FFFF;
     }
       
     span{
@@ -44,9 +58,7 @@
     /*     // z-ndex: 1000;
         // background-color: #D1F4F0;; */
       }
-    span{
-        font-size: 20px;
-    }
+   
       
     
       .container{
