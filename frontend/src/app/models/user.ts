@@ -4,7 +4,7 @@ export class User {
   nom!: String;
   email!: String;
   role!: String;
-  password!: String;
+  mot_pass!: String;
   etat!: boolean;
  
 }

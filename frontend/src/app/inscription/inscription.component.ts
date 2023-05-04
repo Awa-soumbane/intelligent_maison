@@ -47,8 +47,8 @@ export class InscriptionComponent {
     this.submitted=false
   
     this.authService.addUser(this.formGroup.value.prenom, this.formGroup.value.nom,
-      this.formGroup.value.email, this.formGroup.value.role, this.formGroup.value.password,
-      this.formGroup.value.etat, this.formGroup.value.matricule).subscribe((event: HttpEvent<any>) => {
+      this.formGroup.value.email, this.formGroup.value.role, this.formGroup.value.mot_pass,
+      this.formGroup.value.etat).subscribe((event: HttpEvent<any>) => {
         switch (event.type) {
           case HttpEventType.Sent:
             

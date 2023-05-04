@@ -56,12 +56,12 @@ import { Router } from "@angular/router";
     }
 
     // Ajouter un utilisateur
-    addUser(prenom: string, nom: string, email: string, role: string, password: string, etat: boolean, matricule: String): Observable<any> {
+    addUser(prenom: string, nom: string, email: string, role: string, mot_pass: string, etat: boolean): Observable<any> {
         const user={
           prenom: prenom,
           nom: nom,
           email:email,
-          password: password,
+          mot_pass: mot_pass,
           etat:etat,
           role:role,
         

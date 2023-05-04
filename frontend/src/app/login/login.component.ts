@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
 
       this.authService.getUserProfile(res._id).subscribe((res) => {
         this.authService.currentUser = res;
-        this.router.navigate(['user-profil']);
+        this.router.navigate(['inscription']);
       });
     }, // Intercepter les messages d'erreurs du serveur
     error => {

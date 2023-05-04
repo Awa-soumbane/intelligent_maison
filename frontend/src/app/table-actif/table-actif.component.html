@@ -101,6 +101,9 @@
       <div *ngIf="!errMsg" class="alert alert-danger" role="alert">
         <strong> Erreur </strong> Email déjà existant !
       </div>
+      <ng-container *ngIf="this.errMsg">
+        <div class="alert alert-danger" role="alert"><strong> Erreur </strong> {{errMsg}}</div>
+    </ng-container>
       <div class="modal-body">
         <form [formGroup]="formGroup" (ngSubmit)="onUpdate()">
           <label for='prenom'>Prenom</label>
@@ -136,6 +139,48 @@
           </div>
           </div>
           <br />
+
+
+         <!--  <ng-container *ngIf="this.errMsg">
+            <div class="alert alert-danger" role="alert"><strong> Erreur </strong> {{errMsg}}</div>
+        </ng-container>
+        <div class=" col-md-6">
+            <label for="nom">Nom</label>
+            <input formControlName="nom" type="text" class="form-control" autocomplete="on"
+            [ngClass]="{'is-invalid':submitted && formGroup.controls['nom'].errors}" formControlName="nom" >
+            <div *ngIf="formGroup.controls['nom'].dirty && formGroup.controls['nom'].errors && formGroup.controls['nom'].errors['required']" class="text-danger">
+                Le nom est requis 
+            </div>
+            <div *ngIf="formGroup.controls['nom'].dirty && formGroup.controls['nom'].errors && formGroup.controls['nom'].errors['cannotContainSpace']" class="text-danger">
+                Espace non autorisé
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <label for="prenom">Prenom</label>
+            <input  formControlName="prenom" type="text" class="form-control" autocomplete="on"
+            [ngClass]="{'is-invalid':submitted && formGroup.controls['prenom'].errors}" formControlName="prenom">
+            <div *ngIf="formGroup.controls['prenom'].dirty && formGroup.controls['prenom'].errors && formGroup.controls['prenom'].errors['required']" class="text-danger">
+                Le nom est requis 
+                </div>
+                <div *ngIf="formGroup.controls['prenom'].dirty && formGroup.controls['prenom'].errors && formGroup.controls['prenom'].errors['cannotContainSpace']" class="text-danger">
+                    Espace non autorisé
+                </div>
+        </div>
+
+         
+    <div class="col-md-6">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" autocomplete="on" formControlName="email"
+        [ngClass]="{'is-invalid':submitted && formGroup.controls['email'].errors}">
+        <div *ngIf="formGroup.controls['email'].dirty && formGroup.controls['email'].errors && formGroup.controls['email'].errors['required']" class="text-danger">
+            L' email est requis 
+        </div>
+        <div *ngIf="formGroup.controls['email'].dirty && formGroup.controls['email'].errors && formGroup.controls['email'].errors['email']" class="text-danger">
+            email est invalide
+        </div>
+    </div> -->
+
           <button type="submit" class="btn btn-outline-primary">Sauvegarder</button>
         </form>
       </div>
