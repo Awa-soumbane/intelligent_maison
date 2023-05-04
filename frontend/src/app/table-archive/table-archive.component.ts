@@ -1,9 +1,9 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-/* import { AuthService } from 'src/app/services/auth.service'; */
+import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsernameValidator } from 'src/app/username.validator';
-/* import Swal from 'sweetalert2'; */
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-table-actifs',
@@ -24,13 +24,13 @@ show:boolean = false;
 
 constructor(private activatedRoute: ActivatedRoute,
             private formBuilder: FormBuilder,
-            /* public authService: AuthService */){
+            public authService: AuthService){
 
             // Recuperer les informations de l'utilisateur
-          /*   let id = localStorage.getItem('id'); 
+            let id = localStorage.getItem('id'); 
             this.authService.getUserProfile(id).subscribe((res) => {
               this.currentUser = res.msg;
-            }); */
+            });
                 
 
              
@@ -53,7 +53,7 @@ this.submitted = true;
 if(this.formGroup.invalid){
  return;
 }
-  /* this.authService.updateUser(id, user).subscribe(
+  this.authService.updateUser(id, user).subscribe(
     data=>{
       this.ngOnInit();
       Swal.fire({
@@ -67,7 +67,7 @@ if(this.formGroup.invalid){
     error => {
       this.errMsg = false
       setTimeout(()=>{ this.errMsg = true}, 2000);
-    }); */
+    });
 }
 }
 
