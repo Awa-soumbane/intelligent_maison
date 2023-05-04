@@ -1,9 +1,9 @@
 import { Component, OnInit, NgZone } from '@angular/core';
-/* import { AuthService } from 'src/app/services/auth.service'; */
+ import { AuthService } from '../services/auth.service'; 
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UsernameValidator } from 'src/app/username.validator';
-/* import Swal from 'sweetalert2'; */
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-table-actifs',
@@ -13,8 +13,8 @@ import { UsernameValidator } from 'src/app/username.validator';
 export class TableActifsComponent implements OnInit {
 currentUser: any = {};
 filterTerm!: string;
-Users: any = [];
-user: any;
+user: any = [];
+Users: any;
 totalLenght: any;
 page: number = 1;
 formGroup!: FormGroup;
@@ -24,7 +24,7 @@ show:boolean = false;
 
 constructor(private activatedRoute: ActivatedRoute,
             private formBuilder: FormBuilder,
-            /* public authService: AuthService */){
+            public authService: AuthService ){
 
             // Recuperer les informations de l'utilisateur
           /*   let id = localStorage.getItem('id'); 
@@ -40,20 +40,64 @@ public afficher():void{
 }
 
 ngOnInit(): void {
+  this.authService.GetUsers().subscribe( (data:any) =>{
+      this.user = data;
+      this.Users = this.user;
+        console.log(this.Users)
+      }
+  );
 }
+
+
+//achiver un user
+ archiver=(id:any,etat:any)=> {
+  etat == true ? etat =false: etat = true
+  console.log(etat);
+  
+  const user ={
+   etat : etat
+  }
+  Swal.fire({
+    title: 'Archivage',
+    text: 'Êtes-vous sûre de vouloir archiver ?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Confirmer',
+    cancelButtonText: 'Annuler',
+  }).then((result) => {
+    if (result.value) {
+  this.authService.updateUser(id,user).subscribe(
+    data=>{
+      this.ngOnInit();
+    });
+  }else if (result.dismiss === Swal.DismissReason.cancel) {
+  }
+  })
+ 
+} 
+ getUserData(id:any,prenom:any,nom:any,email:any){
+
+  this.formGroup = this.formBuilder.group({
+      id:[id],
+      prenom: [prenom, [Validators.required, UsernameValidator.cannotContainSpace]],
+      nom: [nom, [Validators.required, UsernameValidator.cannotContainSpace]],
+      email: [email, [Validators.required, Validators.email]],
+    });
+} 
+//modifier user
 onUpdate(){
   const id =  this.formGroup.value.id;
+  
 const user ={
 prenom: this.formGroup.value.prenom,
 nom : this.formGroup.value.nom,
 email: this.formGroup.value.email
+
 }
 this.submitted = true;
 if(this.formGroup.invalid){
  return;
 }
-  
 }
 }
-
 

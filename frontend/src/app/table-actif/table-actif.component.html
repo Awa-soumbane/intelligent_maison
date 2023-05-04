@@ -1,8 +1,10 @@
 <body class="d-flex">
     <div class="container tab my-5">
         <!-- -------------------Recherche---------------- -->
-        <!-- <div class="form-group col-md-3">
+        <div class="form-group col-md-3 d-flex" style="margin-left: 75%;">
+          
           <div class="input-group">
+            
           <span class="input-group-text" id="inputGroupPrepend2"><i class="bi bi-search"></i></span>
           <input
             type="text"
@@ -10,29 +12,78 @@
             placeholder="Rechercher un utilisateur"
             [(ngModel)]="filterTerm"/>
           </div>
-        </div> -->
-        <div class="w-100 d-flex ">
+        </div>
+        <!-- <div class="w-100 d-flex ">
           <div class="w-75"></div>
           <form class="form-inline w-25 me-16 ">
             <div class="d-flex gap-1">
-              <input *ngIf="show" id="search" class="form-control" type="date" name="search" placeholder="Rechercher" >
+              <input *ngIf="show" id="search" class="form-control" type="email" name="search" placeholder="Rechercher" >
               <button class="btn btn-outline-primary" (click)="afficher()"><i class="bi bi-search"></i></button>
             </div>
           </form>
-        </div>
+        </div> -->
         
         <table class="table table-bordered w-100 my-3">
-          <thead>
+          <thead >
               <tr class="line">
-                
                   <th scope="col">Prenom</th>
                   <th scope="col">Nom</th>
                   <th scope="col">Email</th>
                   <th scope="col">Rôle</th>
-                  <th >Date inscription</th>
-                  <th scope="col">Actions</th>
+                  <th scope="col"ngClass="text-center">Actions</th>
               </tr>
           </thead>
+           <!-- Recuperer et afficher les informations de la base de donnée -->
+       <!--<tbody >
+      <tr *ngFor="let donne of user "> Pour filter l'utilisateur qui est connecté 
+              
+              <td>{{ donne.prenom }}</td>
+              <td>{{ donne.nom }}</td>
+              <td>{{ donne.email }}</td>
+              <td>{{ donne.role }}</td>
+              <td>{{ donne.role }}</td>
+             
+              <td *ngIf="(this.currentUser.role === 'Administrateur') || (this.currentUser.role === 'Super_admin')">
+                <button title="Archiver" class="btn link" (click)="archiver(donnee._id, donnee.etat)">
+                  <i class="bi bi-arrow-down-square"></i>
+                </button>
+                <button title="Modifier" class="btn link" data-toggle="modal" data-target="#modifier" (click)="getUserData(donnee._id,donnee.prenom,donnee.nom,donnee.email)">
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+                <button title="Archiver" class="btn link" >
+                  <i class="bi bi-arrow-down-square"></i>
+                </button>
+                <button title="Modifier" class="btn link" data-toggle="modal" data-target="#modifier" >
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+               
+              </td>
+            </tr>
+              
+              <td *ngIf="this.currentUser.role === 'Utilisateur'">{{ donnee.createdAt | date:'d MMMM yyyy à HH:mm'}} </td>
+          </tr>
+      </tbody>-->
+
+      <tbody *ngFor="let donnee of Users | filter: filterTerm | paginate: {itemsPerPage:6, currentPage:page, totalItems:totalLenght}">
+        <tr > <!-- Pour filter l'utilisateur qui est connecté -->
+            
+              <td>{{ donnee.prenom }}</td>
+              <td>{{ donnee.nom }}</td>
+              <td>{{ donnee.email }}</td>
+              <td>{{ donnee.role }}</td>
+              <td  >
+                <div class="d-flex justify-content-center">
+                <button title="Archiver" class="btn link text-danger" (click)="archiver(donnee._id, donnee.etat)">
+                  <i class="bi bi-arrow-down-square"></i>
+                </button>
+                <button title="Modifier" class="btn link text-warning " data-toggle="modal" data-target="#modifier" (click)="getUserData(donnee._id,donnee.prenom,donnee.nom,donnee.email)">
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+              </div>
+              </td>
+          </tr>
+      </tbody>
+      
         </table>
           <!-- ------------------------Pagination---------------------- -->
 <div class="pagination fixed-bottom justify-content-center">
@@ -50,6 +101,9 @@
       <div *ngIf="!errMsg" class="alert alert-danger" role="alert">
         <strong> Erreur </strong> Email déjà existant !
       </div>
+      <ng-container *ngIf="this.errMsg">
+        <div class="alert alert-danger" role="alert"><strong> Erreur </strong> {{errMsg}}</div>
+    </ng-container>
       <div class="modal-body">
         <form [formGroup]="formGroup" (ngSubmit)="onUpdate()">
           <label for='prenom'>Prenom</label>
@@ -85,6 +139,48 @@
           </div>
           </div>
           <br />
+
+
+         <!--  <ng-container *ngIf="this.errMsg">
+            <div class="alert alert-danger" role="alert"><strong> Erreur </strong> {{errMsg}}</div>
+        </ng-container>
+        <div class=" col-md-6">
+            <label for="nom">Nom</label>
+            <input formControlName="nom" type="text" class="form-control" autocomplete="on"
+            [ngClass]="{'is-invalid':submitted && formGroup.controls['nom'].errors}" formControlName="nom" >
+            <div *ngIf="formGroup.controls['nom'].dirty && formGroup.controls['nom'].errors && formGroup.controls['nom'].errors['required']" class="text-danger">
+                Le nom est requis 
+            </div>
+            <div *ngIf="formGroup.controls['nom'].dirty && formGroup.controls['nom'].errors && formGroup.controls['nom'].errors['cannotContainSpace']" class="text-danger">
+                Espace non autorisé
+            </div>
+        </div>
+        
+        <div class="col-md-6">
+            <label for="prenom">Prenom</label>
+            <input  formControlName="prenom" type="text" class="form-control" autocomplete="on"
+            [ngClass]="{'is-invalid':submitted && formGroup.controls['prenom'].errors}" formControlName="prenom">
+            <div *ngIf="formGroup.controls['prenom'].dirty && formGroup.controls['prenom'].errors && formGroup.controls['prenom'].errors['required']" class="text-danger">
+                Le nom est requis 
+                </div>
+                <div *ngIf="formGroup.controls['prenom'].dirty && formGroup.controls['prenom'].errors && formGroup.controls['prenom'].errors['cannotContainSpace']" class="text-danger">
+                    Espace non autorisé
+                </div>
+        </div>
+
+         
+    <div class="col-md-6">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" autocomplete="on" formControlName="email"
+        [ngClass]="{'is-invalid':submitted && formGroup.controls['email'].errors}">
+        <div *ngIf="formGroup.controls['email'].dirty && formGroup.controls['email'].errors && formGroup.controls['email'].errors['required']" class="text-danger">
+            L' email est requis 
+        </div>
+        <div *ngIf="formGroup.controls['email'].dirty && formGroup.controls['email'].errors && formGroup.controls['email'].errors['email']" class="text-danger">
+            email est invalide
+        </div>
+    </div> -->
+
           <button type="submit" class="btn btn-outline-primary">Sauvegarder</button>
         </form>
       </div>
@@ -96,3 +192,4 @@
     </div>
   </div>
 </div>
+
