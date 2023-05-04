@@ -1,11 +1,11 @@
 import { Component, NgZone } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-/* import { AuthService } from 'src/app/services/auth.service'; */
+import { Router } from '@angular/router' ;
+  import { AuthService } from 'src/app/services/auth.service';  
 import { HttpEventType, HttpEvent } from '@angular/common/http';
 import { UsernameValidator } from 'src/app/username.validator';
 import { MustMatch } from 'src/app/must-match.validator';
-/* import Swal from 'sweetalert2'; */
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-inscription',
@@ -20,7 +20,7 @@ export class InscriptionComponent {
   prenom:any
 
   constructor(private formBuilder: FormBuilder,
-    /* private authService: AuthService, */
+    private authService: AuthService,
     private router: Router,
     private ngZone: NgZone) {
 
@@ -46,9 +46,9 @@ export class InscriptionComponent {
     }
     this.submitted=false
   
-   /*  this.authService.addUser(this.formGroup.value.prenom, this.formGroup.value.nom,
-      this.formGroup.value.email, this.formGroup.value.role, this.formGroup.value.password,
-      this.formGroup.value.etat, this.formGroup.value.matricule).subscribe((event: HttpEvent<any>) => {
+    this.authService.addUser(this.formGroup.value.prenom, this.formGroup.value.nom,
+      this.formGroup.value.email, this.formGroup.value.role, this.formGroup.value.mot_pass,
+      this.formGroup.value.etat).subscribe((event: HttpEvent<any>) => {
         switch (event.type) {
           case HttpEventType.Sent:
             
@@ -71,6 +71,6 @@ export class InscriptionComponent {
       }, // Intercepter les messages d'erreurs du serveur
         error => {
           this.errMsg = error.error.error
-        }) */
+        })
   }
 }

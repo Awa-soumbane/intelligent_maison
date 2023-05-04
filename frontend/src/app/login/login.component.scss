@@ -3,19 +3,12 @@ a {
 }
 
 .login-page {
-  width: 100%;
+
   height: 100vh;
-  display: inline-block;
-  display: flex;
-  align-items: center;
+
 }
 
-.row_ {
-   gap: 4;
-}
-/* .submit{
-   margin-right: 37% ;
-} */
+
 .side-image{
   background-image: url("../../assets/maison.jpeg");
   background-size: 100% 60vh;
@@ -26,8 +19,34 @@ a {
 }
 .global{
   height: 60vh;
-  display: flex;
-  align-items: center;
+
 }
 
-
+@media only screen and (max-width: 412px){
+  .side-image{
+      border-radius: 10px 10px 0 0;
+  }
+  img{
+      width: 35px;
+      position: absolute;
+      top: 20px;
+      
+  }
+  .text{
+      position: absolute;
+      top: 70%;
+      text-align: center;
+  }
+  .text p,i{
+      font-size: 17px;
+  }
+  .row{
+      max-width: 420px;
+      width: 100%;
+  }
+  .global{
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+  }
+}

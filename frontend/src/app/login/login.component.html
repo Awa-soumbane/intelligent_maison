@@ -1,5 +1,6 @@
-<div class="login-page bg-light">
-  <div class="container">
+<body class="">
+<div class="login-page bg-light  d-flex align-items-center">
+  <div class="container ">
     <div class="row">
       <div class="col-lg-10 offset-lg-1">
         <div class="bg-white shadow rounded">
@@ -7,12 +8,15 @@
             <div class="col-6 side-image">
             </div>
             <div class="col-6">
-              <div class="form-left py-5 px-5 global">
-                <form class="row_ w-100 " id="form" (submit)="onSubmit()" [formGroup]="registerForm">
-                  <h1 style="text-align: center;margin-bottom: 50px;" class="mt-5">Connection</h1>
+              <div class="form-left py-5 px-5 global d-flex   align-items-center">
+                <form class="row_ w-100" id="form" (submit)="loginUser()" [formGroup]="registerForm">
+                  <ng-container *ngIf="this.errMsg">
+                    <div class="alert alert-danger" role="alert"><strong> Erreur </strong> {{errMsg}}</div>
+                  </ng-container>
+                  <h1 class="d-flex justify-content-center mb-5" >Connection</h1>
 
                   <div class="col-md-12 mb-3 input-field">
-                    <label>Email<span class="text-danger">*</span></label>
+                    <label><i class="bi bi-envelope-fill"></i>Email<span class="text-danger">*</span></label>
                       <input type="text" class="form-control" id="email" name="email" type="text" id="email" name="email"
                         [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder=""
                         formControlName="email" type="email" id="email" name="email" required autocomplete="off">
@@ -47,11 +51,7 @@
                       </div><br>
 
                          <div class="pb-5 col-md-12 d-flex justify-content-center">
-                          <button type="submit" class="btn btn-primary px-4  mt-4 submit ">Se connecter</button>
-                          <!--   <span class="visually" *ngIf="!spin"></span>
-                            <span class="spinner-border spinner-border-sm" *ngIf="spin" role="status" aria-hidden="false"
-                            style="color: white;"></span>
-                           -->
+                          <button type="submit" class="btn btn-primary px-4 float-end mt-4 submit ">Se connecter </button>
                         </div>
                 </form>
               </div>
@@ -62,4 +62,4 @@
     </div>
   </div>
 </div>
-
+</body>
