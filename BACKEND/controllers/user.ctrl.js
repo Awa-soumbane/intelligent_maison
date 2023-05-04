@@ -10,15 +10,15 @@ mongoose = require('mongoose')
 router.post('/add-user', (req, res, next) => {
     console.log(req.body)
 
-      bcrypt.hash(req.body.password, 10).then((hash) => {
+      bcrypt.hash(req.body.mot_pass, 10).then((hash) => {
         const user = new userSchema({
           prenom: req.body.prenom,
           nom: req.body.nom,
           email: req.body.email,
           role: req.body.role,
-          password: hash,
+         mot_pass: hash,
           etat: req.body.etat,
-          matricule: req.body.matricule
+          
         })
         user.save()
           .then((response) => {
@@ -175,7 +175,7 @@ router.route('/update-user/:id').put((req, res, next) => {
 router.delete('/delete/:id', async(req, res) => {
   try {
   const id = req.params.id;
-  const data = await Model.findByIdAndDelete(id)
+  const data = await userSchema.findByIdAndDelete(id)
   res.send(`Le Document avec le nom ${data.prenom} ${data.nom} a été supprimé..`)
   }
   catch (error) {

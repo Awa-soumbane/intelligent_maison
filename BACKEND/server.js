@@ -29,7 +29,7 @@ app.use(
     extended: false,
   }),
 )
-app.use(cors())
+app.use(cors({origin: "*"}))
 
 // Serve static resources
 app.use('/api', api)

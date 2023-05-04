@@ -7,7 +7,7 @@ let userSchema = new Schema({
     nom: { type: String, required:true },
     email: { type: String, unique: true, required:true },
     role: { type: String, required:true },
-    password: { type: String, required:true },
+    mot_pass: { type: String, required:true },
     etat: { type: Boolean, required:false },
     
 }, {timestamps: true},
