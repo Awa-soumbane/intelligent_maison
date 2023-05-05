@@ -78,7 +78,7 @@
                 <button title="Archiver" class="btn link text-danger" (click)="archiver(donnee._id, donnee.etat)">
                   <i class="bi bi-arrow-down-square"></i>
                 </button>
-                <button title="Modifier" class="btn link text-warning " data-toggle="modal" data-target="#modifier" (click)="getUserData(currentUser._id,currentUser.prenom,currentUser.nom,currentUser.email)">
+                <button title="Modifier" class="btn link text-warning " data-toggle="modal" data-target="#modifier" (click)="getUserData(donnee._id,donnee.prenom,donnee.nom,donnee.email)">
                   <i class="bi bi-pencil-square"></i>
                 </button>
               </div>
@@ -107,8 +107,8 @@
     </ng-container> -->
       <div class="modal-body">
         <form [formGroup]="formGroup" (ngSubmit)="onUpdate()">
-          <label for='Prenom'>Prenom</label>
-          <input type="text" formControlName="prenom" class="form-control">
+          <label for='prenom'>Prenom</label>
+          <input type="text" formControlName="prenom" class="form-control" value={{P}}>
           <div *ngIf="submitted && formGroup.controls['prenom'].errors" class="text-danger">
             <div *ngIf="submitted && formGroup.controls['prenom'].errors['required']">
               Veillez renseignez le prenom
@@ -116,11 +116,11 @@
             <div *ngIf="submitted && formGroup.controls['prenom'].errors['cannotContainSpace']">
               Espace non autorisé
             </div>
-          </div>
+          </div> 
           <br />
           
           <label for='nom'>Nom</label>
-          <input type="text"  formControlName="nom" class="form-control">
+          <input type="text"  formControlName="nom" class="form-control"value={{N}}>
           
           <div *ngIf="submitted && formGroup.controls['nom'].errors" class="text-danger">
             <div *ngIf="submitted && formGroup.controls['nom'].errors['required']">
@@ -132,7 +132,7 @@
           </div>
           <br />
           <label for='email'>Adresse email</label>
-          <input type="email" formControlName="email" class="form-control">
+          <input type="email" formControlName="email" class="form-control" value={{E}}>
           <div *ngIf="submitted && formGroup.controls['email'].errors" class="text-danger">
             <div *ngIf="submitted && formGroup.controls['email'].errors['required']">
               Veillez renseignez le mail
@@ -185,6 +185,7 @@
     </div> -->
 
           <button type="submit" class="btn btn-outline-primary">Sauvegarder</button>
+          
         </form>
       </div>
       <div class="modal-footer">

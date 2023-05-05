@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { User } from "../models/user";
-import { Observable, throwError } from "rxjs";
+import { BehaviorSubject, Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from "@angular/router";
@@ -16,7 +16,16 @@ import { Router } from "@angular/router";
     httpClient: any;
     endpointIo: string = 'http://localhost:3000'
 
-    constructor(private http: HttpClient, public router: Router) {}
+    private currentUserSubject: BehaviorSubject<User>;
+
+
+    constructor(private http: HttpClient, public router: Router) {
+      this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')!!));
+    }
+
+    public get currentUserValue(): User {
+      return this.currentUserSubject.value;
+    }
   
     // Recuperer la temperature et l'humidité
     GetDonnees(){
@@ -88,19 +97,21 @@ import { Router } from "@angular/router";
     }
 
 
-    /*   getConnexion(user:User){
-    return this.httpClient.post<User>(`${environment.apiUrl}/api/login`,user).
-      pipe(map(user => { */
+      getConnexion(user:User){
+        console.log("test user: ", user);
+        
+    return this.http.post<User>(`${this.endpoint}/login`,user).
+      pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         //Ceci permet de garder l'utilisateur connecté entre les differentes pages
-  /*       localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
+        localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
         localStorage.setItem('id', JSON.stringify(user.data?.userId));
 
         this.currentUserSubject.next(user);
         return user;
       }));
 
-  } */
+  }
     
     doLogout() {
       let removeToken = localStorage.removeItem('access_token');

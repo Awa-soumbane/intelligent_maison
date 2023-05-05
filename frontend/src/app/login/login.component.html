@@ -9,12 +9,12 @@
             </div>
             <div class="col-6">
               <div class="form-left py-5 px-5 global d-flex   align-items-center">
-                <form class="row_ w-100" id="form" (submit)="loginUser()" [formGroup]="registerForm">
+                <form class="row_ w-100" id="form" (submit)="getConnexion()" [formGroup]="registerForm">
+                  
+                  <h1 class="d-flex justify-content-center mb-5" >Connection</h1>
                   <ng-container *ngIf="this.errMsg">
                     <div class="alert alert-danger" role="alert"><strong> Erreur </strong> {{errMsg}}</div>
                   </ng-container>
-                  <h1 class="d-flex justify-content-center mb-5" >Connection</h1>
-
                   <div class="col-md-12 mb-3 input-field">
                     <label><i class="bi bi-envelope-fill"></i>Email<span class="text-danger">*</span></label>
                       <input type="text" class="form-control" id="email" name="email" type="text" id="email" name="email"
