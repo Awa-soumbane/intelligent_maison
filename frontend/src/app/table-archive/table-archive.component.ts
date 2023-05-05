@@ -6,7 +6,7 @@ import { UsernameValidator } from 'src/app/username.validator';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-table-actifs',
+  selector: 'app-table-archive',
   templateUrl: './table-archive.component.html',
   styleUrls: ['./table-archive.component.css']
 })

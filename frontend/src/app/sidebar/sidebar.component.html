@@ -1,1 +1,163 @@
-<p>sidebar works!</p>
+
+
+    <aside class="flex-column " aria-label="Sidebar" id="sidebarMenu" 
+    class="collapse mt-10 d-lg-block sidebar shadow bg-#9393F9 collapse ;" style="background-color: #9393F9; margin-top: 10px;">
+    <div class="position-sticky shadow h-100 ">
+      <div class="">           
+        <a href="#">
+            <img src="../../assets/svgviewer-output.svg" class="w-50 d-flex justify-content-center ml-12" alt="Flowbite Logo" style="display: flex; justify-content: center; margin-left: 25%; padding: 12px;"/>
+        </a>
+    
+        <span style="display: flex; justify-content: center; font-size: 16px;">Prenom nom</span>
+      </div>  
+<div class="h-24">
+
+</div>
+ &nbsp;&nbsp;
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+        <div class="w-100" style="margin-left: 25px; color: #Ffff;" >
+           
+            <div>
+                <div class="d-flex">
+                    <svg aria-hidden="true" id="icon"
+                        class=" " 
+                        fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                   <a routerLink="//tableActif">Liste Utilisateurs</a>
+                </div>
+            </div>
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+    
+            <div class="w-100">
+                <div class="d-flex">
+                    <svg aria-hidden="true" id="icon"
+                        class=" " 
+                        fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <a  routerLink="//inscription">Ajout Utilisateurs</a>
+                </div>
+            </div>    
+             &nbsp;&nbsp;
+            &nbsp;&nbsp;
+    
+            <div class="w-100">
+                <div class="d-flex"> 
+                    <svg aria-hidden="true" id="icon"
+                    class="flex-shrink-0 w-6 h-6 text-white transition duration-7 group-hover:text-gray-900" fill="currentColor"
+                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd"
+                        d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <div class="dropdown" style="background-color:  #ffff;">
+                    <a  style="text-decoration: none;gap: 15px; " class=" fs-5 d-flex">
+                    <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                   Liste Champes
+                    </button>
+                    <ul class="dropdown-menu">
+                      <li><button class="dropdown-item" type="button" routerLink="/arrosage">Parent</button></li>
+                      <li><button class="dropdown-item" type="button" routerLink="/modif">Enfant</button></li>
+                      <li><button class="dropdown-item" type="button" routerLink="/modif">Locataire</button></li>
+                    </ul>
+            
+                </a>
+                  </div>
+                </div>
+            </div>
+            </div>
+    </div>
+    &nbsp;&nbsp;
+<div class="collapse d-lg-block sidebar shadow  collapse ;" style="background-color: #9393F9;  border-radius: 10px 0px 0px 0px;">
+<div class=" mt-5">
+    <span class="d-flex justify-content-center mb-4" id="titr">climatiseur</span>
+
+    <div class="d-flex justify-content-center  " >
+        <img src="../../assets/svgviewer-output (1).svg" alt=" ">
+            </div>
+        <div class="d-flex  justify-content-center mt-2">
+            <img src="../../assets/start.png" alt="" class="non">
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+            <img src="../../assets/stop.png" alt="" class="non">
+        
+        </div>
+</div>
+</div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- /nabar -->
+<!--Main layout-->
+&nbsp;
+<div>
+<main class="shadow bg-light pb-1 " style=" border-radius: 0 20px 10px 0; z-index: 289; ">
+    
+    <nav class="navbar  mb-4 d-flex justify-content-center">
+        <!-- Container wrapper -->
+        <div class="container p-2  w-100 nav shadow  d-flex justify-content-around border mb-4 ">
+            <!-- Toggle button -->
+            <!-- Brand -->
+           
+           
+            <a role="button" role="button" class="navbar-brand text text-danger" href="#" data-toggle="tooltip" style="margin-left: 20px;"
+            routerLink="localisation" data-placement="top" title="localisation" data-bs-toggle="modal" href="#exampleModalMaps">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-geo-alt"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
+                    <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                </svg>
+            </a>
+
+            <a role="button" class="navbar-brand text text-danger" data-bs-toggle="modal" href="#exampleModalPassword"
+                role="button" data-toggle="tooltip" data-placement="top" title="Mot de passe">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                    class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                    <path
+                        d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z" />
+                    <path fill-rule="evenodd"
+                        d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z" />
+                </svg>
+            </a>
+
+            <a role="button" class="navbar-brand text text-danger" href="#" data-toggle="tooltip"
+                routerLink="login" data-placement="top" title="Deconnexion">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
+                    class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z" />
+                    <path fill-rule="evenodd"
+                        d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z" />
+                </svg>
+            </a>
+
+
+
+
+
+        </div>
+     
+    </nav>
+    
+
+    </main>
+    <div style=" width: 90%; margin-left: 18%;">
+    <router-outlet></router-outlet></div>
+</div>

@@ -1,7 +1,8 @@
+&nbsp;&nbsp;
 <body class="d-flex">
-    <div class="container tab my-5">
+    <div class="container tab my-5  mt-2">
         <!-- -------------------Recherche---------------- -->
-        <div class="form-group col-md-3 d-flex" style="margin-left: 75%;">
+        <div class="form-group col-md-3 d-flex" style="margin-left: 65%;">
           
           <div class="input-group">
             
@@ -23,13 +24,14 @@
           </form>
         </div> -->
         
-        <table class="table table-bordered w-100 my-3">
+      <div class="d-flex justify-centent-center" style="margin-right: 9%;">
+        <table class="table table-bordered w-72 my-3  mt-2 align-items-center ">
           <thead >
-              <tr class="line">
-                  <th scope="col">Prenom</th>
-                  <th scope="col">Nom</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Rôle</th>
+              <tr class="line" style="background-color: #9393F9;">
+                  <th scope="col"ngClass="text-center">Prenom</th>
+                  <th scope="col"ngClass="text-center">Nom</th>
+                  <th scope="col"ngClass="text-center">Email</th>
+                  <th scope="col"ngClass="text-center">Rôle</th>
                   <th scope="col"ngClass="text-center">Actions</th>
               </tr>
           </thead>
@@ -85,6 +87,7 @@
       </tbody>
       
         </table>
+      </div>
           <!-- ------------------------Pagination---------------------- -->
 <div class="pagination fixed-bottom justify-content-center">
   <pagination-controls (pageChange)="page=$event"></pagination-controls>
