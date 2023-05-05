@@ -99,6 +99,7 @@ import { Router } from "@angular/router";
       return this.http.get(api, { headers: this.headers }).pipe(
         map((res) => {
           return res || {};
+          
         }),
         catchError(this.handleError)
       );

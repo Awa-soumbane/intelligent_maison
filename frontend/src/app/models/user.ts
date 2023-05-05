@@ -6,6 +6,7 @@ export class User {
   role!: String;
   mot_pass!: String;
   etat!: boolean;
+  static data: any;
  
 }
 

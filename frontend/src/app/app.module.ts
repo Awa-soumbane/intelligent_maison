@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { DashbordComponent } from './dashbord-enfant/dashbord.component';
+import { DashbordComponent } from './dashbord/dashbord.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavebarComponent } from './navebar/navebar.component';
 import { InscriptionComponent } from './inscription/inscription.component';
