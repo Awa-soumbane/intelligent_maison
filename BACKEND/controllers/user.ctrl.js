@@ -118,7 +118,7 @@ router.post('/login', async(req, res, next) => {
   //   })
 
   let { email, mot_pass } = req.body; 
-console.log(req.body.mot_pass);
+console.log(req.body);
     let existingUser;
 
 // Retrouve l'email saisi dans la base de données et stocke ça dans existingUser
