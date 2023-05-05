@@ -74,48 +74,100 @@ router.patch('/update1/:id', async(req, res) => {
 })
 
 // Connexion
-router.post('/login', (req, res, next) => {
-  let getUser
-  userSchema
-    .findOne({
-      email: req.body.email,
-    })
-    // Verifier si l'utilisateur existe
-    .then((user) => {
-      if (!user) {
-        return res.status(401).json({
-          message: 'Compte non existant !'})
-      }
-      getUser = user
-      return bcrypt.compare(req.body.password, user.password)
-    })
-    .then((response) => {
-      if (!response) {
-        return res.status(401).json({
-          message: 'Le mot de passe est incorrect !',
-        })
-      }else if(getUser.etat == false){
-        return res.status(401).json({
-          message: 'Le compte est désactivé !' ,
-        })
-      }
-      let jwtToken = jwt.sign({
-          email: getUser.email,
-          userId: getUser._id,
+router.post('/login', async(req, res, next) => {
+  // let getUser
+  // userSchema
+  //   .findOne({
+  //     email: req.body.email,
+  //   })
+  //   // Verifier si l'utilisateur existe
+  //   .then((user) => {
+  //     if (!user) {
+  //       return res.status(401).json({
+  //         message: 'Compte non existant !'})
+  //     }
+  //     getUser = user
+  //     return bcrypt.compare(req.body.password, user.password)
+  //   })
+  //   .then((response) => {
+  //     if (!response) {
+  //       return res.status(401).json({
+  //         message: 'Le mot de passe est incorrect !',
+  //       })
+  //     }else if(getUser.etat == false){
+  //       return res.status(401).json({
+  //         message: 'Le compte est désactivé !' ,
+  //       })
+  //     }
+  //     let jwtToken = jwt.sign({
+  //         email: getUser.email,
+  //         userId: getUser._id,
+  //       },
+  //       'longer-secret-is-better',{ expiresIn: '6h'
+  //     })
+  //     res.status(200).json({
+  //       token: jwtToken,
+  //       expiresIn: 3600,
+  //       _id: getUser._id,
+  //     })
+  //   })
+  //   .catch((err) => {
+  //     return res.status(401).json({
+  //       message: 'Authentication failed',
+  //     })
+  //   })
+
+  let { email, mot_pass } = req.body; 
+console.log(req.body.mot_pass);
+    let existingUser;
+
+// Retrouve l'email saisi dans la base de données et stocke ça dans existingUser
+    existingUser = await userSchema.findOne({ email: email }); 
+    if (!existingUser) 
+    { // si l'email ne s'y trouve pas donne le message
+      return res.status(404).send("email doesn't exist...!");
+    }
+
+    // On sort de if donc ça suppose que l'email existe
+    //On vérifie maintenant si le mot de passe est correct ou pas
+// Comparaison entre le mot de passe saisi et celui se trouvant dans la base de données
+    const isPasswordValid = await bcrypt.compare(mot_pass, existingUser.mot_pass);
+    if (!isPasswordValid) { // Le mot de passe n'est pas le bon
+      return res.status(401).send("password is invalid");
+    }
+
+    // Maintenant que tout est bon (email et mot de passe correctes), on genere un token
+
+    let token;
+    try {  // Essaye de faire ceci ...
+      //Creating jwt token
+      token = jwt.sign(
+        { userId: existingUser.id, email: existingUser.email }, // id et email de la personne connectée
+          "process.env.JWT_SECRET", // cette clé secrète se trouve dans le fichier .env
+        { expiresIn: "1h" } // delai d'expiration du token
+      );
+    } catch (err) {  // Informe-moi avec un message s'il y'a problème
+      console.log(err);
+      const error = new Error("Erreur! Quelque chose s'est mal passée!");
+      return next(error);
+    }
+   // Si la tentative de connexion s'est bien déroullée, on envoi une réponse
+   // avec les informations (id, email, nom, prenom et un token)
+   return res
+      .status(200)
+      .json({
+        success: true,
+        data: {
+          userId: existingUser.id,
+          email: existingUser.email,
+          nom: existingUser.nom,
+          prenom: existingUser.prenom,
+          token: token,
         },
-        'longer-secret-is-better',{ expiresIn: '6h'
-      })
-      res.status(200).json({
-        token: jwtToken,
-        expiresIn: 3600,
-        _id: getUser._id,
-      })
-    })
-    .catch((err) => {
-      return res.status(401).json({
-        message: 'Authentication failed',
-      })
-    })
+      });
+
+
+
 })
 
 // Recuperez tous les utilisateurs

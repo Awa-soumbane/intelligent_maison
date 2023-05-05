@@ -27,10 +27,10 @@ constructor(private activatedRoute: ActivatedRoute,
             public authService: AuthService ){
 
             // Recuperer les informations de l'utilisateur
-          /*   let id = localStorage.getItem('id'); 
+            let id = localStorage.getItem('id'); 
             this.authService.getUserProfile(id).subscribe((res) => {
               this.currentUser = res.msg;
-            }); */
+            });
                 
 
              
@@ -75,16 +75,16 @@ ngOnInit(): void {
   })
  
 } 
- getUserData(id:any,prenom:any,nom:any,email:any){
+getUserData(id:any,Prenom:any,nom:any,email:any){
+console.log(id);
 
   this.formGroup = this.formBuilder.group({
       id:[id],
-      prenom: [prenom, [Validators.required, UsernameValidator.cannotContainSpace]],
+      Prenom: [Prenom, [Validators.required, UsernameValidator.cannotContainSpace]],
       nom: [nom, [Validators.required, UsernameValidator.cannotContainSpace]],
       email: [email, [Validators.required, Validators.email]],
     });
-} 
-//modifier user
+}//modifier user
 onUpdate(){
   const id =  this.formGroup.value.id;
   
@@ -94,10 +94,29 @@ nom : this.formGroup.value.nom,
 email: this.formGroup.value.email
 
 }
+
+console.log(this.formGroup.value.prenom);
+
 this.submitted = true;
 if(this.formGroup.invalid){
  return;
 }
+this.authService.updateUser(id, user).subscribe(
+  data=>{
+    this.ngOnInit();
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Modification réussi !',
+      showConfirmButton: false,
+      timer: 1500
+    });window.setTimeout(function(){location.reload()},1000)
+  },
+  error => {
+    this.errMsg = false
+    setTimeout(()=>{ this.errMsg = true}, 2000);
+  });
 }
 }
+
 

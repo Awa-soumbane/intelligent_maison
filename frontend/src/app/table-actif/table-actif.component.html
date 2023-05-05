@@ -76,7 +76,7 @@
                 <button title="Archiver" class="btn link text-danger" (click)="archiver(donnee._id, donnee.etat)">
                   <i class="bi bi-arrow-down-square"></i>
                 </button>
-                <button title="Modifier" class="btn link text-warning " data-toggle="modal" data-target="#modifier" (click)="getUserData(donnee._id,donnee.prenom,donnee.nom,donnee.email)">
+                <button title="Modifier" class="btn link text-warning " data-toggle="modal" data-target="#modifier" (click)="getUserData(currentUser._id,currentUser.prenom,currentUser.nom,currentUser.email)">
                   <i class="bi bi-pencil-square"></i>
                 </button>
               </div>
@@ -98,15 +98,13 @@
       <div class="modal-header">
         <h5 class="modal-title">Modifier l'utilisateur</h5>
       </div>
-      <div *ngIf="!errMsg" class="alert alert-danger" role="alert">
-        <strong> Erreur </strong> Email déjà existant !
-      </div>
-      <ng-container *ngIf="this.errMsg">
-        <div class="alert alert-danger" role="alert"><strong> Erreur </strong> {{errMsg}}</div>
-    </ng-container>
+     
+      <!-- <ng-container *ngIf="this.errMsg">
+        <div class="alert alert-danger" role="alert"><strong> Erreur </strong></div>
+    </ng-container> -->
       <div class="modal-body">
         <form [formGroup]="formGroup" (ngSubmit)="onUpdate()">
-          <label for='prenom'>Prenom</label>
+          <label for='Prenom'>Prenom</label>
           <input type="text" formControlName="prenom" class="form-control">
           <div *ngIf="submitted && formGroup.controls['prenom'].errors" class="text-danger">
             <div *ngIf="submitted && formGroup.controls['prenom'].errors['required']">
@@ -117,8 +115,10 @@
             </div>
           </div>
           <br />
+          
           <label for='nom'>Nom</label>
-          <input type="text" formControlName="nom" class="form-control">
+          <input type="text"  formControlName="nom" class="form-control">
+          
           <div *ngIf="submitted && formGroup.controls['nom'].errors" class="text-danger">
             <div *ngIf="submitted && formGroup.controls['nom'].errors['required']">
               Veillez renseignez le nom

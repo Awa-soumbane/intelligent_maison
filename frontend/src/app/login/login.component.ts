@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
     registerForm!: FormGroup;
   submitted = false;
   errMsg: any;
+  route: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
   ){
     this.registerForm = this.formBuilder.group({
       email:['', [Validators.required, Validators.email]],
-      password:['', [Validators.required, Validators.minLength(6)]]
+      mot_pass:['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
@@ -66,11 +67,12 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.registerForm.value).subscribe((res: any) => {
       localStorage.setItem('access_token', res.token);
       localStorage.setItem('id', res._id);
-
-      this.authService.getUserProfile(res._id).subscribe((res) => {
+      this.router.navigate(['inscription']);
+     /*  this.authService.getUserProfile(res._id).subscribe((res) => {
         this.authService.currentUser = res;
         this.router.navigate(['inscription']);
-      });
+      }); */
+     
     }, // Intercepter les messages d'erreurs du serveur
     error => {
       this.errMsg = error.error.message

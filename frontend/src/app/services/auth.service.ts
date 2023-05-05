@@ -77,6 +77,7 @@ import { Router } from "@angular/router";
     login(user: User) {
       return this.http
         .post<any>(`${this.endpoint}/login`, user)
+        
     }
     getToken() {
       return localStorage.getItem('access_token');
@@ -85,6 +86,21 @@ import { Router } from "@angular/router";
       let authToken = localStorage.getItem('access_token');
       return authToken !== null ? true : false;
     }
+
+
+    /*   getConnexion(user:User){
+    return this.httpClient.post<User>(`${environment.apiUrl}/api/login`,user).
+      pipe(map(user => { */
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        //Ceci permet de garder l'utilisateur connecté entre les differentes pages
+  /*       localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
+        localStorage.setItem('id', JSON.stringify(user.data?.userId));
+
+        this.currentUserSubject.next(user);
+        return user;
+      }));
+
+  } */
     
     doLogout() {
       let removeToken = localStorage.removeItem('access_token');
