@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { DashbordComponent } from './dashbord/dashbord.component';
+import { DashbordComponent } from './dashbord-enfant/dashbord.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { NavebarComponent } from './navebar/navebar.component';
 import { InscriptionComponent } from './inscription/inscription.component';
@@ -16,6 +16,8 @@ import { TableArchivesComponent } from './table-archive/table-archive.component'
 import { LoginComponent} from './login/login.component';
 import { LocalisationComponent } from './localisation/localisation.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AcceuilComponent } from './acceuil/acceuil.component';
+import { DashbordParentComponent } from './dashbord-parent/dashbord-parent.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     TableActifsComponent,
     TableArchivesComponent,
     LoginComponent,
-    LocalisationComponent
+    LocalisationComponent,
+    AcceuilComponent,
+    DashbordParentComponent
   ],
   imports: [
     BrowserModule,
