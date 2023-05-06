@@ -106,6 +106,8 @@ import { Router } from "@angular/router";
         //Ceci permet de garder l'utilisateur connecté entre les differentes pages
         localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
         localStorage.setItem('id', JSON.stringify(user.data?.userId));
+        localStorage.setItem('prenom', JSON.stringify(user.data?.prenom));
+        localStorage.setItem('nom', JSON.stringify(user.data?.nom));
 
         this.currentUserSubject.next(user);
         return user;

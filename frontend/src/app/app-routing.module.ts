@@ -8,6 +8,7 @@ import { LocalisationComponent } from './localisation/localisation.component';
 import { DashbordComponent } from './dashbord-enfant/dashbord.component';
 import { DashbordParentComponent } from './dashbord-parent/dashbord-parent.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
+import { ProfilComponent } from './profil/profil.component';
 
 const routes: Routes = [
   {component: InscriptionComponent, path:'inscription'},
@@ -17,6 +18,7 @@ const routes: Routes = [
   {component: DashbordComponent, path:'enfant'},
   {component:  TableArchivesComponent, path:'tableArchive'},
   { path:"localisation", component: LocalisationComponent},
+  { path:"profil", component: ProfilComponent},
   {component:AcceuilComponent, path:'index'},
   {path:"login", component: LoginComponent},
 

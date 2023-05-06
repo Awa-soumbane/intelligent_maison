@@ -37,7 +37,7 @@ router.post('/add-user', (req, res, next) => {
   },
 )
 //modif mdp
-router.patch('/update1/:id', async(req, res) => {
+/* router.patch('/update1/:id', async(req, res) => {
   try {
         let { actuelPass, newPass } = req.body;
         const id = req.params.id;
@@ -50,7 +50,7 @@ router.patch('/update1/:id', async(req, res) => {
         if (updatedData.actuelPass){
           user.then(async(e)=> {
 
-                if(await bcrypt.compare(actuelPass, e.password)){
+                if(await bcrypt.compare(actuelPass, e.mot_pass)){
                     const hash = await bcrypt.hash(newPass, 10);
                       updatedData.password = hash;
                       const result = await userSchema.findByIdAndUpdate(
@@ -71,6 +71,36 @@ router.patch('/update1/:id', async(req, res) => {
   catch (error) {
       res.status(400).json({ message: error.message })
   }
+}) */
+router.patch('/updatepass/:id', async (req, res) => {
+  const { actuelpassword, newpassword} = req.body;
+  console.log(req.body);
+try {
+const id = req.params.id;
+//const updatedData = req.body;
+const options = { new: true };
+const result = await userSchema.findOne({_id:id})
+
+const passwordMatch = await bcrypt.compare(actuelpassword,result.mot_pass);
+console.log(result)
+
+if(!passwordMatch){
+  return res.status(400).json({message: 'incorrect password'});
+}
+
+
+const hashedPassword = await bcrypt.hash(newpassword, 10);
+
+result.mot_pass = hashedPassword;
+
+await userSchema.findByIdAndUpdate(id, {mot_pass:hashedPassword}, options )
+
+return res.status(200).json({message: 'modifier avec succes'});
+
+} catch(error) {
+   res.status(400).json({message: error.message})
+}
+
 })
 
 // Connexion

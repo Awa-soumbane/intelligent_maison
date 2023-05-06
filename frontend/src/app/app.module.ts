@@ -18,6 +18,8 @@ import { LocalisationComponent } from './localisation/localisation.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AcceuilComponent } from './acceuil/acceuil.component';
 import { DashbordParentComponent } from './dashbord-parent/dashbord-parent.component';
+import { ProfilComponent } from './profil/profil.component';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { DashbordParentComponent } from './dashbord-parent/dashbord-parent.compo
     LoginComponent,
     LocalisationComponent,
     AcceuilComponent,
-    DashbordParentComponent
+    DashbordParentComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,
