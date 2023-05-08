@@ -17,7 +17,7 @@ const routes: Routes = [
   {component: InscriptionComponent, path:'inscription'},
   {component: TableActifsComponent, path:'tableActif'},
   {component: DashbordComponent, path:'home'},
-  {component: ProfilComponent, path:'profil'},
+ {component: ProfilComponent, path: 'motdepasse'},
   {component: DashbordComponent, path:'enfant'},
   {component: LoginComponent, path:'login'},
   {component:  TableArchivesComponent, path:'tableArchive'},

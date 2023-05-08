@@ -37,7 +37,8 @@ import { DashbordParent } from './parent/dashbord-parent.component';
     AcceuilComponent,
     DashbordComponent, 
     DashbordParent,
-    ProfilComponent 
+    ProfilComponent
+
 
   ],
   imports: [

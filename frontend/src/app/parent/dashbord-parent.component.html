@@ -85,22 +85,26 @@
         </div>
         <div class="d-flex justify-centent-center" style="margin-left: 12%;">
           <div class="d-flex ">
-            <img src="../../assets/lampoff.svg" alt="" style="height: 52px; width: 40px;"> 
+            <img *ngIf="!top" src="../../assets/lampeon.svg" alt=""  style="height: 65px;width: 45px; display: flex;justify-content: center;">
+            <img *ngIf="top"src="../../assets/lampoff.svg" alt=""style="height: 65px;width: 45px; display: flex;justify-content: center;">
             &nbsp;&nbsp;
            
           <div style="height: 4px;">
-           <button style="height: 45px;"><img src="../../assets/off.svg" alt=""style="height: 36px;"></button>
+            <button *ngIf="top" style="height: 45px;width: 42px;">  <img src="../../assets/off.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)=" closs()"></button>
+            <button  *ngIf="!top" style="height: 45px;width: 42px;">  <img src="../../assets/on.svg" alt="" style="height:  36px;width: 35px; display: flex;justify-content: center;" (click)="ope()"></button>  
            <p class=" "> Parent</p>
           </div>
        </div>
        &nbsp;&nbsp;
             &nbsp;&nbsp;
        <div class="d-flex">
-           <img src="../../assets/lampoff.svg" alt="" style="height: 52px; width: 40px;"> 
+        <img *ngIf="!toll" src="../../assets/lampeon.svg" alt=""  style="height: 65px;width: 45px; display: flex;justify-content: center;">
+        <img *ngIf="toll"src="../../assets/lampoff.svg" alt="" style="height: 65px;width: 45px; display: flex;justify-content: center;">
            &nbsp;&nbsp;
            &nbsp;&nbsp;
           <div  style="height: 4px;">
-           <button  style="height: 45px;"><img src="../../assets/off.svg" alt=""  style="height: 36px;"></button>
+            <button *ngIf="toll" style="height: 45px;width: 42px;">  <img src="../../assets/off.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)=" lampe()"></button>
+            <button  *ngIf="!toll" style="height: 45px;width: 42px;">  <img src="../../assets/on.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)="oflampe()"></button>  
            <p class=" "> Enfant</p>
           </div>
   
@@ -112,11 +116,13 @@
      
           <div class="d-flex justify-centent-center mt-2"style="margin-left: 12%;">
             <div class="d-flex ">
-              <img src="../../assets/lampoff.svg" alt=""style="height: 52px; width: 40px;"> 
+              <img *ngIf="!topp" src="../../assets/lampeon.svg" alt=""  style="height: 52px; width: 40px; display: flex;justify-content: center;">
+              <img *ngIf="topp"src="../../assets/lampoff.svg" alt="" style="height: 52px; width: 40px; display: flex;justify-content: center;" >
               &nbsp;&nbsp;
            
             <div style="height: 4px;">
-             <button style="height: 45px;"><img src="../../assets/off.svg" alt=""style="height: 36px;"></button>
+              <button *ngIf="topp" style="height: 45px;width: 42px;">  <img src="../../assets/off.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)=" closes()"></button>
+              <button  *ngIf="!topp" style="height: 45px;width: 42px;">  <img src="../../assets/on.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)="offf()"></button>  
              <p class=" ">Salon</p>
             </div>
          </div>
@@ -125,12 +131,14 @@
          
       
          <div class="d-flex">
-             <img src="../../assets/lampoff.svg" alt=""style="height: 52px; width: 40px;"> 
+          <img *ngIf="!tops" src="../../assets/lampeon.svg" alt=""  style="height: 52px; width: 40px; display: flex;justify-content: center;">
+          <img *ngIf="tops"src="../../assets/lampoff.svg" alt="" style="height: 52px; width: 40px; display: flex;justify-content: center;" >
               &nbsp;&nbsp;
               &nbsp;&nbsp;
             
             <div style="height: 4px;">
-             <button  style="height: 45px;"><img src="../../assets/off.svg" alt=""  style="height: 36px;"></button>
+              <button *ngIf="tops" style="height: 45px;width: 42px;">  <img src="../../assets/off.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)=" clss()"></button>
+              <button  *ngIf="!tops" style="height: 45px;width: 42px;">  <img src="../../assets/on.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)="ofss()"></button>  
              <p class=" ">Couloir</p>
             </div>
          </div>
@@ -148,7 +156,7 @@
                 &nbsp;&nbsp;
                 
               <div style="height: 4px;">
-               <button style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
+               <button (click)="open(content)" style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
                <p class=" ">Parent</p>
               </div>
            </div>
@@ -164,7 +172,7 @@
                 &nbsp;&nbsp;
 
               <div style="height: 4px;">
-               <button style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
+               <button (click)="open(content)"style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
                <p class=" ">Enfant</p>
               </div>
            </div>
@@ -177,7 +185,7 @@
               &nbsp;&nbsp;
               &nbsp;&nbsp;
             <div style="height: 4px;">
-             <button style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
+             <button (click)="open(content)" style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
              <p class=" ">Salon</p>
             </div>
          </div>
@@ -212,7 +220,7 @@
                 &nbsp;&nbsp;
                 
               <div style="height: 4px;">
-               <button style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 34px;width: 32px;"></button>
+               <button (click)="open(content)" style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 34px;width: 32px;"></button>
                <p class=" ">Parent</p>
               </div>
            </div>
@@ -228,7 +236,7 @@
                
                 
               <div style="height: 4px;">
-               <button style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
+               <button (click)="open(content)"style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
                <p class=" ">Enfant</p>
               </div>
            </div>
@@ -241,7 +249,7 @@
               &nbsp;&nbsp;
               &nbsp;&nbsp;
             <div style="height: 4px;">
-             <button style="height: 45px;width: 42px;"><img src="../../assets/ffv.svg" alt=""style="height: 36px;width: 32px;"></button>
+             <button (click)="open(content)" style="height: 45px;width: 42px;"><img src="../../assets/ffv.svg" alt=""style="height: 36px;width: 32px;"></button>
              <p class=" ">Salon</p>
             </div>
          </div>
