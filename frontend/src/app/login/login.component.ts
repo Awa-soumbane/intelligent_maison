@@ -81,7 +81,7 @@ getConnexion(){
       let infoConnexion = res;
           if(infoConnexion.data){
             // setTimeout(()=> this.router.navigateByUrl('home'), 1000);
-            this.router.navigateByUrl('acceuil');
+            this.router.navigateByUrl('index');
           }/* else{
             this.errMsg= "email ou mot de passe incorrect"
           } */
