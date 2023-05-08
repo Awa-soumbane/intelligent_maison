@@ -8,6 +8,7 @@ import { LocalisationComponent } from './localisation/localisation.component';
 import { DashbordComponent } from './dashbord-enfant/dashbord.component';
 
 import { AcceuilComponent } from './acceuil/acceuil.component';
+import { ProfilComponent } from './profil/profil.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashbordParentComp } from './parent/dashbord-parent.component';
 
@@ -20,9 +21,7 @@ const routes: Routes = [
   {component: DashbordComponent, path:'enfant'},
   {component: LoginComponent, path:'login'},
   {component:  TableArchivesComponent, path:'tableArchive'},
- /*  {path: '', redirectTo: '/login', pathMatch: 'full'},  
-  {path: '**', redirectTo: '/login' }, */
- 
+  { path:"localisation", component: LocalisationComponent},
   {component:AcceuilComponent, path:'index'},
  {component: DashbordParentComp, path: 'parent'},
 {component:SidebarComponent, path: 'sidebar'},

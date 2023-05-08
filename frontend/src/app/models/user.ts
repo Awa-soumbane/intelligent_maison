@@ -10,7 +10,10 @@ export class User {
   data?:{
     token?:String;
     userId?: String
+    prenom?:String;
+    nom?: String
 }
+  msg: any;
  
 }
 

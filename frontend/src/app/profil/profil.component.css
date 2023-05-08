@@ -1,0 +1,19 @@
+/* .profil{
+    background-color: #fff;
+    border-radius: 5px;
+}
+p{
+    margin-top: -3px;
+}
+.profile{
+    background-color: #fff;
+    border-radius: 5px;
+    width: 600px;
+    margin-left: 4%;
+} */
+.container{
+    margin: 0px auto;
+    border: 1px solid black;
+    box-shadow: 7px 2px 2px blue;
+ 
+}

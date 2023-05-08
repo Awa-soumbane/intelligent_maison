@@ -58,6 +58,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  
 // Connexion
 getConnexion(){
     this.submitted = true;
@@ -67,12 +68,16 @@ getConnexion(){
     }
     const user:User ={
       email: this.registerForm.value.email,
-      mot_pass: this.registerForm.value.mot_pass
+      mot_pass: this.registerForm.value.mot_pass,
+      msg: undefined
     }
     console.log(user);
     
     this.authService.getConnexion(user).subscribe((res: any) => {
       console.log(res);
+      let prenom = localStorage.getItem('prenom');
+      console.log(prenom);
+      
       let infoConnexion = res;
           if(infoConnexion.data){
             // setTimeout(()=> this.router.navigateByUrl('home'), 1000);
