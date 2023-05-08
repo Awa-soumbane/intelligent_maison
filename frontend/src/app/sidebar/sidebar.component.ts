@@ -17,8 +17,9 @@ export class SidebarComponent {
   errMsg: any;
   route: any;
   spin= false;
-  prenom:string='';
-  nom:string=''
+  prenom!:any;
+  nom!:any
+  router: any;
 
 
   constructor(private authService: AuthService) {
@@ -28,8 +29,8 @@ export class SidebarComponent {
        
     // })
     
-     this.prenom = localStorage.getItem('prenom') as unknown as string;
-    this.nom = localStorage.getItem('nom')as unknown as string;;
+     this.prenom = localStorage.getItem('prenom')?.replace(/"/g,  "")
+    this.nom = localStorage.getItem('nom')?.replace(/"/g,  "")
     console.log(this.prenom);
 
 
@@ -46,6 +47,16 @@ export class SidebarComponent {
         this.currentUser = res.msg;
  
       }); */
+      }
+      doLogout() {
+        let removeToken = localStorage.removeItem('access_token');
+        if (removeToken == null) {
+          localStorage.removeItem('prenom');
+          localStorage.removeItem('nom');
+          localStorage.removeItem('currentUser');
+          localStorage.removeItem('id')
+          this.router.navigate(['login']);
+        }
       }
 
     }

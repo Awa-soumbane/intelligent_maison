@@ -7,8 +7,9 @@
         <a href="#">
             <img src="../../assets/svgviewer-output.svg" class="w-50 d-flex justify-content-center ml-12" alt="Flowbite Logo" style="display: flex; justify-content: center; margin-left: 25%; padding: 12px;"/>
         </a>
-    
-        <h5 class="m-2">{{ prenom }}{{ nom }} </h5>
+   
+        <h5 class="m-2 " style="margin-left: 20px;">{{ prenom }}  {{ nom }} </h5>
+ 
       </div>  
 <div class="h-24">
 
@@ -56,19 +57,28 @@
                         d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z"
                         clip-rule="evenodd"></path>
                 </svg>
-                <div class="dropdown" style="background-color:  #ffff;">
-                    <a  style="text-decoration: none;gap: 15px; " class=" fs-5 d-flex">
+                 <!-- <div class="dropdown" style="background-color:  #ffff;">
+                   <a  style="text-decoration: none;gap: 15px; " class=" fs-5 d-flex">
                     <button class="btn  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                    Liste Champes
-                    </button>
-                    <ul class="dropdown-menu">
+                    </button> -->
+                   <!--  <ul class="dropdown-menu">
                       <li><button class="dropdown-item" type="button" routerLink="/arrosage">Parent</button></li>
                       <li><button class="dropdown-item" type="button" routerLink="/modif">Enfant</button></li>
                       <li><button class="dropdown-item" type="button" routerLink="/modif">Locataire</button></li>
-                    </ul>
+                    </ul> -->
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle text-dark bg-light" type="button" data-toggle="dropdown"> Liste Champes
+                        <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                          <li><a href="parent">Parent</a></li>
+                          <li><a href="enfant">Enfant</a></li>
+                          <li><a href="locataire">Locataire</a></li>
+                        </ul>
+                      </div>
             
-                </a>
-                  </div>
+                <!-- </a>
+                  </div> -->
                 </div>
             </div>
             </div>
@@ -140,7 +150,7 @@
             </a>
 
             <a role="button" class="navbar-brand text text-danger" href="#" data-toggle="tooltip"
-                routerLink="login" data-placement="top" title="Deconnexion">
+                routerLink="login" data-placement="top"(click)="doLogout() " title="Deconnexion">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                     class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd"
