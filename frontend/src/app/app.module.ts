@@ -17,12 +17,12 @@ import { LoginComponent} from './login/login.component';
 import { LocalisationComponent } from './localisation/localisation.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AcceuilComponent } from './acceuil/acceuil.component';
-import { DashbordParentComponent } from './dashbord-parent/dashbord-parent.component';
+import { DashbordParentComp } from './parent/dashbord-parent.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-   
+   DashbordParentComp,
     DashbordComponent,
     SidebarComponent,
     NavebarComponent,
@@ -32,14 +32,15 @@ import { DashbordParentComponent } from './dashbord-parent/dashbord-parent.compo
     LoginComponent,
     LocalisationComponent,
     AcceuilComponent,
-    DashbordParentComponent
+  
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
+  
     NgxPaginationModule,
     Ng2SearchPipeModule,
     HttpClientModule,

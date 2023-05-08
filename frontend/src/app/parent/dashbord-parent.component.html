@@ -257,7 +257,7 @@
             &nbsp;&nbsp;
         
           <div style="height: 4px;">
-           <button style="height: 45px;width: 42px;"><img src="../../assets/ffv.svg" alt=""style="height: 36px;width: 32px;"></button>
+           <button (click)="open(content)"style="height: 45px;width: 42px;"><img src="../../assets/ffv.svg" alt=""style="height: 36px;width: 32px;"></button>
            <p class=" ">Couloir</p>
           </div>
        </div>
@@ -265,3 +265,36 @@
     </div> 
 </div>
 </div>
+
+
+
+<!-- code d'accées  -->
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title align-items-center d-flex justify-centent-center" id="modal-basic-title">Entrez votre code </h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+ 
+        <form [formGroup] = "registerForm">
+            <div class="mb-3">
+              <!-- <label for="code" class="text text-center">CODE ACCES</label> -->
+              <div class="input-group d-flex">
+    
+                <input
+                  id="dateOfBirth"
+                  class="form-control"
+                  placeholder="code acces"
+                  formControlName="codeAccess"
+                  type="text"
+                />
+                <button  type="button" class="btn btn-secondary bi bi-calendar3" (click)="modal.close('Close click')" type="button">OK</button>
+              </div>
+            </div>
+          </form>
+    <!--   <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button> -->
+    </div>
+  </ng-template>
+  
