@@ -67,6 +67,7 @@ spin= false;
     );
   } */
 ngOnInit(): void {
+  
 }
 
 
@@ -84,10 +85,8 @@ ngOnInit(): void {
        
       return ;
      }
-     // Obtenir l'ID de l'utilisateur à partir de localStorage
-  const userId = localStorage.getItem('id');
        // retourne a la page deconnection apres le popup modification reussi
-        this.authService.update1User(localStorage.getItem('id'),userCollection).subscribe((data)=>{
+       return this.authService.update1User(localStorage.getItem('id'),userCollection).subscribe((data)=>{
         
          
         Swal.fire({
@@ -100,11 +99,9 @@ ngOnInit(): void {
        this.authService.doLogout()
        },
        (err)=>{
-        this.pass = 'Mot de passe actuel incorrect.';
-        this.spin = false;
-        setTimeout(() => {
-          this.errMsg = false;
-        }, 3001);
+           this.pass="mot de passe actuel est incorrect ";
+           this.spin = false
+           setTimeout(()=>{ this.errMsg= false}, 3001); 
        })
 
      

@@ -36,7 +36,8 @@ import { DashbordParent } from './parent/dashbord-parent.component';
     LocalisationComponent,
     AcceuilComponent,
     DashbordComponent, 
-    DashbordParent
+    DashbordParent,
+    ProfilComponent 
 
   ],
   imports: [
