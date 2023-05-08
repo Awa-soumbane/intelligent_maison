@@ -9,12 +9,12 @@
             </div>
             <div class="col-6">
               <div class="form-left py-5 px-5 global d-flex   align-items-center">
-                <form class="row_ w-100" id="form" (submit)="loginUser()" [formGroup]="registerForm">
+                <form class="row_ w-100" id="form" (submit)="getConnexion()" [formGroup]="registerForm">
+                  
+                  <h1 class="d-flex justify-content-center mb-5" >Connection</h1>
                   <ng-container *ngIf="this.errMsg">
                     <div class="alert alert-danger" role="alert"><strong> Erreur </strong> {{errMsg}}</div>
                   </ng-container>
-                  <h1 class="d-flex justify-content-center mb-5" >Connection</h1>
-
                   <div class="col-md-12 mb-3 input-field">
                     <label><i class="bi bi-envelope-fill"></i>Email<span class="text-danger">*</span></label>
                       <input type="text" class="form-control" id="email" name="email" type="text" id="email" name="email"
@@ -31,24 +31,25 @@
                       </div>
                   </div><br>
 
-                      <div class="col-md-12 mb-3">
-                        <label>Mot de passe<span class="text-danger">*</span></label>
-                          <input type="text" class="form-control" id="password" name="password" type="text" id="password"
-                            [ngClass]="{'is-invalid':submitted && registerForm.controls['password'].errors}"
-                            placeholder="" formControlName="password" type="password" required>
-                          <div
-                            *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].errors"
-                            class="text-danger">
-                            <div
-                              *ngIf="registerForm.controls['password'].dirty && registerForm.controls['password'].errors['required']">
-                              Ce champ est requis
-                            </div>
-                            <div
-                              *ngIf="!registerForm.controls['password'].errors['required'] && registerForm.controls['password'].errors['minlength']">
-                              Password minimun 6 caractères
-                            </div>
-                          </div>
-                      </div><br>
+                  <div class="col-md-12 mb-3">
+                    <label>Mot de passe<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" id="mot_pass" name="mot_pass" type="text" id="mot_pass"
+                        [ngClass]="{'is-invalid':submitted && registerForm.controls['mot_pass'].errors}"
+                        placeholder="" formControlName="mot_pass" type="password" required>
+                      <div
+                        *ngIf="registerForm.controls['mot_pass'].dirty && registerForm.controls['mot_pass'].errors"
+                        class="text-danger">
+                        <div
+                          *ngIf="registerForm.controls['mot_pass'].dirty && registerForm.controls['mot_pass'].errors['required']">
+                          Ce champ est requis
+                        </div>
+                        <div
+                          *ngIf="!registerForm.controls['mot_pass'].errors['required'] && registerForm.controls['mot_pass'].errors['minlength']">
+                          Password minimun 6 caractères
+                        </div>
+                      </div>
+                  </div>
+                  <br>
 
                          <div class="pb-5 col-md-12 d-flex justify-content-center">
                           <button type="submit" class="btn btn-primary px-4 float-end mt-4 submit ">Se connecter </button>

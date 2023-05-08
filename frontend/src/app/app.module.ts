@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -17,12 +18,14 @@ import { LoginComponent} from './login/login.component';
 import { LocalisationComponent } from './localisation/localisation.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AcceuilComponent } from './acceuil/acceuil.component';
-import { DashbordParentComponent } from './dashbord-parent/dashbord-parent.component';
+
+import { ProfilComponent } from './profil/profil.component';
+import { DashbordParent } from './parent/dashbord-parent.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-   
     DashbordComponent,
     SidebarComponent,
     NavebarComponent,
@@ -32,14 +35,17 @@ import { DashbordParentComponent } from './dashbord-parent/dashbord-parent.compo
     LoginComponent,
     LocalisationComponent,
     AcceuilComponent,
-    DashbordParentComponent
+    DashbordComponent, 
+    DashbordParent
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     CommonModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
+  
     NgxPaginationModule,
     Ng2SearchPipeModule,
     HttpClientModule,

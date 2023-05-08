@@ -21,16 +21,19 @@ formGroup!: FormGroup;
 submitted = false;
 errMsg:any = true;
 show:boolean = false;
+  P: any;
+  N: any;
+  E: any;
 
 constructor(private activatedRoute: ActivatedRoute,
             private formBuilder: FormBuilder,
             public authService: AuthService ){
 
             // Recuperer les informations de l'utilisateur
-          /*   let id = localStorage.getItem('id'); 
+            let id = localStorage.getItem('id'); 
             this.authService.getUserProfile(id).subscribe((res) => {
               this.currentUser = res.msg;
-            }); */
+            });
                 
 
              
@@ -75,29 +78,56 @@ ngOnInit(): void {
   })
  
 } 
- getUserData(id:any,prenom:any,nom:any,email:any){
+getUserData(id:any,prenom:any,nom:any,email:any){
+// console.log(id);
+this.P = prenom;
+this.N = nom;
+this.E = email;
+/* console.log(this.P); */
 
   this.formGroup = this.formBuilder.group({
       id:[id],
-      prenom: [prenom, [Validators.required, UsernameValidator.cannotContainSpace]],
-      nom: [nom, [Validators.required, UsernameValidator.cannotContainSpace]],
-      email: [email, [Validators.required, Validators.email]],
+      Prenom: [this.P, [Validators.required, UsernameValidator.cannotContainSpace]],
+      nom: [this.N, [Validators.required, UsernameValidator.cannotContainSpace]],
+      email: [this.E, [Validators.required, Validators.email]],
     });
-} 
-//modifier user
+}//modifier user
 onUpdate(){
   const id =  this.formGroup.value.id;
-  
-const user ={
-prenom: this.formGroup.value.prenom,
-nom : this.formGroup.value.nom,
-email: this.formGroup.value.email
+ console.log(id);
 
-}
+// console.log(this.formGroup.value.prenom);
+
 this.submitted = true;
 if(this.formGroup.invalid){
  return;
 }
+const user ={
+  prenom: this.formGroup.value.prenom,
+  nom : this.formGroup.value.nom,
+  email: this.formGroup.value.email
+  
+  }
+
+this.authService.updateUser(id, user).subscribe(data=>{
+  console.log(data); 
+})
+  
+  // data=>{
+  //   this.ngOnInit();
+  //   Swal.fire({
+  //     position: 'center',
+  //     icon: 'success',
+  //     title: 'Modification réussi !',
+  //     showConfirmButton: false,
+  //     timer: 1500
+  //   });window.setTimeout(function(){location.reload()},1000)
+  // },
+  // error => {
+  //   this.errMsg = false
+  //   setTimeout(()=>{ this.errMsg = true}, 2000);
+  // });
 }
 }
+
 
