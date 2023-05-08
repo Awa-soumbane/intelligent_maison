@@ -39,6 +39,7 @@ import { DashbordParent } from './parent/dashbord-parent.component';
     DashbordParent,
     ProfilComponent
 
+
   ],
   imports: [
     BrowserModule,
