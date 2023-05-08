@@ -10,7 +10,7 @@ import { DashbordComponent } from './dashbord-enfant/dashbord.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
 import { ProfilComponent } from './profil/profil.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { DashbordParentComp } from './parent/dashbord-parent.component';
+import { DashbordParent } from './parent/dashbord-parent.component';
 
 
 const routes: Routes = [
@@ -23,7 +23,7 @@ const routes: Routes = [
   {component:  TableArchivesComponent, path:'tableArchive'},
   { path:"localisation", component: LocalisationComponent},
   {component:AcceuilComponent, path:'index'},
- {component: DashbordParentComp, path: 'parent'},
+ {component: DashbordParent, path: 'parent'},
 {component:SidebarComponent, path: 'sidebar'},
 {component:LocalisationComponent, path: 'localisation'}
 ];

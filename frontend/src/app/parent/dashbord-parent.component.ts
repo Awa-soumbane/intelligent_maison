@@ -1,3 +1,5 @@
+
+
 import { Component, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
@@ -7,7 +9,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './dashbord-parent.component.html',
   styleUrls: ['./dashbord-parent.component.css']
 })
-export class DashbordParentComp{
+export class DashbordParent{
   registerForm!: FormGroup
 toi :any;
 toi1= false;
