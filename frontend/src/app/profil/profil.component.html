@@ -129,7 +129,7 @@
         <ng-container *ngIf="this.pass">
           <div class="alert alert-danger" role="alert"><strong> Erreur </strong> {{pass}}</div>
         </ng-container>
-        <form [formGroup]="registerForm" (ngSubmit)=" update1User()">
+        <form (ngSubmit)=" update1User()">
   
           <div class="col-10 d-flex gap-4" style="margin-left: 20px;">
             <label for="actuelpassword" class="col-3 mt-2" name="actuelpassword">Ancien</label>
