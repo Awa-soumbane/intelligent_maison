@@ -11,27 +11,45 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DashbordParent{
   registerForm!: FormGroup
-toi :any;
-toi1= false;
+top :any;
+topp :any;
+tops :any;
+toll :any;
 onSubmit() {
 throw new Error('Method not implemented.');
 }
 content: any;
   constructor(private modalService: NgbModal) {}
-    onclick(){
-      this.toi= true; 
-     }
-     on(){
-       this.toi= false; 
-      }
-      onlampe(){
-        this.toi= true; 
+    
+      lampe(){
+        this.toll= false; 
        }
-       offlampe(){
-         this.toi= false; 
+       oflampe(){
+         this.toll= true; 
         }
     
 
+        ope(){
+          this.top= true; 
+         }
+         closs(){
+           this.topp= false; 
+          }
+
+          offf(){
+            this.topp= true; 
+           }
+           closes(){
+             this.topp= false; 
+            }
+
+            ofss(){
+              this.tops= true; 
+             }
+             clss(){
+               this.tops= false; 
+              }
+          
 
   onCode(){
     console.log(this.registerForm.value.codeAccess);
