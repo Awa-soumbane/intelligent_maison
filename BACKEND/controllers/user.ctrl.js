@@ -277,4 +277,58 @@ router.delete('/delete/:id', async(req, res) => {
   })
 
 
+
+router.post('/postdomotique', async (req, res) => {
+
+
+  const {temp,
+    hum,
+    sol,
+    lum} = req.body;
+
+  const users = [];
+
+  let dateInsertion = new Date();
+  const newUser = Serre({
+    temp,
+    hum,
+    sol,
+    lum,
+    dateInsertion
+  });
+
+  try {
+
+    await newUser.save();
+
+    res.status(201).json(newUser);
+
+  } catch (error) {
+    res.status(404).json({ message: error.message })
+  }
+
+})
+
+
+
+router.get('/donne_maison', async (req, res) => {
+    try {
+        const data = await Serre.find();
+        res.json(data)
+      }
+      catch (error) {
+        res.status(500).json({ message: error.message })
+      }
+})
+
+
+router.get('/domo/:id', async (req, res) => {
+  try {
+    const data = await Serre.findById(req.params.id);
+    return res.json(data)
+  }
+  catch (error) {
+    return res.status(500).json({ message: error.message })
+  }
+})
 module.exports = router

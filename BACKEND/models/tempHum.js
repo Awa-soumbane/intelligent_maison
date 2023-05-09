@@ -1,19 +1,31 @@
- const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
-const uniqueValidator = require('mongoose-unique-validator');
+const mongoose = require('mongoose');
 
-let infoCapteurs = new Schema({
-    temp: { type: Number},
-    hum: { type: Number },
-    date: { type: Date },
-    heure: { type: Date },
+
+const dataSchema = new mongoose.Schema({
+    temp: {
+        required: false,
+        type: Number
+    },
+    hum: {
+        required: false,
+        type: Number
+    },
+   
+    sol: {
+        required: false,
+        type: Number
+    },
     
-}, {timestamps: true},
-{
-    collection: 'recupDataCateur'
+    lum: {
+        required: false,
+        type: Number
+    },
+    dateInsertion:{
+        required: false,
+        type: Date
+    }
+
+    
 })
 
-infoCapteurs.plugin(uniqueValidator, { message: 'Compte déjà existant !' });
-
-module.exports = mongoose.model('recupDataCateur', infoCapteurs)
- 
+module.exports = mongoose.model(' domotique', dataSchema);
