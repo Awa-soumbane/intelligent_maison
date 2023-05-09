@@ -91,10 +91,9 @@ this.E = email; */
 this.nom = nom
   this.formGroup = this.formBuilder.group({
     
-      id:[id],
-      prenom: [prenom],
-      nom: [nom],
-      email: [email],
+    prenom: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
+    nom: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
+    email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]],
       
     }); 
     

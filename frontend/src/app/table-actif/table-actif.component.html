@@ -17,15 +17,6 @@
             [(ngModel)]="filterTerm"/>
           </div>
         </div>
-        <!-- <div class="w-100 d-flex ">
-          <div class="w-75"></div>
-          <form class="form-inline w-25 me-16 ">
-            <div class="d-flex gap-1">
-              <input *ngIf="show" id="search" class="form-control" type="email" name="search" placeholder="Rechercher" >
-              <button class="btn btn-outline-primary" (click)="afficher()"><i class="bi bi-search"></i></button>
-            </div>
-          </form>
-        </div> -->
         
       <div class="d-flex justify-centent-center" style="margin-right: 9%;">
         <table class="table table-bordered w-72 my-3  mt-2 align-items-center ">
@@ -80,7 +71,7 @@
       <div class="modal-body">
         <form [formGroup]="formGroup" (ngSubmit)="onUpdate()">
           <label for='prenom'>Prenom</label>
-          <input type="text" formControlName="prenom" class="form-control" value="test" >
+          <input type="text" formControlName="prenom" class="form-control" [value]="prenom">
           <div *ngIf="submitted && formGroup.controls['prenom'].errors" class="text-danger">
             <div *ngIf="submitted && formGroup.controls['prenom'].errors['required']">
               Veillez renseignez le prenom
@@ -104,7 +95,7 @@
           </div>
           <br />
           <label for='email'>Adresse email</label>
-          <input type="email" formControlName="email" class="form-control">
+          <input type="email" formControlName="email" class="form-control" [value]="email">
           <div *ngIf="submitted && formGroup.controls['email'].errors" class="text-danger">
             <div *ngIf="submitted && formGroup.controls['email'].errors['required']">
               Veillez renseignez le mail
