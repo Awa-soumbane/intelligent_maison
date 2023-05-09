@@ -8,7 +8,7 @@
             <img src="../../assets/svgviewer-output.svg" class="w-50 d-flex justify-content-center ml-12" alt="Flowbite Logo" style="display: flex; justify-content: center; margin-left: 25%; padding: 12px;"/>
         </a>
    <div class="text-center">
-        <h5 class="m-2 text-white" style="margin-left: 20px;">{{ prenom }}  {{ nom }} </h5>
+        <h5 class="m-2 " style="margin-left: 20px;">{{ prenom }}  {{ nom }} </h5>
     </div>
       </div>  
 <div class="h-24">
@@ -138,7 +138,7 @@
 
             <a role="button" class="navbar-brand text text-danger" data-bs-toggle="modal" href="#exampleModalPassword"
 
-            routerLink="motdepasse"  role="button" data-toggle="tooltip" data-placement="top" title="Mot de passe">
+            role="button" data-toggle="tooltip" data-placement="top" title="Mot de passe" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">
 
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                     class="bi bi-arrow-repeat" viewBox="0 0 16 16">
@@ -172,4 +172,79 @@
     </main>
     <div style=" width: 90%; margin-left: 18%;">
     <router-outlet></router-outlet></div>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title " id="exampleModalLabel ">MODIFICCATION PROFIL</h5>
+      </div>
+      <div class="modal-body">
+        <ng-container *ngIf="this.pass">
+            <div class="alert alert-danger" role="alert"><strong> Erreur </strong> {{pass}}</div>
+          </ng-container>
+          <form [formGroup]="registerForm" (ngSubmit)=" update1User()">
+    
+            <div class="col-10 d-flex gap-4" style="margin-left: 20px;">
+              <label for="actuelpassword" class="col-3 mt-2" name="actuelpassword">Ancien</label>
+              <div>
+                <input type="text" formControlName="actuelpassword" class="form-control mb-4 " type="password">
+                
+                <div *ngIf="registerForm.controls['actuelpassword'].dirty && registerForm.controls['actuelpassword'].errors&&registerForm.controls['actuelpassword'].errors['required']" class="text-danger">
+                  password requis 
+                </div>
+                <div *ngIf="registerForm.controls['actuelpassword'].dirty && registerForm.controls['actuelpassword'].errors && registerForm.controls['actuelpassword'].errors['minlength']" class="text-danger">
+                 Minimun 6 caractères
+                </div> 
+              </div>
+            </div>
+           <!--  <div class="col-10 d-flex" style="gap: 10px;margin-left: 20px;">
+              <label for="newpassword" class="col-3 mt-3" name="newpassword">Nouveau</label>
+              <div>
+                <input type="text" formControlName="newpassword'" class="form-control mb-3 mt-3" type="password" id="pass1">
+                <div *ngIf="registerForm.controls['newpassword'].dirty && registerForm.controls['newpassword'].errors&&registerForm.controls['newpassword'].errors['required']" class="text-danger">
+                  password requis 
+                </div>
+                <div *ngIf="registerForm.controls['newpassword'].dirty && registerForm.controls['newpassword'].errors && registerForm.controls['newpassword'].errors['minlength']" class="text-danger">
+                 Minimun 6 caractères
+                </div>
+              </div>
+            </div>
+     -->         <div class="col-10 d-flex gap-4" style="margin-left: 20px;">
+      <label for="newpassword" class="col-3 mt-2" name="newpassword">Nouveau</label>
+      <div>
+        <input type="text" formControlName="newpassword" class="form-control mb-3 " type="password">
+        
+        <div *ngIf="registerForm.controls['newpassword'].dirty && registerForm.controls['newpassword'].errors&&registerForm.controls['newpassword'].errors['required']" class="text-danger">
+          password requis 
+        </div>
+        <div *ngIf="registerForm.controls['newpassword'].dirty && registerForm.controls['newpassword'].errors && registerForm.controls['newpassword'].errors['minlength']" class="text-danger">
+         Minimun 6 caractères
+        </div> 
+      </div>
+    </div>
+  
+            <div class="col-10 d-flex gap-4" style="margin-left: 20px;">
+              <label for="confirmdp" class="col-3 mt-4" name="confirmdp">Confirmation</label>
+              <div>
+                <input type="text" formControlName="confirmdp" class="form-control  mb-2 mt-3" type="password" >
+                <div *ngIf="registerForm.controls['confirmdp'].dirty && registerForm.controls['confirmdp'].errors&&registerForm.controls['confirmdp'].errors['required']" class="text-danger">
+                password requis
+                </div>
+                <div *ngIf="registerForm.controls['confirmdp'].dirty && registerForm.controls['confirmdp'].errors && registerForm.controls['confirmdp'].errors['mustMatch']" class="text-danger">
+                  Les mots de passes ne correspondent pas
+                </div>
+              </div>
+            </div>
+        <br />
+        <button type="submit" class="btn btn-outline-primary m-3">
+          Modifier
+        </button>
+        </form>
+    </div>
+  </div>
+  </div>
 </div>
