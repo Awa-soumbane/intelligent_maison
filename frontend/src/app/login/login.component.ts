@@ -71,20 +71,52 @@ getConnexion(){
       mot_pass: this.registerForm.value.mot_pass,
     /*   msg: undefined */
     }
-    console.log(user);
+   /*  console.log(user); */
     
     this.authService.getConnexion(user).subscribe((res: any) => {
-      console.log(res);
-      let prenom = localStorage.getItem('prenom');
+     
+        console.log(res.message);
+    
+     if (res.statut == "email") {
+      this.errMsg ='compte inexistant'
+      this.spin = false
+      setTimeout(()=>{ this.errMsg = false}, 3001); 
+     }
+     if (res.statut == "etat") {
+      this.errMsg ='compte archivé'
+    
+      this.spin = false
+      setTimeout(()=>{ this.errMsg = false}, 3001); 
+     }
+     if (res.statut == "mot_pass") {
+      this.errMsg ='mot de passe invalid'
+      this.spin = false
+      setTimeout(()=>{ this.errMsg = false}, 3001); 
+     }
+     if (res.statut == undefined){
+      console.log(res.data.role);
+      if (res.data.role == "Parent") {
+        this.router.navigateByUrl('parent');
+      }
+      if (res.data.role == "Enfant") {
+        this.router.navigateByUrl('enfant');
+      }
+    
+      }
+    })
+    
+    }
+     /*  let prenom = localStorage.getItem('prenom'); */
       //log(prenom);
       
-      let infoConnexion = res;
-          if(infoConnexion.data){
+   /*    let infoConnexion = res;
+          if(infoConnexion.data){ */
             // setTimeout(()=> this.router.navigateByUrl('home'), 1000);
+          /*   localStorage.setItem('access_token', res.token);
+            localStorage.setItem('id', res._id);
+            this.router.navigateByUrl('parent'); */
 
-            this.router.navigateByUrl('parent');
-
-          }/* else{
+       /*    } *//* else{
             this.errMsg= "email ou mot de passe incorrect"
           } */
   
@@ -98,8 +130,8 @@ getConnexion(){
         this.router.navigate(['inscription']);
       }); */
      
-    }, // Intercepter les messages d'erreurs du serveur
-    error => {
+    } // Intercepter les messages d'erreurs du serveur
+   /*  error => {
       console.log(error);
       
       if(error == 'Unauthorized'){
@@ -112,8 +144,6 @@ getConnexion(){
        this.spin = false
        setTimeout(()=>{ this.errMsg= false}, 3001); 
      }
-    });
-  }
+    }); */
 
-}
 
