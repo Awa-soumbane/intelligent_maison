@@ -68,7 +68,7 @@ const io = require('socket.io')(http, {
   }
 });
 
-const portSerial = new SerialPort({ path:'/dev/ttyACM0',
+const portSerial = new SerialPort({ path:'/dev/ttyUSB0',
         baudRate: 9600,
         dataBits: 8,
         parity: 'none',
