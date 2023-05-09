@@ -20,6 +20,14 @@ export class SidebarComponent {
   prenom:string='';
   nom:string=''
 
+  fan :any;
+
+  lampe(){
+    this.fan= false; 
+   }
+   oflampe(){
+     this.fan= true; 
+    }
 
   constructor(private authService: AuthService) {
     // this.authService.getConnexion(this.currentUser).subscribe((res: any) => {
