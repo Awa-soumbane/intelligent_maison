@@ -101,7 +101,9 @@ getConnexion(){
       if (res.data.role == "Enfant") {
         this.router.navigateByUrl('enfant');
       }
-    
+      if (res.data.role == "Locataire") {
+        this.router.navigateByUrl('locataire');
+      }
       }
     })
     
