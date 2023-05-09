@@ -20,6 +20,10 @@ page: number = 1;
 formGroup!: FormGroup;
 submitted = false;
 errMsg:any = true;
+id:any
+prenom: any
+nom: any
+email: any
 show:boolean = false;
   P: any;
   N: any;
@@ -45,7 +49,7 @@ public afficher():void{
 ngOnInit(): void {
   this.authService.GetUsers().subscribe( (data:any) =>{
       this.user = data;
-      this.Users = this.user;
+      this.Users = this.user.filter((e:any)=> e.etat == true);
         console.log(this.Users)
       }
   );
@@ -79,19 +83,23 @@ ngOnInit(): void {
  
 } 
 getUserData(id:any,prenom:any,nom:any,email:any){
-// console.log(id);
-this.P = prenom;
+console.log(prenom);
+/* this.P = prenom;
 this.N = nom;
-this.E = email;
+this.E = email; */
 /* console.log(this.P); */
-
+this.nom = nom
   this.formGroup = this.formBuilder.group({
+    
       id:[id],
-      Prenom: [this.P, [Validators.required, UsernameValidator.cannotContainSpace]],
-      nom: [this.N, [Validators.required, UsernameValidator.cannotContainSpace]],
-      email: [this.E, [Validators.required, Validators.email]],
-    });
+      prenom: [prenom],
+      nom: [nom],
+      email: [email],
+      
+    }); 
+    
 }//modifier user
+
 onUpdate(){
   const id =  this.formGroup.value.id;
  console.log(id);

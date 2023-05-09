@@ -69,20 +69,20 @@ getConnexion(){
     const user:User ={
       email: this.registerForm.value.email,
       mot_pass: this.registerForm.value.mot_pass,
-      msg: undefined
+    /*   msg: undefined */
     }
     console.log(user);
     
     this.authService.getConnexion(user).subscribe((res: any) => {
       console.log(res);
       let prenom = localStorage.getItem('prenom');
-      console.log(prenom);
+      //log(prenom);
       
       let infoConnexion = res;
           if(infoConnexion.data){
             // setTimeout(()=> this.router.navigateByUrl('home'), 1000);
 
-            this.router.navigateByUrl('index');
+            this.router.navigateByUrl('parent');
 
           }/* else{
             this.errMsg= "email ou mot de passe incorrect"
@@ -100,6 +100,8 @@ getConnexion(){
      
     }, // Intercepter les messages d'erreurs du serveur
     error => {
+      console.log(error);
+      
       if(error == 'Unauthorized'){
         this.errMsg ='Cette utilisateur est archivé'
          this.spin = false

@@ -85,8 +85,11 @@ ngOnInit(): void {
        
       return ;
      }
+     // Obtenir l'ID de l'utilisateur à partir de localStorage
+      const userId = localStorage.getItem('id')?.replace(/"/g,  "");
+      
        // retourne a la page deconnection apres le popup modification reussi
-       return this.authService.update1User(localStorage.getItem('id'),userCollection).subscribe((data)=>{
+  /*      return this.authService.update1User(localStorage.getItem('id'),userCollection).subscribe((data)=>{
         
          
         Swal.fire({
@@ -111,4 +114,31 @@ ngOnInit(): void {
 
          
  
-}
+} */
+console.log(userId?.replace(/"/g,  ""));
+
+ // Appeler la fonction de mise à jour de l'API
+ this.authService.update1User(userId, userCollection).subscribe((data) => {
+  this.ngOnInit()
+  
+    // Afficher une notification de succès
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Modification mot de passe réussie!',
+      showConfirmButton: false,
+      timer: 1500
+    });
+    // Déconnecter l'utilisateur après la modification de mot de passe réussie
+    this.authService.doLogout();
+  },
+  err => {
+    // Afficher un message d'erreur si le mot de passe actuel est incorrect
+    this.pass = 'Mot de passe actuel incorrect.';
+    this.spin = false;
+    setTimeout(() => {
+      this.errMsg = false;
+    }, 3001);
+  }
+);
+}}

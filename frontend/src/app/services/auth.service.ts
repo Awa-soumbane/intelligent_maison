@@ -57,11 +57,11 @@ import { Router } from "@angular/router";
     }
     //Update mdp
     update1User(id: any, data: any): Observable<any> {  
-      let API_URL = `${this.endpoint}/update1/${id}`;
+      let API_URL = `${this.endpoint}/updatepass/${id}`;
   
-      return this.http.patch(`${this.endpoint}/update1/${id}`, 
-      {"actuelPass": data.actuelPass,
-    "newPass":data.newPass})
+      return this.http.patch(`${this.endpoint}/updatepass/${id}`, 
+      {"actuelpassword": data.actuelpassword,
+    "newpassword":data.newpassword})
     }
 
     // Ajouter un utilisateur
