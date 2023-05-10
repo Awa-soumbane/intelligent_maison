@@ -167,7 +167,7 @@ pass!: string;
       doLogout() {
         // this.userService.getLogOut();
         // this.router.navigateByUrl('login')
-        /* Swal.fire({
+        Swal.fire({
           title: 'Voulez-vous vous vous deconnecter?',
           icon: 'warning',
           confirmButtonColor: "#B82010 ",
@@ -181,13 +181,14 @@ pass!: string;
         .then((result) => {
           if(result.isConfirmed){
             this.router.navigateByUrl('login')
-            localStorage.removeItem('currentUser');
+            /* localStorage.removeItem('currentUser');
             localStorage.removeItem('prenom');
             localStorage.removeItem('nom');
-          localStorage.removeItem('email');
+          localStorage.removeItem('email'); */
+            localStorage.clear();
           }
-        }) */
-        localStorage.clear();
+        }) 
+       
       }
 
       //modifier les données de l'utilisateur

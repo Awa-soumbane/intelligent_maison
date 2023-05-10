@@ -102,7 +102,7 @@ getConnexion(){
         this.router.navigateByUrl('enfant');
       }
       if (res.data.role == "Locataire") {
-        this.router.navigateByUrl('locataire');
+        this.router.navigateByUrl('enfant');
       }
       }
     })
