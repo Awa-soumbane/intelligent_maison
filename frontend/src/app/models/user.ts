@@ -12,7 +12,8 @@ export class User {
     userId?: string
     prenom?:string;
     nom?: string;
-   role?: string
+   role?: string;
+   email?: string
 }
 
  

@@ -181,14 +181,14 @@ pass!: string;
         .then((result) => {
           if(result.isConfirmed){
             this.router.navigateByUrl('login')
-            /* localStorage.removeItem('currentUser');
+             /*localStorage.removeItem('currentUser');
             localStorage.removeItem('prenom');
             localStorage.removeItem('nom');
           localStorage.removeItem('email'); */
-            localStorage.clear();
+            
           }
         }) 
-       
+        localStorage.clear();
       }
 
       //modifier les données de l'utilisateur

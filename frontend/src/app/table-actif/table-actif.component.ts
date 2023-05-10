@@ -25,21 +25,19 @@ prenom: any
 nom: any
 email: any
 show:boolean = false;
-  P: any;
-  N: any;
-  E: any;
+  userId:any;
 
 constructor(private activatedRoute: ActivatedRoute,
             private formBuilder: FormBuilder,
             public authService: AuthService ){
 
             // Recuperer les informations de l'utilisateur
-            let id = localStorage.getItem('id'); 
+           /*  let id = localStorage.getItem('id'); 
             this.authService.getUserProfile(id).subscribe((res) => {
               this.currentUser = res.msg;
-            });
-                
-
+            }); */
+            this.userId = localStorage.getItem('id')?.replace(/"/g,  "");  
+  
              
 }
 public afficher():void{
@@ -49,7 +47,7 @@ public afficher():void{
 ngOnInit(): void {
   this.authService.GetUsers().subscribe( (data:any) =>{
       this.user = data;
-      this.Users = this.user.filter((e:any)=> e.etat == true);
+      this.Users = this.user.filter((e:any)=> e.etat == true && e.email!=localStorage.getItem('email')?.replace(/"/g,  ""));
         console.log(this.Users)
       }
   );

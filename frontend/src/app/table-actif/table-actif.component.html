@@ -80,7 +80,7 @@
       <div class="modal-body">
         <form [formGroup]="formGroup" (ngSubmit)="onUpdate()">
           <label for='prenom'>Prenom</label>
-          <input type="text" formControlName="prenom" class="form-control" [value]="prenom">
+          <input type="text" formControlName="prenom" class="form-control" >
           <div *ngIf="submitted && formGroup.controls['prenom'].errors" class="text-danger">
             <div *ngIf="submitted && formGroup.controls['prenom'].errors['required']">
               Veillez renseignez le prenom
