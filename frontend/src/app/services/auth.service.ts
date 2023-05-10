@@ -108,7 +108,7 @@ import { Router } from "@angular/router";
         localStorage.setItem('id', JSON.stringify(user.data?.userId));
         localStorage.setItem('prenom', JSON.stringify(user.data?.prenom));
         localStorage.setItem('nom', JSON.stringify(user.data?.nom));
-
+        localStorage.setItem('role', JSON.stringify(user.data?.role));
         this.currentUserSubject.next(user);
         return user;
       }));

@@ -96,7 +96,7 @@ getConnexion(){
      if (res.statut == undefined){
       console.log(res.data.role);
       if (res.data.role == "Parent") {
-        this.router.navigateByUrl('parent');
+        this.router.navigateByUrl('index');
       }
       if (res.data.role == "Enfant") {
         this.router.navigateByUrl('enfant');

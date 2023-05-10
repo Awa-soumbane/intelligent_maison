@@ -25,6 +25,7 @@ export class SidebarComponent {
   prenom!:any;
   nom!:any
   router: any;
+  formGroup!: FormGroup;
 
 registerForm: FormGroup
 submitted = false;
@@ -41,7 +42,8 @@ pass!: string;
    oflampe(){
      this.fan= true; 
     }
-
+    isParent = false; // initial value
+  isChild = false; // initial value
   constructor(private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     public authService: AuthService) {
@@ -50,7 +52,14 @@ pass!: string;
    
        
     // })
+    const role = localStorage.getItem('role')?.replace(/"/g,  "")
+    if (role === 'Parent') {
+      this.isParent = true;
+    } else if (role === 'Enfant') {
+      this.isChild = true;
+    }
     
+     
      this.prenom = localStorage.getItem('prenom')?.replace(/"/g,  "")
     this.nom = localStorage.getItem('nom')?.replace(/"/g,  "")
     console.log(this.prenom);
@@ -69,6 +78,7 @@ pass!: string;
       ngOnInit(): void {
   
       }
+      
 
       //modification password
       update1User(){
@@ -86,6 +96,8 @@ pass!: string;
        }
        // Obtenir l'ID de l'utilisateur à partir de localStorage
         const userId = localStorage.getItem('id')?.replace(/"/g,  "");
+        const token = localStorage.getItem('token')?.replace(/"/g,  "");
+        console.log(token);
         
          // retourne a la page deconnection apres le popup modification reussi
     /*      return this.authService.update1User(localStorage.getItem('id'),userCollection).subscribe((data)=>{
@@ -155,7 +167,7 @@ pass!: string;
       doLogout() {
         // this.userService.getLogOut();
         // this.router.navigateByUrl('login')
-        Swal.fire({
+        /* Swal.fire({
           title: 'Voulez-vous vous vous deconnecter?',
           icon: 'warning',
           confirmButtonColor: "#B82010 ",
@@ -174,7 +186,51 @@ pass!: string;
             localStorage.removeItem('nom');
           localStorage.removeItem('email');
           }
-        })
+        }) */
+        localStorage.clear();
       }
+
+      //modifier les données de l'utilisateur
+  getUserData(id:any,prenom:any,nom:any,email:any){
+    id = localStorage.getItem('id');
+   
+       this.formGroup = this.formBuilder.group({
+         id: [id],
+         prenom: [prenom, [Validators.required, UsernameValidator.cannotContainSpace]],
+         nom: [nom, [Validators.required, UsernameValidator.cannotContainSpace]],
+         email: [email, [Validators.required, Validators.email]],
+   
+       });
+     }
+   
+     onUpdate() {
+       const id = this.formGroup.value.id;
+       const user = {
+         prenom: this.formGroup.value.prenom,
+         nom: this.formGroup.value.nom,
+         email: this.formGroup.value.email,
+   
+       }
+       this.submitted = true;
+       if (this.formGroup.invalid) {
+         return;
+       }
+       this.authService.updateUser(id, user).subscribe(
+         data => {
+           this.ngOnInit();
+           Swal.fire({
+             position: 'center',
+             icon: 'success',
+             title: 'Modification réussi !',
+             showConfirmButton: false,
+             timer: 1500
+           }); window.setTimeout(function () { location.reload() }, 1000)
+         },
+         error => {
+           this.errMsg = false
+           setTimeout(() => { this.errMsg = true }, 2000);
+         });
+   
+     }
 
     }

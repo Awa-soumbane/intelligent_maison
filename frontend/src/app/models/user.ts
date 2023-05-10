@@ -11,7 +11,8 @@ export class User {
     token?:string;
     userId?: string
     prenom?:string;
-    nom?: string
+    nom?: string;
+   role?: string
 }
 
  
