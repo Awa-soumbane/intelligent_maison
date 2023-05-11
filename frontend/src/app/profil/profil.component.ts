@@ -35,11 +35,11 @@ formGroup!: FormGroup;
     public authService: AuthService) {
 
       // Recuperer les informations de l'utilisateur
-      /*    let id = localStorage.getItem('id');  
+         let id = localStorage.getItem('id');  
      this.authService.getUserProfile(id).subscribe((res) => {
        this.currentUser = res.msg;
 
-     });*/
+     });
 
      this.formGroup = this.formBuilder.group({
       prenom: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
@@ -62,9 +62,11 @@ formGroup!: FormGroup;
       }
     );
   } */
+  
 ngOnInit(): void {
+  
   this.formGroup = this.formBuilder.group({
-    
+    id: [localStorage.getItem("id")?.replace(/"/g,  "")],
     prenom: [localStorage.getItem("prenom")?.replace(/"/g,  ""), [Validators.required, UsernameValidator.cannotContainSpace]],
     nom: [localStorage.getItem('nom')?.replace(/"/g,  ""), [Validators.required, UsernameValidator.cannotContainSpace]],
     email: [localStorage.getItem('email')?.replace(/"/g,  ""), [Validators.required, Validators.email]],
@@ -93,6 +95,7 @@ if(this.formGroup.invalid){
              this.errMsg = true;
            setTimeout(()=>{ this.errMsg = false}, 2000); 
             }
+            
             else{
            this.ngOnInit();
            Swal.fire({
@@ -102,6 +105,7 @@ if(this.formGroup.invalid){
              showConfirmButton: false,
              timer: 1500
            });window.setTimeout(function(){location.reload()},1000)}
+           
          }
          );
 
