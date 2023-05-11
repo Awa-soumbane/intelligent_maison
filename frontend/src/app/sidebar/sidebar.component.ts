@@ -205,6 +205,8 @@ pass!: string;
      }
    
      onUpdate() {
+      console.log("aa");
+      
        const id = this.formGroup.value.id;
        const user = {
          prenom: this.formGroup.value.prenom,

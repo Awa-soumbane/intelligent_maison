@@ -137,8 +137,8 @@
         <div class="container p-2  w-100 nav shadow  d-flex justify-content-around border mb-4 ">
             <!-- Toggle button -->
             <!-- Brand -->
-            <a role="button" role="button" class="navbar-brand text text-danger" href="#" data-toggle="tooltip" style="margin-left: 20px;"
-             data-placement="top" title="profil"  data-toggle="modal" data-target="#exampleModal">
+            <a role="button" role="button" class="navbar-brand text text-danger"  data-toggle="tooltip" style="margin-left: 20px;"
+             data-placement="top" title="profil"  data-toggle="modal" data-target="#exampleModalCenter">
             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
               <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
               <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
@@ -320,6 +320,41 @@
                   class="bi bi-backspace"></i></button></div>
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formGroup" (ngSubmit)="onUpdate()">
+          <div class="col-10 d-flex gap-4" style="margin-left: 20px;">
+            <label for="prenom" class="col-3 mt-2" name="prenom">Nouveau</label>
+            <div>
+              <input type="text" formControlName="prenom" class="form-control mb-3 " >
+              
+              <div *ngIf="registerForm.controls['prenom'].dirty && registerForm.controls['prenom'].errors && registerForm.controls['prenom'].errors['required']" class="text-danger">
+                prenom requis 
+              </div>
+              <div *ngIf="registerForm.controls['prenom'].dirty && registerForm.controls['prenom'].errors && registerForm.controls['prenom'].errors['cannotContainSpace']" class="text-danger">
+               espace nom autorisé
+              </div> 
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>

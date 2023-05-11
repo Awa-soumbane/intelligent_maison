@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
  import { AuthService } from '../services/auth.service'; 
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UsernameValidator } from 'src/app/username.validator';
 import Swal from 'sweetalert2';
 
@@ -36,8 +36,13 @@ constructor(private activatedRoute: ActivatedRoute,
             this.authService.getUserProfile(id).subscribe((res) => {
               this.currentUser = res.msg;
             }); */
-            this.userId = localStorage.getItem('id')?.replace(/"/g,  "");  
-  
+            
+            this.formGroup = this.formBuilder.group({
+              id:[''],
+              prenom: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
+              nom: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
+              email: ['', [Validators.required, Validators.email]]
+            })
              
 }
 public afficher():void{
@@ -45,14 +50,16 @@ public afficher():void{
 }
 
 ngOnInit(): void {
-  this.authService.GetUsers().subscribe( (data:any) =>{
-      this.user = data;
-      this.Users = this.user.filter((e:any)=> e.etat == true && e.email!=localStorage.getItem('email')?.replace(/"/g,  ""));
-        console.log(this.Users)
-      }
-  );
+  this.listeUsers()
 }
-
+listeUsers=()=>{
+  this.authService.GetUsers().subscribe( (data:any) =>{
+    this.user = data;
+    this.Users = this.user.filter((e:any)=> e.etat == true && e.email!=localStorage.getItem('email')?.replace(/"/g,  ""));
+      console.log(this.Users)
+    }
+);
+}
 
 //achiver un user
  archiver=(id:any,etat:any)=> {
@@ -80,13 +87,19 @@ ngOnInit(): void {
   })
  
 } 
-getUserData(id:any,prenom:any,nom:any,email:any){
-console.log(prenom);
-/* this.P = prenom;
-this.N = nom;
-this.E = email; */
-/* console.log(this.P); */
-this.nom = nom
+getUserData(id:any){
+  this.authService.getUserProfile(id).subscribe( (data:any) =>{
+  
+      /* console.log(data._id) */
+      this.formGroup = this.formBuilder.group({
+        id:[data._id],
+        prenom: [data.prenom, [Validators.required, UsernameValidator.cannotContainSpace]],
+        nom: [data.nom, [Validators.required, UsernameValidator.cannotContainSpace]],
+        email: [data.email, [Validators.required, Validators.email]],
+      });
+    })
+
+/* this.nom = nom
   this.formGroup = this.formBuilder.group({
     
     prenom: [prenom, [Validators.required, UsernameValidator.cannotContainSpace]],
@@ -94,14 +107,14 @@ this.nom = nom
     email: [email, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]],
       
     }); 
-    
+     */
 }//modifier user
 
-onUpdate(){
+/* onUpdate(){
   const id =  this.formGroup.value.id;
  console.log(id);
 
-// console.log(this.formGroup.value.prenom);
+console.log(this.formGroup.value.prenom);
 
 this.submitted = true;
 if(this.formGroup.invalid){
@@ -118,21 +131,55 @@ this.authService.updateUser(id, user).subscribe(data=>{
   console.log(data); 
 })
   
-  // data=>{
-  //   this.ngOnInit();
-  //   Swal.fire({
-  //     position: 'center',
-  //     icon: 'success',
-  //     title: 'Modification réussi !',
-  //     showConfirmButton: false,
-  //     timer: 1500
-  //   });window.setTimeout(function(){location.reload()},1000)
-  // },
-  // error => {
-  //   this.errMsg = false
-  //   setTimeout(()=>{ this.errMsg = true}, 2000);
-  // });
+this.authService.updateUser(id, user).subscribe(
+  data=>{
+    this.ngOnInit();
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Modification réussi !',
+      showConfirmButton: false,
+      timer: 1500
+    });window.setTimeout(function(){location.reload()},1000)
+  },
+  error => {
+    this.errMsg = false
+    setTimeout(()=>{ this.errMsg = true}, 2000);
+  });
+} */
+onUpdate(){
+  this.submitted = true;
+if(this.formGroup.invalid){
+ return;
+}
+
+
+  const id =  this.formGroup.value.id;
+  console.log(id);
+const user ={
+prenom: this.formGroup.value.prenom,
+nom : this.formGroup.value.nom,
+email: this.formGroup.value.email
+}
+
+  this.authService.updateUser(id, user).subscribe(
+    data=>{
+      this.ngOnInit();
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Modification réussi !',
+        showConfirmButton: false,
+        timer: 1500
+      });window.setTimeout(function(){location.reload()},1000)
+    },
+    error => {
+      this.errMsg = false
+      setTimeout(()=>{ this.errMsg = true}, 2000);
+    });
 }
 }
+
+
 
 

@@ -50,7 +50,7 @@ import { Router } from "@angular/router";
   
     // Update user
     updateUser(id: any, data: any): Observable<any> {
-        let API_URL = `${this.endpoint}/update-user/${id}`;
+        let API_URL = `${this.endpoint}update-user/${id}`;
         return this.http
         .put(API_URL, data, { headers: this.headers })
         .pipe(catchError(this.handleError));
@@ -127,7 +127,7 @@ import { Router } from "@angular/router";
 
     // User profile
     getUserProfile(id: any): Observable<any> {
-      let api = `${this.endpoint}/user-profile/${id}`;
+      let api = `${this.endpoint}/read-user/${id}`;
       return this.http.get(api, { headers: this.headers }).pipe(
         map((res) => {
           return res || {};
