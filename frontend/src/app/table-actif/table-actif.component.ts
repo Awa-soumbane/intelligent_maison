@@ -19,13 +19,15 @@ totalLenght: any;
 page: number = 1;
 formGroup!: FormGroup;
 submitted = false;
-errMsg:any = true;
+errMsg:any = false;
 id:any
 prenom: any
 nom: any
 email: any
+message:any
 show:boolean = false;
   userId:any;
+registerForm: any;
 
 constructor(private activatedRoute: ActivatedRoute,
             private formBuilder: FormBuilder,
@@ -164,6 +166,12 @@ email: this.formGroup.value.email
 
   this.authService.updateUser(id, user).subscribe(
     data=>{
+      if (data.statut == "email") {
+        this.message ='Email existe déjà'
+        this.errMsg = true;
+      setTimeout(()=>{ this.errMsg = false}, 2000); 
+       }
+       else{
       this.ngOnInit();
       Swal.fire({
         position: 'center',
@@ -171,12 +179,9 @@ email: this.formGroup.value.email
         title: 'Modification réussi !',
         showConfirmButton: false,
         timer: 1500
-      });window.setTimeout(function(){location.reload()},1000)
-    },
-    error => {
-      this.errMsg = false
-      setTimeout(()=>{ this.errMsg = true}, 2000);
-    });
+      });window.setTimeout(function(){location.reload()},1000)}
+    }
+    );
 }
 }
 

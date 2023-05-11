@@ -19,12 +19,14 @@ filterTerm!: string;
 Users: any = [];
 user: any;
 totalLenght: any;
-registerForm: FormGroup
+
 submitted = false;
 errMsg:any = true;
 userCollection: any;
 pass!: string;
 spin= false;
+formGroup!: FormGroup;
+  message: any;
 
 
 
@@ -37,22 +39,16 @@ spin= false;
      this.authService.getUserProfile(id).subscribe((res) => {
        this.currentUser = res.msg;
 
-     });
+     });*/
 
      this.formGroup = this.formBuilder.group({
       prenom: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
       nom: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
       email: ['', [Validators.required, Validators.email]],
     }
-    ); */
+    ); 
 
-          //controle de saisi modif mot de passe
-          this.registerForm = this.formBuilder.group({
-            actuelpassword:['', [Validators.required, Validators.minLength(6)],],
-            newpassword:['', [Validators.required, Validators.minLength(6)],],
-            confirmdp:['', [Validators.required],]
-          }, { validator: MustMatch('newpassword', 'confirmdp') }
-          );
+        
   }
  
 
@@ -67,78 +63,47 @@ spin= false;
     );
   } */
 ngOnInit(): void {
-  
+  this.formGroup = this.formBuilder.group({
+    
+    prenom: [localStorage.getItem("prenom")?.replace(/"/g,  ""), [Validators.required, UsernameValidator.cannotContainSpace]],
+    nom: [localStorage.getItem('nom')?.replace(/"/g,  ""), [Validators.required, UsernameValidator.cannotContainSpace]],
+    email: [localStorage.getItem('email')?.replace(/"/g,  ""), [Validators.required, Validators.email]],
+  });
+}
+
+onUpdate(){
+  this.submitted = true;
+if(this.formGroup.invalid){
+ return;
 }
 
 
-     //modification password
-     update1User(){
-      const id =  this.registerForm.value.id;    
-      const userCollection={
-        actuelpassword: this.registerForm.value.actuelpassword,
-        newpassword: this.registerForm.value. newpassword,
-       confirmdp: this.registerForm.value.confirmdp 
-     }
-     
-     this.submitted = true;
-     if(this.registerForm.invalid){
-       
-      return ;
-     }
-     // Obtenir l'ID de l'utilisateur à partir de localStorage
-      const userId = localStorage.getItem('id')?.replace(/"/g,  "");
-      
-       // retourne a la page deconnection apres le popup modification reussi
-  /*      return this.authService.update1User(localStorage.getItem('id'),userCollection).subscribe((data)=>{
+      const id =  this.formGroup.value.id;
+      console.log(id);
+    const user ={
+    prenom: this.formGroup.value.prenom,
+    nom : this.formGroup.value.nom,
+    email: this.formGroup.value.email
+    }
         
-         
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Modification  mot de passe réussi !',
-          showConfirmButton: false,
-          timer: 1500
-        });
-       this.authService.doLogout()
-       },
-       (err)=>{
-           this.pass="mot de passe actuel est incorrect ";
-           this.spin = false
-           setTimeout(()=>{ this.errMsg= false}, 3001); 
-       })
+       this.authService.updateUser(id, user).subscribe(
+         data=>{
+           if (data.statut == "email") {
+             this.message ='Email existe déjà'
+             this.errMsg = true;
+           setTimeout(()=>{ this.errMsg = false}, 2000); 
+            }
+            else{
+           this.ngOnInit();
+           Swal.fire({
+             position: 'center',
+             icon: 'success',
+             title: 'Modification réussi !',
+             showConfirmButton: false,
+             timer: 1500
+           });window.setTimeout(function(){location.reload()},1000)}
+         }
+         );
 
-     
-         } 
 
-
-
-         
- 
-} */
-console.log(userId?.replace(/"/g,  ""));
-
- // Appeler la fonction de mise à jour de l'API
- this.authService.update1User(userId, userCollection).subscribe((data) => {
-  this.ngOnInit()
-  
-    // Afficher une notification de succès
-    Swal.fire({
-      position: 'center',
-      icon: 'success',
-      title: 'Modification mot de passe réussie!',
-      showConfirmButton: false,
-      timer: 1500
-    });
-    // Déconnecter l'utilisateur après la modification de mot de passe réussie
-    this.authService.doLogout();
-  },
-  err => {
-    // Afficher un message d'erreur si le mot de passe actuel est incorrect
-    this.pass = 'Mot de passe actuel incorrect.';
-    this.spin = false;
-    setTimeout(() => {
-      this.errMsg = false;
-    }, 3001);
-  }
-);
 }}

@@ -36,6 +36,9 @@ constructor(private activatedRoute: ActivatedRoute,
              
 }
 ngOnInit(): void {
+this.list()
+}
+ list =()=> {
   this.authService.GetUsers().subscribe(
     data =>{
       this.user = data;
@@ -43,7 +46,6 @@ ngOnInit(): void {
     }
   );
 }
-
 dearchiveUser=(id:any,etat:any)=> {
 
   etat == false ? etat = true : etat = false
