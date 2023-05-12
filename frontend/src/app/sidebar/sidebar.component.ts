@@ -192,16 +192,16 @@ pass!: string;
       }
 
       //modifier les données de l'utilisateur
-  getUserData(id:any,prenom:any,nom:any,email:any){
-    id = localStorage.getItem('id');
+  getUserData(_id:any){
+    _id = localStorage.getItem('_id');
    
-       this.formGroup = this.formBuilder.group({
+     /*   this.formGroup = this.formBuilder.group({
          id: [id],
          prenom: [prenom, [Validators.required, UsernameValidator.cannotContainSpace]],
          nom: [nom, [Validators.required, UsernameValidator.cannotContainSpace]],
          email: [email, [Validators.required, Validators.email]],
    
-       });
+       }); */
      }
    
      onUpdate() {

@@ -223,7 +223,7 @@ router.route('/').get(/* authorize */(req, res, next) => {
 })
 
 // Recuperez un utilisateur
-router.route('/read-user/:id').get((req, res) => {
+router.route('/read-user/:id').get((req, res,next) => {
   userSchema.findById(req.params.id, (error, data) => {
     if (error) {
       return next(error);
@@ -255,7 +255,7 @@ router.route('/update-user/:id').put((req, res, next) => {
     },
     (error, data) => {
       if (error) {
-        return next(error)
+        return res.status(200).json({statut:"email",message:"email doesn't exist...!"});
       } else {
         res.json(data)
         console.log('Modification réussie !')
@@ -264,8 +264,8 @@ router.route('/update-user/:id').put((req, res, next) => {
   )
 })
 /* delete by id method pour supprimer */
-
-router.delete('/delete/:id', async(req, res) => {
+/* 
+router.delete('/delete/:id', async(req, res ) => {
   try {
   const id = req.params.id;
   const data = await userSchema.findByIdAndDelete(id)
@@ -274,7 +274,7 @@ router.delete('/delete/:id', async(req, res) => {
   catch (error) {
   res.status(400).json({ message: error.message })
   }
-  })
+  }) */
 
 
 
