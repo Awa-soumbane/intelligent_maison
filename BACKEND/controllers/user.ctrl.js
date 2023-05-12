@@ -267,7 +267,8 @@ router.delete('/delete/:id', async(req, res) => {
 
 
 
-router.post('/postdomotique', async (req, res) => {
+
+  router.post('/postdomotique', async (req, res) => {
 
 
   const {temp,
@@ -298,26 +299,3 @@ router.post('/postdomotique', async (req, res) => {
 
 })
 
-
-
-router.get('/donne_maison', async (req, res) => {
-    try {
-        const data = await Serre.find();
-        res.json(data)
-      }
-      catch (error) {
-        res.status(500).json({ message: error.message })
-      }
-})
-
-
-router.get('/domo/:id', async (req, res) => {
-  try {
-    const data = await Serre.findById(req.params.id);
-    return res.json(data)
-  }
-  catch (error) {
-    return res.status(500).json({ message: error.message })
-  }
-})
-module.exports = router
