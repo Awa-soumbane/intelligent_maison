@@ -35,40 +35,38 @@ constructor(private activatedRoute: ActivatedRoute,
 
              
 }
-public afficher():void{
-  this.show = !this.show;
-}
-
 ngOnInit(): void {
+this.list()
 }
+ list =()=> {
+  this.authService.GetUsers().subscribe(
+    data =>{
+      this.user = data;
+      this.Users= this.user.filter((e:any)=> e.etat == false)
+    }
+  );
+}
+dearchiveUser=(id:any,etat:any)=> {
 
-onUpdate(){
-  const id =  this.formGroup.value.id;
-const user ={
-prenom: this.formGroup.value.prenom,
-nom : this.formGroup.value.nom,
-email: this.formGroup.value.email
-}
-this.submitted = true;
-if(this.formGroup.invalid){
- return;
-}
-  this.authService.updateUser(id, user).subscribe(
+  etat == false ? etat = true : etat = false
+   const user ={
+   etat : etat
+   }
+   Swal.fire({
+    title: 'Désarchivage',
+    text: 'Êtes-vous sûre de vouloir désarchiver ?',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Confirmer',
+    cancelButtonText: 'Annuler',
+  }).then((result) => {
+    if (result.value) {
+   this.authService.updateUser(id,user).subscribe(
     data=>{
       this.ngOnInit();
-      Swal.fire({
-        position: 'center',
-        icon: 'success',
-        title: 'Modification réussi !',
-        showConfirmButton: false,
-        timer: 1500
-      });window.setTimeout(function(){location.reload()},1000)
-    },
-    error => {
-      this.errMsg = false
-      setTimeout(()=>{ this.errMsg = true}, 2000);
     });
+  }else if (result.dismiss === Swal.DismissReason.cancel) {
+  }
+  });
 }
 }
-
-

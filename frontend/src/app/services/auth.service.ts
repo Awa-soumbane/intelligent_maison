@@ -50,18 +50,18 @@ import { Router } from "@angular/router";
   
     // Update user
     updateUser(id: any, data: any): Observable<any> {
-        let API_URL = `${this.endpoint}/update-user/${id}`;
+        let API_URL = `${this.endpoint}update-user/${id}`;
         return this.http
         .put(API_URL, data, { headers: this.headers })
         .pipe(catchError(this.handleError));
     }
     //Update mdp
     update1User(id: any, data: any): Observable<any> {  
-      let API_URL = `${this.endpoint}/update1/${id}`;
+      let API_URL = `${this.endpoint}/updatepass/${id}`;
   
-      return this.http.patch(`${this.endpoint}/update1/${id}`, 
-      {"actuelPass": data.actuelPass,
-    "newPass":data.newPass})
+      return this.http.patch(`${this.endpoint}/updatepass/${id}`, 
+      {"actuelpassword": data.actuelpassword,
+    "newpassword":data.newpassword})
     }
 
     // Ajouter un utilisateur
@@ -108,7 +108,8 @@ import { Router } from "@angular/router";
         localStorage.setItem('id', JSON.stringify(user.data?.userId));
         localStorage.setItem('prenom', JSON.stringify(user.data?.prenom));
         localStorage.setItem('nom', JSON.stringify(user.data?.nom));
-
+        localStorage.setItem('role', JSON.stringify(user.data?.role));
+        localStorage.setItem('email', JSON.stringify(user.data?.email));
         this.currentUserSubject.next(user);
         return user;
       }));
@@ -118,13 +119,15 @@ import { Router } from "@angular/router";
     doLogout() {
       let removeToken = localStorage.removeItem('access_token');
       if (removeToken == null) {
-        this.router.navigate(['log-in']);
+        localStorage.removeItem('prenom')
+        localStorage.removeItem('id')
+        this.router.navigate(['login']);
       }
     }
 
     // User profile
     getUserProfile(id: any): Observable<any> {
-      let api = `${this.endpoint}/user-profile/${id}`;
+      let api = `${this.endpoint}/read-user/${id}`;
       return this.http.get(api, { headers: this.headers }).pipe(
         map((res) => {
           return res || {};

@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
  import { AuthService } from '../services/auth.service'; 
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { UsernameValidator } from 'src/app/username.validator';
 import Swal from 'sweetalert2';
 
@@ -19,23 +19,32 @@ totalLenght: any;
 page: number = 1;
 formGroup!: FormGroup;
 submitted = false;
-errMsg:any = true;
+errMsg:any = false;
+id:any
+prenom: any
+nom: any
+email: any
+message:any
 show:boolean = false;
-  P: any;
-  N: any;
-  E: any;
+  userId:any;
+registerForm: any;
 
 constructor(private activatedRoute: ActivatedRoute,
             private formBuilder: FormBuilder,
             public authService: AuthService ){
 
             // Recuperer les informations de l'utilisateur
-            let id = localStorage.getItem('id'); 
+           /*  let id = localStorage.getItem('id'); 
             this.authService.getUserProfile(id).subscribe((res) => {
               this.currentUser = res.msg;
-            });
-                
-
+            }); */
+            
+            this.formGroup = this.formBuilder.group({
+              id:[''],
+              prenom: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
+              nom: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
+              email: ['', [Validators.required, Validators.email]]
+            })
              
 }
 public afficher():void{
@@ -43,14 +52,16 @@ public afficher():void{
 }
 
 ngOnInit(): void {
-  this.authService.GetUsers().subscribe( (data:any) =>{
-      this.user = data;
-      this.Users = this.user;
-        console.log(this.Users)
-      }
-  );
+  this.listeUsers()
 }
-
+listeUsers=()=>{
+  this.authService.GetUsers().subscribe( (data:any) =>{
+    this.user = data;
+    this.Users = this.user.filter((e:any)=> e.etat == true && e.email!=localStorage.getItem('email')?.replace(/"/g,  ""));
+      console.log(this.Users)
+    }
+);
+}
 
 //achiver un user
  archiver=(id:any,etat:any)=> {
@@ -78,25 +89,34 @@ ngOnInit(): void {
   })
  
 } 
-getUserData(id:any,prenom:any,nom:any,email:any){
-// console.log(id);
-this.P = prenom;
-this.N = nom;
-this.E = email;
-/* console.log(this.P); */
+getUserData(id:any){
+  this.authService.getUserProfile(id).subscribe( (data:any) =>{
+  
+      /* console.log(data._id) */
+      this.formGroup = this.formBuilder.group({
+        id:[data._id],
+        prenom: [data.prenom, [Validators.required, UsernameValidator.cannotContainSpace]],
+        nom: [data.nom, [Validators.required, UsernameValidator.cannotContainSpace]],
+        email: [data.email, [Validators.required, Validators.email]],
+      });
+    })
 
+/* this.nom = nom
   this.formGroup = this.formBuilder.group({
-      id:[id],
-      Prenom: [this.P, [Validators.required, UsernameValidator.cannotContainSpace]],
-      nom: [this.N, [Validators.required, UsernameValidator.cannotContainSpace]],
-      email: [this.E, [Validators.required, Validators.email]],
-    });
+    
+    prenom: [prenom, [Validators.required, UsernameValidator.cannotContainSpace]],
+    nom: [nom, [Validators.required, UsernameValidator.cannotContainSpace]],
+    email: [email, [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$')]],
+      
+    }); 
+     */
 }//modifier user
-onUpdate(){
+
+/* onUpdate(){
   const id =  this.formGroup.value.id;
  console.log(id);
 
-// console.log(this.formGroup.value.prenom);
+console.log(this.formGroup.value.prenom);
 
 this.submitted = true;
 if(this.formGroup.invalid){
@@ -113,21 +133,58 @@ this.authService.updateUser(id, user).subscribe(data=>{
   console.log(data); 
 })
   
-  // data=>{
-  //   this.ngOnInit();
-  //   Swal.fire({
-  //     position: 'center',
-  //     icon: 'success',
-  //     title: 'Modification réussi !',
-  //     showConfirmButton: false,
-  //     timer: 1500
-  //   });window.setTimeout(function(){location.reload()},1000)
-  // },
-  // error => {
-  //   this.errMsg = false
-  //   setTimeout(()=>{ this.errMsg = true}, 2000);
-  // });
+this.authService.updateUser(id, user).subscribe(
+  data=>{
+    this.ngOnInit();
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title: 'Modification réussi !',
+      showConfirmButton: false,
+      timer: 1500
+    });window.setTimeout(function(){location.reload()},1000)
+  },
+  error => {
+    this.errMsg = false
+    setTimeout(()=>{ this.errMsg = true}, 2000);
+  });
+} */
+onUpdate(){
+  this.submitted = true;
+if(this.formGroup.invalid){
+ return;
+}
+
+
+  const id =  this.formGroup.value.id;
+  console.log(id);
+const user ={
+prenom: this.formGroup.value.prenom,
+nom : this.formGroup.value.nom,
+email: this.formGroup.value.email
+}
+
+  this.authService.updateUser(id, user).subscribe(
+    data=>{
+      if (data.statut == "email") {
+        this.message ='Email existe déjà'
+        this.errMsg = true;
+      setTimeout(()=>{ this.errMsg = false}, 2000); 
+       }
+       else{
+      this.ngOnInit();
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Modification réussi !',
+        showConfirmButton: false,
+        timer: 1500
+      });window.setTimeout(function(){location.reload()},1000)}
+    }
+    );
 }
 }
+
+
 
 

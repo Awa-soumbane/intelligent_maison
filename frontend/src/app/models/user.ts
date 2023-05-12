@@ -1,19 +1,21 @@
 export class User {
-  _id?: String;
-  prenom?: String;
-  nom?: String;
-  email?: String;
-  role?: String;
-  mot_pass?: String;
+  _id?: string;
+  prenom?: string;
+  nom?: string;
+  email?: string;
+  role?: string;
+  mot_pass?: string;
   etat?: boolean;
 
   data?:{
-    token?:String;
-    userId?: String
-    prenom?:String;
-    nom?: String
+    token?:string;
+    userId?: string
+    prenom?:string;
+    nom?: string;
+   role?: string;
+   email?: string
 }
-  msg: any;
+
  
 }
 
