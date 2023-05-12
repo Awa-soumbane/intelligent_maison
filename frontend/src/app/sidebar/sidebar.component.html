@@ -8,19 +8,16 @@
             <img src="../../assets/svgviewer-output.svg" class="w-50 d-flex justify-content-center ml-12" alt="Flowbite Logo" style="display: flex; justify-content: center; margin-left: 25%; padding: 12px;"/>
         </a>
    <div class="text-center">
-        <h5 class="mb-4 " style="margin-left: 20px;">{{ prenom }}  {{ nom }} </h5>
+        <h5 class="mb-3 " style="margin-left: 20px;">{{ prenom }}  {{ nom }} </h5>
     </div>
       </div>  
 <div class="h-24">
 
-</div>
-
-          
-            
-        <div  class="w-100" style="margin-left: 25px; color: #Ffff;" >
+</div>    
+        <div  class="w-100 mb-1" style="margin-left: 25px; color: #Ffff;" >
            
             <div *ngIf="isParent">
-                <div class="d-flex gap-1">
+                <div class="d-flex gap-1 mb-3">
                     <svg aria-hidden="true" id="icon"
                         class=" " 
                         fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -30,11 +27,11 @@
                    <a style="text-decoration: none; color: #Ffff;" routerLink="//tableActif">Liste Utilisateurs</a>
                 </div>
             </div>
-            &nbsp;&nbsp;
-            &nbsp;&nbsp;
+          <!--   &nbsp;&nbsp; -->
+          <!--   &nbsp;&nbsp; -->
 
             <div class="w-100" *ngIf="isParent">
-              <div class="d-flex ">
+              <div class="d-flex mb-3">
                   <svg aria-hidden="true" id="icon"
                       class=" " 
                       fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -44,10 +41,10 @@
                   <a style="text-decoration: none; color: #Ffff;" routerLink="//inscription">Ajout Utilisateurs</a>
               </div>
           </div>  
-          &nbsp;&nbsp;
-          &nbsp;&nbsp;
+         <!--  &nbsp;&nbsp; -->
+          <!-- &nbsp;&nbsp; -->
             <div class="w-100">
-                <div class="d-flex gap-1 "  >
+                <div class="d-flex gap-1 mb-3"  >
 
                       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-geo-alt"
                           viewBox="0 0 16 16">
@@ -59,11 +56,11 @@
                     <a style="text-decoration: none; color: #Ffff;" routerLink="//localisation">Localisation</a>
                 </div>
             </div>    
-             &nbsp;&nbsp;
-            &nbsp;&nbsp;
+             <!-- &nbsp;&nbsp; -->
+            <!-- &nbsp;&nbsp; -->
     
             <div *ngIf="isParent" class="w-100">
-                <div class="d-flex"> 
+                <div class="d-flex "> 
                     <svg aria-hidden="true" id="icon"
                     class="flex-shrink-0 w-6 h-6 text-white transition duration-7 group-hover:text-gray-900" fill="currentColor"
                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -85,6 +82,8 @@
             </div>
     </div>
     &nbsp;&nbsp;
+    &nbsp;&nbsp;
+    
 <div class="collapse d-lg-block sidebar shadow  collapse ;" style="background-color: #9393F9;  border-radius: 10px 0px 0px 0px;">
 <div class=" mt-5">
     <span class="d-flex justify-content-center mb-4" id="titr">climatiseur</span>
@@ -94,7 +93,7 @@
             </div>
         <div class="d-flex  justify-content-center mt-2">
             <img src="../../assets/start.png" alt="" class="non">
-            &nbsp;&nbsp;
+            <!-- &nbsp;&nbsp; -->
             &nbsp;&nbsp;
             <img src="../../assets/stop.png" alt="" class="non">
         
