@@ -90,9 +90,12 @@ portSerial.on('open', () => {
 
 parser.on('data', (data) => {
   console.log(data)
-  console.log("en attente....");
-  
-  
+  //console.log("en attente....");
+  tp = data.split('/'); 
+  var donnee = data.slice(0);
+  console.log(donnee);
+   io.emit('data',{'donnee':donnee});
+   io.emit('donnee', donnee);
   try {
   
     let jsonData = JSON.parse(dataStr)
@@ -101,7 +104,7 @@ parser.on('data', (data) => {
     console.log('Received JSON:', jsonData);
 
     if (jsonData) {
-
+      io.emit('donnee', `${jsonData.donnee}`);
       io.emit('temp', `${jsonData.temp}`);
       io.emit('hum', `${jsonData.hum}`);
       io.emit('lum', `${jsonData.lum}`);
