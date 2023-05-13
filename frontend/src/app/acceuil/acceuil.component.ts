@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { SocketioService } from 'src/app/services/socketio.service';
  import { io } from 'socket.io-client';
  import { environment } from '../environment/environment';
@@ -16,13 +15,19 @@ export class AcceuilComponent implements OnInit{
   realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;
   socket:any;
   constructor(private socketService:SocketioService,  private formBuilder:FormBuilder,private modalService: NgbModal){
-    this.socket = io(`${environment.apiUrl}`);
+    //this.socket = io(`${environment.apiUrl}`);
   }
 
-  ngOnInit() {
-
-
-    this.socket.on('temp', (data: number) => {
+  ngOnInit():void {
+this.socketService.donnee().subscribe((data:any)=>{
+  console.log(data);
+  
+})
+    this.socket.on('donnee', (data: number) => {
+      console.log('donnee: '+data);
+      console.log(data);
+      
+    });    this.socket.on('temp', (data: number) => {
       console.log('temp: '+data);
       this.realtimeTemp = data;
       console.log(this.realtimeHum);

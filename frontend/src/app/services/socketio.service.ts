@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Socket } from 'ngx-socket-io';
+import { HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import { io } from 'socket.io-client';
 import { environment } from '../environment/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketioService {
-
+  endpoint: string = 'http://localhost:3000';
   socket:any;
   localStatus = localStorage.getItem('currentUser');
   msg:any;
@@ -52,4 +56,8 @@ export class SocketioService {
     });
   }
 
+  public donnee(): Observable<any> {
+    return this.socket.fromEvent('donnees');
+  }
+  
 }
