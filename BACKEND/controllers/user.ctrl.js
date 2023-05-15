@@ -19,7 +19,6 @@ router.post('/add-user', authorize,(req, res, next) => {
           email: req.body.email,
           role: req.body.role,
          mot_pass: hash,
-         rfid: req.body.rfid,
           etat: req.body.etat,
           
         })
@@ -205,7 +204,6 @@ else{
           email: existingUser.email,
           nom: existingUser.nom,
           prenom: existingUser.prenom,
-          rfid: existingUser.rfid,
           token: token, 
           role:existingUser.role 
         },
@@ -313,28 +311,3 @@ router.delete('/delete/:id', async(req, res ) => {
   }
 
 }) */
-
-
-
-
-
-// Connexion
-router.post('/rfid', async(req, res, next) => {
-
-  let { rfid} = req.body; 
-
-    let existingUser;
-
-// Retrouve l'email saisi dans la base de données et stocke ça dans existingUser
-    existingUser = await userSchema.findOne({ rfid:rfid }); 
-    if (!existingUser) 
-    { // si l'email ne s'y trouve pas donne le message
-      return res.status(200).json({valide:false ,message:"carte invalide...!"});
-    }
-    else{
-      return res.status(200).json({ valide: true })
-    }
-
-
-})
-

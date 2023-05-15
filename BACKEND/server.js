@@ -1,16 +1,14 @@
-const express = require('express')
-const cors = require('cors')
-const bodyParser = require('body-parser')
-const mongoose = require('mongoose')
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 const { ReadlineParser } = require('@serialport/parser-readline');
 const {SerialPort} = require('serialport');
-// Express APIs
-const api = require('./controllers/user.ctrl');
+const routes = require('../BACKEND/controllers/user.ctrl');
 const { log } = require('console');
 const DomoRouter = require('..//BACKEND/controllers/maisonRouter');
 const app= express();
 
-//const app_io = require('./arduino')
 
 mongoose
   .connect('mongodb+srv://oumy:1234@cluster0.ayfcz7h.mongodb.net/maison')
@@ -42,9 +40,9 @@ app.use('/api', routes)
 app.get('/favicon.ico', (req, res) => res.status(204))
 
 // Define PORT
- const port = process.env.PORT || 4002
+const port = process.env.PORT || 4002
 
-const server = app.listen(port, () => {
+const servers = app.listen(port, () => {
   console.log('Connected to port ' + port)
 })
 
@@ -62,35 +60,46 @@ app.use(function (err, req, res, next) {
 })
 
 
-//const server = require('http').createServer(app);
-const io = require('socket.io')(server, {
+const http = require('http').createServer(app);
+const io = require('socket.io')(http, {
   cors: {
-    origins: ['http://localhost:3001']
+    origins: ['http://localhost:4200']
   }
 });
 
-const portSerial = new SerialPort({ path:'/dev/ttyACM0',
+
+
+var portSerial = new SerialPort({ path:'/dev/ttyUSB0',
         baudRate: 9600,
         dataBits: 8,
         parity: 'none',
         stopBits: 1,
-        flowControl: true
+        //flowControl: true
     });
-const parser = portSerial.pipe(new ReadlineParser({ delimiter: '\r\n' })
-)
+const parser = portSerial.pipe(new ReadlineParser({ delimiter: '\r\n' }))
 
+//ECOUTER LES EVENNEMENTS DEPUIS LE FRONT
+portSerial.on('open', () => {
+  io.on('connection', (socket) => {
 
+    socket.on('isOn', (msg) => {
+      console.log('lampe: ' + msg);
+      portSerial.write("1")
+    });
 
+    socket.on('isOff', (msg) => {
+      console.log('lampe: ' + msg);
+      portSerial.write("0")
+    });
 
+  });
+});
 
 //ECOUTER LES EVENNEMENTS DEPUIS ESP32,ARDUINO,MEGA...
 
-
-
-//ECOUTER LES EVENNEMENTS DEPUIS LE FRONT
 parser.on('data', (data) => {
-  console.log(data)
-  console.log("en attente....");
+  
+  console.log(data);
   
   
   try {
@@ -104,11 +113,13 @@ console.log(jsonData)
     console.log('Received JSON:', jsonData);
     if (jsonData) {
 
-      io.emit('temp', `${jsonData.temp}`);
-      io.emit('hum', `${jsonData.hum}`);
-      io.emit('lum', `${jsonData.lum}`);
-      io.emit('sol', `${jsonData.sol}`);
-     
+      io.emit('temp', jsonData.temperature);
+      io.emit('hum', jsonData.humidity); 
+      io.emit('lum', jsonData.lum);
+      io.emit('humSol', jsonData.humSol);
+      io.emit('buzzer', jsonData.buzzer);
+      io.emit('toit', jsonData.toit);
+      io.emit('door', jsonData.door);
 
       let tempEtHum = {
         'temp': jsonData.temp,
@@ -133,4 +144,3 @@ console.log(jsonData)
 http.listen(3000, () => {
   console.log('listening on :3000');
 });
-
