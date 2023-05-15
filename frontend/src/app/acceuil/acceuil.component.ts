@@ -5,6 +5,7 @@ import { SocketioService } from 'src/app/services/socketio.service';
  import { environment } from '../environment/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Tem_Hum } from '../models/temp_hum';
 // import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -15,19 +16,19 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class AcceuilComponent implements OnInit{
   realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;
   socket:any;
-  constructor(private socketService:SocketioService,  private formBuilder:FormBuilder,private modalService: NgbModal){
+  constructor(private socketService:SocketioService){
     this.socket = io(`${environment.apiUrl}`);
   }
 
   ngOnInit() {
 
 
-    this.socket.on('temp', (data: number) => {
-      console.log('temp: '+data);
+    this.socket.on('temp', (data: any) => {
+      console.log(data);
       this.realtimeTemp = data;
-      console.log(this.realtimeHum);
-      
+   
     });
+
 
     this.socket.on('hum', (data: number) => {
       console.log('hum: '+data);
@@ -39,8 +40,8 @@ export class AcceuilComponent implements OnInit{
       this.realtimeLum = data;
     });
 
-    this.socket.on('sol', (data: number) => {
-      console.log('sol: '+data);
+    this.socket.on('humSol', (data: number) => {
+      console.log('humSol: '+data);
       this.realtimeSol = data;
     });
   }

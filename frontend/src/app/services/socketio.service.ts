@@ -12,24 +12,14 @@ export class SocketioService {
   msg:any;
   constructor() { }
 
-/*   setupSocketConnection() {
+ setupSocketConnection() {
     this.socket = io(`${environment.apiUrl}`);  
   
-    this.socket.on('my broadcast', (data: string) => {
-      console.log(data );
-      if (data !="refuse" && !this.localStatus) {
-        localStorage.setItem('currentUser', JSON.stringify(data));
-        localStorage.setItem('id', JSON.stringify("6426d7fa66dd3621431204dc"));
-        
-        window.location.pathname ='home'
-        return;
-      }
-    });
-  } */
+  } 
 
   getTemp(){
     this.socket = io(`${environment.apiUrl}`);
-    this.socket.on('temp', (data: string) => {
+    this.socket.on('data', (data: string) => {
       console.log('temp: '+data);
       let temp = data;
       return temp
@@ -52,4 +42,5 @@ export class SocketioService {
     });
   }
 
+  
 }
