@@ -7,7 +7,7 @@ const {SerialPort} = require('serialport');
 const routes = require('../BACKEND/controllers/user.ctrl');
 const { log } = require('console');
 const DomoRouter = require('..//BACKEND/controllers/maisonRouter');
-const app= express()
+const app= express();
 
 
 mongoose
@@ -33,8 +33,8 @@ app.use(bodyParser.urlencoded({
 app.use(cors({origin: "*"}))
 
 // Serve static resources
-//app.use('/api', routes)
-// app.use('/', DomoRouter )
+app.use('/api', routes)
+
 
 // Error favicon.ico
 app.get('/favicon.ico', (req, res) => res.status(204))
@@ -82,6 +82,16 @@ const parser = portSerial.pipe(new ReadlineParser({ delimiter: '\r\n' }))
 portSerial.on('open', () => {
   io.on('connection', (socket) => {
 
+    socket.on('isOn', (msg) => {
+      console.log('lampe: ' + msg);
+      portSerial.write("1")
+    });
+
+    socket.on('isOff', (msg) => {
+      console.log('lampe: ' + msg);
+      portSerial.write("0")
+    });
+
   });
 });
 
@@ -98,15 +108,15 @@ parser.on('data', (data) => {
   
 
     let jsonData = JSON.parse(dataStr)
-
+console.log(jsonData)
     // If parsing succeeds, process the JSON data
     console.log('Received JSON:', jsonData);
     if (jsonData) {
 
       io.emit('temp', jsonData.temperature);
-      io.emit('hum', jsonData.humidité); 
+      io.emit('hum', jsonData.humidity); 
       io.emit('lum', jsonData.lum);
-      io.emit('sol', jsonData.sol);
+      io.emit('humSol', jsonData.humSol);
       io.emit('buzzer', jsonData.buzzer);
       io.emit('toit', jsonData.toit);
       io.emit('door', jsonData.door);

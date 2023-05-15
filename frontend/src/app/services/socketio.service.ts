@@ -15,10 +15,6 @@ export class SocketioService {
  setupSocketConnection() {
     this.socket = io(`${environment.apiUrl}`);  
   
-    this.socket.on('temp', (data: string) => {
-      console.log(data );
-     
-    });
   } 
 
   getTemp(){
@@ -46,4 +42,5 @@ export class SocketioService {
     });
   }
 
+  
 }

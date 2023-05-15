@@ -6,8 +6,10 @@ const userSchema = require('../models/User')
 const authorize = require('../authentification/auth')
 mongoose = require('mongoose')
 
+
+module.exports = router;
 // Inscription
-router.post('/add-user', (req, res, next) => {
+router.post('/add-user', authorize,(req, res, next) => {
     console.log(req.body)
 
       bcrypt.hash(req.body.mot_pass, 10).then((hash) => {
@@ -72,7 +74,7 @@ router.post('/add-user', (req, res, next) => {
       res.status(400).json({ message: error.message })
   }
 }) */
-router.patch('/updatepass/:id', async (req, res) => {
+router.patch('/updatepass/:id',authorize, async (req, res) => {
   const { actuelpassword, newpassword} = req.body;
   console.log(req.body);
 try {
@@ -212,7 +214,7 @@ else{
 })
 
 // Recuperez tous les utilisateurs
-router.route('/').get(/* authorize */(req, res, next) => {
+router.route('/').get(authorize,(req, res, next) => {
   userSchema.find((error, response)=> {
     if (error) {
       return next(error)
@@ -279,7 +281,7 @@ router.delete('/delete/:id', async(req, res ) => {
 
 
 
-  router.post('/postdomotique', async (req, res) => {
+/*   router.post('/postdomotique', async (req, res) => {
 
 
   const {temp,
@@ -308,5 +310,5 @@ router.delete('/delete/:id', async(req, res ) => {
     res.status(404).json({ message: error.message })
   }
 
-})
+}) */
 

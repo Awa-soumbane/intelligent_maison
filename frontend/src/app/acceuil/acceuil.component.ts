@@ -40,8 +40,8 @@ export class AcceuilComponent implements OnInit{
       this.realtimeLum = data;
     });
 
-    this.socket.on('sol', (data: number) => {
-      console.log('sol: '+data);
+    this.socket.on('humSol', (data: number) => {
+      console.log('humSol: '+data);
       this.realtimeSol = data;
     });
   }
