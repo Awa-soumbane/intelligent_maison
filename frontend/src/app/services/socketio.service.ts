@@ -57,7 +57,7 @@ export class SocketioService {
   }
 
   public donnee(): Observable<any> {
-    return this.socket.fromEvent('donnees');
+    return this.socket.fromEvent('donnee');
   }
   
 }
