@@ -14,7 +14,7 @@ import { Router } from "@angular/router";
     headers = new HttpHeaders().set('Content-Type', 'application/json');
     currentUser = {};
     httpClient: any;
-    endpointIo: string = 'http://localhost:3000'
+    endpointIo: string = 'http://localhost:4002'
 
     private currentUserSubject: BehaviorSubject<User>;
 
@@ -65,7 +65,7 @@ import { Router } from "@angular/router";
     }
 
     // Ajouter un utilisateur
-    addUser(prenom: string, nom: string, email: string, role: string, mot_pass: string, etat: boolean): Observable<any> {
+    addUser(prenom: string, nom: string, email: string, role: string, mot_pass: string,rfid: string, etat: boolean): Observable<any> {
         const user={
           prenom: prenom,
           nom: nom,
@@ -73,7 +73,7 @@ import { Router } from "@angular/router";
           mot_pass: mot_pass,
           etat:etat,
           role:role,
-        
+        rfid:rfid,
         }
       return this.http.post<User>(`${this.endpoint}/add-user`, user, {
         reportProgress: true,
@@ -110,6 +110,7 @@ import { Router } from "@angular/router";
         localStorage.setItem('nom', JSON.stringify(user.data?.nom));
         localStorage.setItem('role', JSON.stringify(user.data?.role));
         localStorage.setItem('email', JSON.stringify(user.data?.email));
+        localStorage.setItem('rfid', JSON.stringify(user.data?.rfid));
         this.currentUserSubject.next(user);
         return user;
       }));

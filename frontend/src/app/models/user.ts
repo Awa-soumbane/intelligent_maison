@@ -13,7 +13,8 @@ export class User {
     prenom?:string;
     nom?: string;
    role?: string;
-   email?: string
+   email?: string;
+   rfid?: string
 }
 
  

@@ -21,12 +21,12 @@ user: any;
 totalLenght: any;
 
 submitted = false;
-errMsg:any = true;
+errMsg:any = false;
 userCollection: any;
 pass!: string;
 spin= false;
 formGroup!: FormGroup;
-  message: any;
+message:any
 
 
 

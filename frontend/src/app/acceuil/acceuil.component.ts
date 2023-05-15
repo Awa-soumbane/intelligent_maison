@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SocketioService } from 'src/app/services/socketio.service';
- import { io } from 'socket.io-client';
+ /* import { io } from 'socket.io-client'; */
+ import { Socket } from 'ngx-socket-io';
  import { environment } from '../environment/environment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -13,17 +14,40 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AcceuilComponent implements OnInit{
   realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;
-  socket:any;
-  constructor(private socketService:SocketioService,  private formBuilder:FormBuilder,private modalService: NgbModal){
+   socket:any; 
+  rfid: any;
+  ouverture:any;
+  acces: boolean=false;
+  
+  constructor(private socketService:SocketioService,  private formBuilder:FormBuilder,private modalService: NgbModal, /* private socket:Socket */){
     //this.socket = io(`${environment.apiUrl}`);
   }
+ 
+  
 
   ngOnInit():void {
-this.socketService.donnee().subscribe((data:any)=>{
-  console.log(data);
+this.socketService.gethum().subscribe((res:any)=>{
+  this.ouverture=res;
+  if(this.ouverture== '@d319121e'){
+    this.acces= true; 
+  }
+  if(this.ouverture== 'fermer!'){
+    this.acces= false; 
+  }
+  console.log(res);
   
 })
-    this.socket.on('donnee', (data: number) => {
+this.socketService.info().subscribe((data:any)=>{
+  console.log(data);
+  this.realtimeTemp = data.temperature;
+  this.realtimeHum = data.humidite
+  
+})
+/* this.socketService.recup().subscribe((data)=>{
+console.log(data)
+}) */
+
+   /*  this.socket.on('donnee', (data: number) => {
       console.log('donnee: '+data);
       console.log(data);
       
@@ -47,7 +71,11 @@ this.socketService.donnee().subscribe((data:any)=>{
     this.socket.on('sol', (data: number) => {
       console.log('sol: '+data);
       this.realtimeSol = data;
-    });
+    }); */
   }
-
+  
+ /*  ledOn(){
+    this.socketService.ledOn()
+    
+  } */
 }

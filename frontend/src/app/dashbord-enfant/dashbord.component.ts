@@ -1,23 +1,24 @@
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
-
+import { SocketioService } from '../services/socketio.service';
 @Component({
   selector: 'app-dashbord',
   templateUrl: './dashbord.component.html',
   styleUrls: ['./dashbord.component.css']
 })
-export class DashbordComponent {
+export class DashbordComponent implements OnInit{
 toi :any;
 toi1= false;
 onSubmit() {
 throw new Error('Method not implemented.');
 }
 content: any;
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private socketService:SocketioService) {}
     onclick(){
       this.toi= true; 
+      
      }
      on(){
        this.toi= false; 
@@ -67,5 +68,10 @@ content: any;
       return `with: ${reason}`;
     }
   }
+  ngOnInit(): void {
   
+  }
+ /*  ledOn(){
+    this.socketService.ledOn()
+  } */
 }

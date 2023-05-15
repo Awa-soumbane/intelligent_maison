@@ -81,8 +81,19 @@
                         Les mots de passes ne correspondent pas
                     </div>
                 </div>
-            <div class="form-group" >
-                <button class="btn btn-outline-primary pull-left">Inscrire</button>
+                <div class="col-md-6">
+                    <label for="rfid">Rfid</label>
+                    <input type="text" class="form-control" autocomplete="on" formControlName="rfid"
+                    [ngClass]="{'is-invalid':submitted && formGroup.controls['rfid'].errors}">
+                    <div *ngIf="formGroup.controls['rfid'].dirty && formGroup.controls['rfid'].errors && formGroup.controls['rfid'].errors['required']" class="text-danger">
+                        La carte est requis 
+                    </div>
+                    <div *ngIf="formGroup.controls['rfid'].dirty && formGroup.controls['rfid'].errors && formGroup.controls['rfid'].errors['cannotContainSpace']" class="text-danger">
+                        Espace non autorisé
+                    </div>
+                </div>
+            <div class="col-md-6 " >
+                <button class="btn btn-outline-primary pull-left form-control mt-4 ">Inscrire</button>
             </div>
         </form>
     </div>

@@ -31,13 +31,14 @@ export class InscriptionComponent {
       role: ['', Validators.required],
       mot_pass: ['', [Validators.required, Validators.minLength(6)]],
       passwordConfirm: ['', Validators.required],
+      rfid: ['', [Validators.required, UsernameValidator.cannotContainSpace]],
       etat: [1, Validators.required],
      
     }, { validator: MustMatch('mot_pass', 'passwordConfirm') }
     )
   }
 
-  listDeroulant = ['Admin', 'Parent', 'Enfant', 'Locataire'];
+  listDeroulant = [ 'Parent', 'Enfant', 'Locataire'];
 
   addUsers() {
     this.submitted = true;
@@ -47,7 +48,7 @@ export class InscriptionComponent {
     this.submitted=false
   
     this.authService.addUser(this.formGroup.value.prenom, this.formGroup.value.nom,
-      this.formGroup.value.email, this.formGroup.value.role, this.formGroup.value.mot_pass,
+      this.formGroup.value.email, this.formGroup.value.role, this.formGroup.value.mot_pass,this.formGroup.value.rfid,
       this.formGroup.value.etat).subscribe((event: HttpEvent<any>) => {
         switch (event.type) {
           case HttpEventType.Sent:

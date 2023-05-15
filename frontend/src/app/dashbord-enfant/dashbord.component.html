@@ -87,7 +87,7 @@
 <div class="d-flex justify-centent-center" style="gap: 12px;">
     <img *ngIf="toi" src="../../assets/lampeon.svg" alt=""  style="height: 65px;width: 45px; display: flex;justify-content: center;">
     <img *ngIf="!toi"src="../../assets/lampoff.svg" alt="">
- <button *ngIf="!toi" style="height: 60px;width: 42px;">  <img src="../../assets/off.svg" alt="" style="height: 55px;width: 35px; display: flex;justify-content: center;" (click)=" onclick()"></button>
+<span > <button  *ngIf="!toi" style="height: 60px;width: 42px;">  <img src="../../assets/off.svg" alt="" style="height: 55px;width: 35px; display: flex;justify-content: center;" (click)=" onclick()"></button></span>
  <button  *ngIf="toi" style="height: 60px;width: 42px;">  <img src="../../assets/on.svg" alt="" style="height: 55px;width: 35px; display: flex;justify-content: center;" (click)="on()"></button>  
 </div>
 </div>

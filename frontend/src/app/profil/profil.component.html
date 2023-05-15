@@ -4,8 +4,8 @@
     <div class="modal-header d-flex justify-centent-center">
       <h5 class="modal-title mt-3 " id="exampleModalLabel ">MODIFICCATION PROFILE</h5>
     </div>
-    <ng-container *ngIf="this.errMsg">
-      <div class="alert alert-danger" role="alert"><strong> Erreur:{{message}} </strong></div>
+    <ng-container *ngIf="this.errMsg==true">
+      <div class="alert alert-danger" role="alert"><strong>{{message}} </strong></div>
   </ng-container>
     <form [formGroup]="formGroup" (ngSubmit)="onUpdate()">
       <label for='prenom'>Prenom</label>

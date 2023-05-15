@@ -1,12 +1,16 @@
 const express = require('express')
-const cors = require('cors')
+const cors = require('cors');
+path = require ('path');
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const { ReadlineParser } = require('@serialport/parser-readline');
 const {SerialPort} = require('serialport');
+const {socket} = require('socket.io')
+
 // Express APIs
 const api = require('./controllers/user.ctrl');
 const { log } = require('console');
+
 
 //const app_io = require('./arduino')
 
@@ -40,9 +44,9 @@ app.use('/api', api)
 app.get('/favicon.ico', (req, res) => res.status(204))
 
 // Define PORT
-const port = process.env.PORT || 4002
+ const port = process.env.PORT || 4002
 
-const servers = app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log('Connected to port ' + port)
 })
 
@@ -61,41 +65,69 @@ app.use(function (err, req, res, next) {
 
 
 
-const http = require('http').createServer(app);
-const io = require('socket.io')(http, {
+//const server = require('http').createServer(app);
+const io = require('socket.io')(server, {
   cors: {
-    origins: ['http://localhost:3001']
+    origins: ['*'],
+    methodes:['PUT', 'GET','DELETE','POST'],
+    Credential:false,
   }
 });
 
-const portSerial = new SerialPort({ path:'/dev/ttyACM0',
+const portSerial = new SerialPort({ path:'/dev/ttyUSB0',
         baudRate: 9600,
         dataBits: 8,
         parity: 'none',
         stopBits: 1,
-        //flowControl: true
+        flowControl: true
     });
 const parser = portSerial.pipe(new ReadlineParser({ delimiter: '\r\n' })
 )
 
 
-//ECOUTER LES EVENNEMENTS DEPUIS LE FRONT
-portSerial.on('open', () => {
-  io.on('connection', (socket) => {
 
-  });
-});
+//ECOUTER LES EVENNEMENTS DEPUIS LE FRONT
+
 
 //ECOUTER LES EVENNEMENTS DEPUIS ESP32,ARDUINO,MEGA...
 
+const info ={
+  temperature:12,
+  humidite:13,
+  luminosite:14,
+  humidite_sol:16
+};
+console.log(info)
+
+setTimeout(()=>{
+  console.log(info)
+  io.emit('data', info);
+},10)
+
+
 parser.on('data', (data) => {
-  console.log(data)
+  io.emit('donnee', data);
+  io.emit('data', info);
+ /*  io.on('connection',function(socket){
+
+    socket.on('ledOn',()=>{
+      portSerial.write('1')
+      console.log('rrrrrrrrrrrrrrrrrrrrrrrrr');
+  
+    })  }); */
+ /* c */
+    
+        io.on('connection',function(socket){
+
+    
+  
+      });
+
   //console.log("en attente....");
-  tp = data.split('/'); 
-  var donnee = data.slice(0);
-  console.log(donnee);
-   io.emit('data',{'donnee':donnee});
-   io.emit('donnee', donnee);
+console.log(data);
+var donnee = data;
+   io.emit('donnee', data);
+   
   try {
   
     let jsonData = JSON.parse(dataStr)
@@ -104,13 +136,13 @@ parser.on('data', (data) => {
     console.log('Received JSON:', jsonData);
 
     if (jsonData) {
-      io.emit('donnee', `${jsonData.donnee}`);
+      /* io.emit('donnee', `${jsonData.donnee}`); */
+     
       io.emit('temp', `${jsonData.temp}`);
       io.emit('hum', `${jsonData.hum}`);
       io.emit('lum', `${jsonData.lum}`);
       io.emit('sol', `${jsonData.sol}`);
      
-
       let tempEtHum = {
         'temp': jsonData.temp,
         'hum': jsonData.hum,
