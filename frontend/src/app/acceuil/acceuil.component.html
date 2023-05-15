@@ -10,7 +10,7 @@
 <div class="d-flex  h-100 "  id="sect1">
     <span class="flex-column">
     <p class="mb-2 thhe">Température  Humidité </p>
-    <p class="mb-4 "> {{ realtimeTemp }}// {{ realtimeHum }} </p>
+    <p class="mb-4 "> {{realtimeTemp}}°//{{realtimeHum}}%</p>
    
 
 </span>
@@ -57,7 +57,7 @@
  
     <div class="d-flex  flex-column"  id="sectTemp">
         <p class="thhe">Humidité du sol</p>
-        <p class="thhe">{{realtimeHum}}</p>
+        <p class="thhe">{{realtimeSol}}%</p>
     </div>
     <div   class="d-flex-  flex-column justify-centent-center align-items-center"  id="sectHum">
         <p class="mb-2 thh">Etat Fontaine</p>
@@ -69,7 +69,7 @@
     </div>
     <div class="d-flex  flex-column"  id="sectHumSol">
      <p class="thhe">Ensoilemenent </p>
-     <p class="thhe">23 LUX</p>
+     <p class="thhe">{{realtimeLum}}</p>
  </div>
   </div>
    </div>
