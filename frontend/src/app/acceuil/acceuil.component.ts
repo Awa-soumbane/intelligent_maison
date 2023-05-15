@@ -16,6 +16,7 @@ import { Tem_Hum } from '../models/temp_hum';
 export class AcceuilComponent implements OnInit{
   realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;
   socket:any;
+  acces:boolean=false;
   constructor(private socketService:SocketioService){
     this.socket = io(`${environment.apiUrl}`);
   }
@@ -44,6 +45,20 @@ export class AcceuilComponent implements OnInit{
       console.log('humSol: '+data);
       this.realtimeSol = data;
     });
+
+    this.socketService.gethum().subscribe((data)=>{
+      console.log(data);
+      if(data== "fermer"){
+        this.acces=false;
+        console.log(data);
+        
+      } else{
+         this.acces=true;
+      } 
+      
+      
+    })
   }
 
+  
 }

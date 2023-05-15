@@ -265,6 +265,25 @@ router.route('/update-user/:id').put((req, res, next) => {
     },
   )
 })
+
+router.post('/rfid', async(req, res, next) => {
+
+  let { rfid} = req.body; 
+
+    let existingUser;
+
+// Retrouve l'email saisi dans la base de données et stocke ça dans existingUser
+    existingUser = await userSchema.findOne({ rfid:rfid }); 
+    if (!existingUser) 
+    { // si l'email ne s'y trouve pas donne le message
+      return res.status(200).json({valide:false ,message:"carte invalide...!"});
+    }
+    else{
+      return res.status(200).json({ valide: true })
+    }
+
+
+})
 /* delete by id method pour supprimer */
 /* 
 router.delete('/delete/:id', async(req, res ) => {
