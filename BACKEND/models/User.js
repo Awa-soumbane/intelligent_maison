@@ -9,6 +9,7 @@ let userSchema = new Schema({
     role: { type: String, required:true },
     mot_pass: { type: String, required:true },
     etat: { type: Boolean, required:false },
+    rfid: { type: String, required:false },
     
 }, {timestamps: true},
 {
