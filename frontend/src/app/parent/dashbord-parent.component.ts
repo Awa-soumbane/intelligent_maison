@@ -11,10 +11,10 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class DashbordParent{
   registerForm!: FormGroup
-top :any;
-topp :any;
-tops :any;
-toll :any;
+top =true;
+topp=true;
+tops =true;
+toll=true;
 onSubmit() {
 throw new Error('Method not implemented.');
 }
@@ -29,11 +29,12 @@ content: any;
         }
     
 
-        ope(){
+        oN(){
           this.top= true; 
          }
-         closs(){
-           this.topp= false; 
+         oF(){
+           this.top= false; 
+
           }
 
           offf(){

@@ -75,7 +75,7 @@ const io = require('socket.io')(http, {
      }
    });
 
-var portSerial = new SerialPort({ path:'/dev/ttyUSB0',
+var portSerial = new SerialPort({ path:'/dev/ttyACM0',
         baudRate: 9600,
         dataBits: 8,
         parity: 'none',
@@ -98,7 +98,14 @@ portSerial.on('open', () => {
       portSerial.write("0")
     });
 
-    
+    socket.on('donn', (msg) => {
+      portSerial.write(msg)
+      console.log(msg);
+    });
+    socket.on('ledOn', (msg) => {
+      portSerial.write("0")
+      console.log('LED éteind');
+    });
 
   });
 });
@@ -107,7 +114,7 @@ portSerial.on('open', () => {
 
 parser.on('data', (data) => {
  /*  */
-  console.log(data); 
+  //console.log(data); 
   
   const rfid = data.toString();
 if(data!='fermer'){
@@ -121,12 +128,12 @@ if(data!='fermer'){
           io.emit("donnee",data);
           // Effectuer des opérations supplémentaires si nécessaire
         } else {
-          console.log('No matching record found');
+          //console.log('No matching record found');
         }
       })
       .catch((err) => console.error('Error finding record:', err));
   } else {
-    console.error('Invalid value received from serial port:', data);
+    //console.error('Invalid value received from serial port:', data);
   }
   }
   io.emit("donnee",data);
@@ -137,9 +144,9 @@ if(data!='fermer'){
   
 
     let jsonData = JSON.parse(dataStr)
-    console.log(jsonData)
+    //console.log(jsonData)
     // If parsing succeeds, process the JSON data
-    console.log('Received JSON:', jsonData);
+    //console.log('Received JSON:', jsonData);
     if (jsonData) {
 
       io.emit('temp', jsonData.temperature);

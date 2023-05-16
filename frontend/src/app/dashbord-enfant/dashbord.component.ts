@@ -9,8 +9,9 @@ import { SocketioService } from '../services/socketio.service';
   styleUrls: ['./dashbord.component.css']
 })
 export class DashbordComponent implements OnInit{
-toi :any;
+toi = false;
 toi1= false;
+od="1";
 onSubmit() {
 throw new Error('Method not implemented.');
 }
@@ -18,16 +19,19 @@ content: any;
   constructor(private modalService: NgbModal, private socketService:SocketioService) {}
     onclick(){
       this.toi= true; 
+      this.socketService.onnn()
       
      }
      on(){
        this.toi= false; 
+       this.socketService.offf();
+
       }
       onlampe(){
-        this.toi= true; 
+        this.toi1= true; 
        }
        offlampe(){
-         this.toi= false; 
+         this.toi1= false; 
         }
     
 
@@ -71,7 +75,7 @@ content: any;
   ngOnInit(): void {
   
   }
- /*  ledOn(){
+ /* ledOn(){
     this.socketService.ledOn()
-  } */
+  } */ 
 }
