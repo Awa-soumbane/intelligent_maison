@@ -13,7 +13,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./dashbord.component.css']
 })
 export class DashbordComponent {
-  realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;realtimebuzzer=0;
+  realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;realtimebuzzer=0;realtimeled1=0;
   socket:any;
   acces: boolean= false;
 toi :any;
@@ -25,8 +25,61 @@ throw new Error('Method not implemented.');
 content: any;
   constructor(private modalService: NgbModal, private socketService:SocketioService) 
   {
-    this.socket = io(`${environment.apiUrl}`);
 
+    this.socket = io(`${environment.apiUrl}`);
+  }
+
+  ngOnInit() {
+
+   
+    this.socket.on('temp', (data: any) => {
+      console.log(data);
+      this.realtimeTemp = data;
+   
+    });
+
+
+    this.socket.on('hum', (data: number) => {
+      console.log('hum: '+data);
+      this.realtimeHum = data;
+    });
+
+    this.socket.on('lum', (data: number) => {
+      console.log('lum: '+data);
+      this.realtimeLum = data;
+    });
+
+    this.socket.on('humSol', (data: number) => {
+      console.log('humSol: '+data);
+      this.realtimeSol = data;
+    });
+
+    this.socket.on('buzzer', (data: number) => {
+      console.log('buzzer: '+data);
+      this.realtimebuzzer = data;
+      if(this.realtimebuzzer == 1){
+        this.acces = true;
+        
+      }
+   else{
+   this.realtimebuzzer == 0;
+   this.acces = false;
+   }
+    });
+
+ 
+    this.socket.on('led1', (data: number) => {
+      console.log('led1: '+data);
+      this.realtimeled1 = data;
+      if(this.realtimeled1  == 1){
+        this.toi= true; 
+        
+      }
+   else{
+   this.realtimebuzzer == 0;
+   this.toi= false; 
+   }
+    });
   }
     onclick(){
       this.toi= true; 
@@ -63,44 +116,6 @@ content: any;
    }, 2000); */
   }
 
-  ngOnInit() {
-
-
-    this.socket.on('temp', (data: any) => {
-      console.log(data);
-      this.realtimeTemp = data;
-   
-    });
-
-
-    this.socket.on('hum', (data: number) => {
-      console.log('hum: '+data);
-      this.realtimeHum = data;
-    });
-
-    this.socket.on('lum', (data: number) => {
-      console.log('lum: '+data);
-      this.realtimeLum = data;
-    });
-
-    this.socket.on('humSol', (data: number) => {
-      console.log('humSol: '+data);
-      this.realtimeSol = data;
-    });
-
-    this.socket.on('buzzer', (data: number) => {
-      console.log('buzzer: '+data);
-      this.realtimebuzzer = data;
-      if(this.realtimebuzzer == 1){
-        this.acces = true;
-        
-      }
-   else{
-   this.realtimebuzzer == 0;
-   this.acces = false;
-   }
-    });
-  }
   open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       console.log(`Closed with: ${result}`);

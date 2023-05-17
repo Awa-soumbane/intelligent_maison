@@ -113,11 +113,12 @@ console.log(jsonData)
     console.log('Received JSON:', jsonData);
     if (jsonData) {
 
-      io.emit('temp', jsonData.temperature);
-      io.emit('hum', jsonData.humidity); 
+    io.emit('temp', jsonData.temperature);
+     io.emit('hum', jsonData.humidity); 
       io.emit('lum', jsonData.lum);
       io.emit('humSol', jsonData.humSol);
       io.emit('buzzer', jsonData.buzzer);
+      io.emit('etatfenetre', jsonData.led1);
       io.emit('toit', jsonData.toit);
       io.emit('door', jsonData.door);
 

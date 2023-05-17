@@ -18,10 +18,19 @@ import { LoginComponent} from './login/login.component';
 import { LocalisationComponent } from './localisation/localisation.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { AcceuilComponent } from './acceuil/acceuil.component';
-
+import {SocketIoModule, SocketIoConfig} from 'ngx-socket-io'
 import { ProfilComponent } from './profil/profil.component';
 import { DashbordParent } from './parent/dashbord-parent.component';
 
+
+
+/* const config: SocketIoConfig= {
+  url: 'http://localhost:3000',
+  options: {
+    transports: ['websocket']
+  }
+}
+ */
 
 @NgModule({
   declarations: [
@@ -43,6 +52,7 @@ import { DashbordParent } from './parent/dashbord-parent.component';
   ],
   imports: [
     BrowserModule,
+    
     AppRoutingModule,
     CommonModule,
     FormsModule,
@@ -51,6 +61,7 @@ import { DashbordParent } from './parent/dashbord-parent.component';
     NgxPaginationModule,
     Ng2SearchPipeModule,
     HttpClientModule,
+ /*    SocketIoModule.forRoot(config), */
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -235,5 +235,5 @@ pass!: string;
          });
    
      }
-     reloadHome = () => window.location.pathname = 'index';
+   /*   reloadHome = () => window.location.pathname = 'index'; */
     }
