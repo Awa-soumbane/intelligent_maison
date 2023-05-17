@@ -1,6 +1,9 @@
 
 
-import { Component, TemplateRef } from '@angular/core';
+import { SocketioService } from 'src/app/services/socketio.service';
+ import { io } from 'socket.io-client';
+ import { environment } from '../environment/environment';
+import { Component, TemplateRef ,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
@@ -10,6 +13,9 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./dashbord-parent.component.css']
 })
 export class DashbordParent{
+  realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;realtimebuzzer=0;
+  socket:any;
+  acces: boolean= false;
   registerForm!: FormGroup
 top :any;
 topp :any;
@@ -19,7 +25,10 @@ onSubmit() {
 throw new Error('Method not implemented.');
 }
 content: any;
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal,private socketService:SocketioService) 
+  {
+    this.socket = io(`${environment.apiUrl}`);
+  }
     
       lampe(){
         this.toll= false; 
@@ -49,7 +58,45 @@ content: any;
              clss(){
                this.tops= false; 
               }
-          
+              ngOnInit() {
+
+
+                this.socket.on('temp', (data: any) => {
+                  console.log(data);
+                  this.realtimeTemp = data;
+               
+                });
+            
+            
+                this.socket.on('hum', (data: number) => {
+                  console.log('hum: '+data);
+                  this.realtimeHum = data;
+                });
+            
+                this.socket.on('lum', (data: number) => {
+                  console.log('lum: '+data);
+                  this.realtimeLum = data;
+                });
+            
+                this.socket.on('humSol', (data: number) => {
+                  console.log('humSol: '+data);
+                  this.realtimeSol = data;
+                });
+            
+                this.socket.on('buzzer', (data: number) => {
+                  console.log('buzzer: '+data);
+                  this.realtimebuzzer = data;
+                  if(this.realtimebuzzer == 1){
+                    this.acces = true;
+                    
+                  }
+               else{
+               this.realtimebuzzer == 0;
+               this.acces = false;
+               }
+                });
+              }
+            
 
   onCode(){
     console.log(this.registerForm.value.codeAccess);

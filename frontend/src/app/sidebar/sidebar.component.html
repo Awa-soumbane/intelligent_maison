@@ -4,9 +4,12 @@
     class="collapse mt-10 d-lg-block sidebar shadow bg-#9393F9 collapse ;" style="background-color: #9393F9; margin-top: 10px;">
     <div class="position-sticky shadow h-100 ">
       <div class="">           
-        <a href="#">
-            <img src="../../assets/svgviewer-output.svg" class="w-50 d-flex justify-content-center ml-12" alt="Flowbite Logo" style="display: flex; justify-content: center; margin-left: 25%; padding: 12px;"/>
-        </a>
+        <div>
+          <a role="button" role="button" class="navbar-brand text text-danger"  data-toggle="tooltip" style="margin-left: 20px;"
+            routerLink="index" data-placement="top" title=""  >
+            <img src="../../assets/svgviewer-output.svg" class="w-50 d-flex justify-content-center ml-12" alt="Flowbite Logo" style="display: flex; justify-content: center; margin-left: 25%; padding: 12px;" role="button"  (click)="reloadHome()">
+          </a>
+        </div>
    <div class="text-center">
         <h5 class="mb-3 " style="margin-left: 20px;">{{ prenom }}  {{ nom }} </h5>
     </div>
@@ -71,10 +74,10 @@
                     <div class="dropdown ">
                         <button class="btn btn-primary dropdown-toggle text-dark bg-light" type="button" data-toggle="dropdown"> Liste Champes
                         <span class="caret"></span></button>
-                        <ul class="dropdown-menu">
-                          <li><a href="parent">Parent</a></li>
-                          <li><a href="enfant">Enfant</a></li>
-                          <li><a href="locataire">Locataire</a></li>
+                        <ul class="dropdown-menu ml-2">
+                          <li style="margin-left: 30%;"><a href="parent">Parent</a></li>
+                          <li style="margin-left: 30%;"><a href="enfant">Enfant</a></li>
+                          <li style="margin-left: 30%;"><a href="locataire">Locataire</a></li>
                         </ul>
                       </div>
                 </div>

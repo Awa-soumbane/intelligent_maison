@@ -41,6 +41,15 @@ export class SocketioService {
       return data
     });
   }
+    getbuzzer(){
+      this.socket = io(`${environment.apiUrl}`);
+      this.socket.on('buzzer', (data: string) => {
+        console.log('buzzer: '+data);
+        return data
+      });
+  }
 
   
 }
+
+
