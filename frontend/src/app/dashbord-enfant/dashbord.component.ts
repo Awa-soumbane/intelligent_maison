@@ -29,9 +29,11 @@ content: any;
       }
       onlampe(){
         this.toi1= false; 
+        this.socketService.allum()
        }
        offlampe(){
          this.toi1= true; 
+         this.socketService.eteint()
         }
     
 

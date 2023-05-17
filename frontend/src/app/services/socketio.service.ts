@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { io } from 'socket.io-client';
 import { Socket } from 'ngx-socket-io';
+import { Observable, Subscriber } from 'rxjs';
 import { environment } from '../environment/environment';
 
 @Injectable({
@@ -11,12 +12,25 @@ export class SocketioService {
  
   localStatus = localStorage.getItem('currentUser');
   msg:any;
+  /* temp: any;
+  lum: any;
+  hum : any; */
+
   constructor(private socket:Socket) { }
  
  setupSocketConnection() {
   
   
-  } 
+  }
+ /*  info(){
+    return new Observable( observer => {
+      this.socket.on('realtime',(data:any) => {
+       observer.next(data);
+          })
+     })
+
+  } */
+  
 
   getTemp(){
  
@@ -60,9 +74,12 @@ export class SocketioService {
   }
   offf(){
     this.socket.emit('donn', '3')
-
-
+  }
+  allum(){
+    this.socket.emit('lumiere', '4')
   }
 
-  
+  eteint(){
+    this.socket.emit('lumiere', '5')
+  }
 }

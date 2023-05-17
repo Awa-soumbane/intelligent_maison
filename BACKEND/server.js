@@ -102,9 +102,9 @@ portSerial.on('open', () => {
       portSerial.write(msg)
       console.log(msg);
     });
-    socket.on('ledOn', (msg) => {
-      portSerial.write("0")
-      console.log('LED éteind');
+    socket.on('lumiere', (msg) => {
+      portSerial.write(msg)
+      console.log('msg');
     });
 
   });
@@ -146,7 +146,7 @@ if(data!='fermer'){
     let jsonData = JSON.parse(dataStr)
     //console.log(jsonData)
     // If parsing succeeds, process the JSON data
-    //console.log('Received JSON:', jsonData);
+    console.log('Received JSON:', jsonData);
     if (jsonData) {
 
       io.emit('temp', jsonData.temperature);
