@@ -52,7 +52,7 @@ pass!: string;
    
        
     // })
-    const role = localStorage.getItem('role')?.replace(/"/g,  "")
+    const role = localStorage.getItem('role')
     if (role === 'Parent') {
       this.isParent = true;
     } else if (role === 'Enfant') {
@@ -60,8 +60,8 @@ pass!: string;
     }
     
      
-     this.prenom = localStorage.getItem('prenom')?.replace(/"/g,  "")
-    this.nom = localStorage.getItem('nom')?.replace(/"/g,  "")
+     this.prenom = localStorage.getItem('prenom')
+    this.nom = localStorage.getItem('nom')
     console.log(this.prenom);
 
 
@@ -95,8 +95,8 @@ pass!: string;
         return ;
        }
        // Obtenir l'ID de l'utilisateur à partir de localStorage
-        const userId = localStorage.getItem('id')?.replace(/"/g,  "");
-        const token = localStorage.getItem('token')?.replace(/"/g,  "");
+        const userId = localStorage.getItem('id');
+        const token = localStorage.getItem('token');
         console.log(token);
         
          // retourne a la page deconnection apres le popup modification reussi
@@ -126,11 +126,12 @@ pass!: string;
            
    
   } */
-  console.log(userId?.replace(/"/g,  ""));
+  //console.log(userId?.replace(/"/g,  ""));
   
    // Appeler la fonction de mise à jour de l'API
    this.authService.update1User(userId, userCollection).subscribe((data) => {
     this.ngOnInit()
+    console.log(data);
     
       // Afficher une notification de succès
       Swal.fire({
@@ -179,16 +180,12 @@ pass!: string;
       
         })
         .then((result) => {
-          if(result.isConfirmed){
-            this.router.navigateByUrl('login')
-             /*localStorage.removeItem('currentUser');
-            localStorage.removeItem('prenom');
-            localStorage.removeItem('nom');
-          localStorage.removeItem('email'); */
-            
-          }
+            if (result.value) {
+  this.authService.doLogout();
+  }else if (result.dismiss === Swal.DismissReason.cancel) {
+  }
         }) 
-        localStorage.clear();
+       
       }
 
       //modifier les données de l'utilisateur

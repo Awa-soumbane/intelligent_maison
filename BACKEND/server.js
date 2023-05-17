@@ -8,6 +8,8 @@ const routes = require('../BACKEND/controllers/user.ctrl');
 const { log } = require('console');
 const DomoRouter = require('..//BACKEND/controllers/maisonRouter');
 const app= express();
+const userSchema = require('../BACKEND/models/User')
+
 
 
 mongoose
@@ -18,10 +20,6 @@ mongoose
   .catch((err) => {
     console.error('Error connecting to mongo', err.reason)
   })
-
-
-
-
 
 //formatage datas 
 
@@ -42,7 +40,7 @@ app.get('/favicon.ico', (req, res) => res.status(204))
 // Define PORT
 const port = process.env.PORT || 4002
 
-const servers = app.listen(port, () => {
+const server = app.listen(port, () => {
   console.log('Connected to port ' + port)
 })
 
@@ -60,14 +58,22 @@ app.use(function (err, req, res, next) {
 })
 
 
-const http = require('http').createServer(app);
+/* const http = require('http').createServer(app);
 const io = require('socket.io')(http, {
   cors: {
     origins: ['http://localhost:4200']
   }
-});
+}); */
 
-
+ // Création de notre serveur
+ //const server = http.createServer(app);
+ const io = require('socket.io')(server, {
+     cors: {
+       origin: "*",
+       methods: ["PUT", "GET", "POST", "DELETE", "OPTIONS"],
+       credentials: false
+     }
+   });
 
 var portSerial = new SerialPort({ path:'/dev/ttyACM0',
         baudRate: 9600,
@@ -92,15 +98,45 @@ portSerial.on('open', () => {
       portSerial.write("0")
     });
 
+    socket.on('donn', (msg) => {
+      portSerial.write(msg)
+      console.log(msg);
+    });
+    socket.on('lumiere', (msg) => {
+      portSerial.write(msg)
+      console.log('msg');
+    });
+
   });
 });
 
 //ECOUTER LES EVENNEMENTS DEPUIS ESP32,ARDUINO,MEGA...
 
 parser.on('data', (data) => {
+ /*  */
+  //console.log(data); 
   
-  console.log("en attente....");
-  
+  const rfid = data.toString();
+if(data!='fermer'){
+  // Vérification de la valeur et recherche de l'enregistrement correspondant dans la base de données
+  if (rfid) {
+    userSchema.findOne({rfid})
+      .then((record) => {
+        if (record) {
+          portSerial.write('1');
+          console.log('Matching record found:', record);
+          io.emit("donnee",data);
+          // Effectuer des opérations supplémentaires si nécessaire
+        } else {
+          //console.log('No matching record found');
+        }
+      })
+      .catch((err) => console.error('Error finding record:', err));
+  } else {
+    //console.error('Invalid value received from serial port:', data);
+  }
+  }
+
   
   try {
   let dataStr = data.toString();
@@ -108,7 +144,7 @@ parser.on('data', (data) => {
   
 
     let jsonData = JSON.parse(dataStr)
-console.log(jsonData)
+    //console.log(jsonData)
     // If parsing succeeds, process the JSON data
     console.log('Received JSON:', jsonData);
     if (jsonData) {
@@ -142,7 +178,6 @@ console.log(jsonData)
 })
 
 //ECOUTE DU SERVER SUR LE PORT 3000
-http.listen(3000, () => {
+/* http.listen(3000, () => {
   console.log('listening on :3000');
-});
-
+}); */

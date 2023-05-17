@@ -19,7 +19,7 @@
                     <label><i class="bi bi-envelope-fill"></i>Email<span class="text-danger">*</span></label>
                       <input type="text" class="form-control" id="email" name="email" type="text" id="email" name="email"
                         [ngClass]="{'is-invalid':submitted && registerForm.controls['email'].errors}" placeholder=""
-                        formControlName="email" type="email" id="email" name="email" required autocomplete="off">
+                        formControlName="email" type="email" id="email" name="email" required autocomplete="on">
                       <div *ngIf="registerForm.controls['email'].dirty && registerForm.controls['email'].errors"
                         class="text-danger">
                         <div *ngIf="registerForm.controls['email'].errors ['required']">

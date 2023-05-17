@@ -17,10 +17,10 @@ export class DashbordParent{
   socket:any;
   acces: boolean= false;
   registerForm!: FormGroup
-top :any;
-topp :any;
-tops :any;
-toll :any;
+top =true;
+topp=true;
+tops =true;
+toll=true;
 onSubmit() {
 throw new Error('Method not implemented.');
 }
@@ -38,11 +38,12 @@ content: any;
         }
     
 
-        ope(){
+        oN(){
           this.top= true; 
          }
-         closs(){
-           this.topp= false; 
+         oF(){
+           this.top= false; 
+
           }
 
           offf(){

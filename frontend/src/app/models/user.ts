@@ -8,12 +8,13 @@ export class User {
   etat?: boolean;
 
   data?:{
+    _id?: string;
     token?:string;
-    userId?: string
     prenom?:string;
     nom?: string;
    role?: string;
-   email?: string
+   email?: string;
+   
 }
 
  

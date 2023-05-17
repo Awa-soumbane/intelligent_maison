@@ -4,6 +4,7 @@ import { SocketioService } from 'src/app/services/socketio.service';
  import { io } from 'socket.io-client';
  import { environment } from '../environment/environment';
 
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
@@ -12,23 +13,46 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './dashbord.component.html',
   styleUrls: ['./dashbord.component.css']
 })
+
 export class DashbordComponent {
   realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;realtimebuzzer=0;realtimeled1=0;
   socket:any;
   acces: boolean= false;
-toi :any;
+toi =false;
 toi1= false;
+/* toi = false;
+toi1= true; */
+/* od="1"; */
 
 onSubmit() {
 throw new Error('Method not implemented.');
 }
 content: any;
+
   constructor(private modalService: NgbModal, private socketService:SocketioService) 
   {
 
     this.socket = io(`${environment.apiUrl}`);
   }
 
+  onclick(){
+    this.toi= true; 
+    this.socketService.onnn()
+    
+   }
+   on(){
+     this.toi= false; 
+     this.socketService.offf();
+
+    }
+    onlampe(){
+      this.toi1= false; 
+      this.socketService.allum()
+     }
+     offlampe(){
+       this.toi1= true; 
+       this.socketService.eteint()
+      }
   ngOnInit() {
 
    
@@ -81,18 +105,8 @@ content: any;
    }
     });
   }
-    onclick(){
-      this.toi= true; 
-     }
-     on(){
-       this.toi= false; 
-      }
-      onlampe(){
-        this.toi= true; 
-       }
-       offlampe(){
-         this.toi= false; 
-        }
+
+   
     
 
   registerForm!: FormGroup
@@ -133,5 +147,7 @@ content: any;
       return `with: ${reason}`;
     }
   }
-  
 }
+ /* ledOn(){
+    this.socketService.ledOn()
+  } */ 
