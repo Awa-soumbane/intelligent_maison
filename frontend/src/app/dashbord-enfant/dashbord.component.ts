@@ -10,7 +10,7 @@ import { SocketioService } from '../services/socketio.service';
 })
 export class DashbordComponent implements OnInit{
 toi = false;
-toi1= false;
+toi1= true;
 od="1";
 onSubmit() {
 throw new Error('Method not implemented.');
@@ -28,10 +28,10 @@ content: any;
 
       }
       onlampe(){
-        this.toi1= true; 
+        this.toi1= false; 
        }
        offlampe(){
-         this.toi1= false; 
+         this.toi1= true; 
         }
     
 

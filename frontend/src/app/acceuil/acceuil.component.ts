@@ -48,7 +48,7 @@ export class AcceuilComponent implements OnInit{
 
     this.socketService.gethum().subscribe((data)=>{
       console.log(data);
-      if(data== "fermer"){
+      if(data == "fermer"){
         this.acces=false;
         console.log(data);
         
