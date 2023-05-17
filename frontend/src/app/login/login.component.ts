@@ -76,6 +76,16 @@ getConnexion(){
     this.authService.getConnexion(user).subscribe((res: any) => {
      
         console.log(res.message);
+        localStorage.setItem('token',res.token);
+        if (res.role == "Parent") {
+          this.router.navigateByUrl('index');
+        }
+        if (res.role == "Enfant") {
+          this.router.navigateByUrl('enfant');
+        }
+        if (res.role == "Locataire") {
+          this.router.navigateByUrl('enfant');
+        }
     
      if (res.statut == "email") {
       this.errMsg ='compte inexistant'
@@ -94,16 +104,8 @@ getConnexion(){
       setTimeout(()=>{ this.errMsg = false}, 3001); 
      }
      if (res.statut == undefined){
-      console.log(res.data.role);
-      if (res.data.role == "Parent") {
-        this.router.navigateByUrl('index');
-      }
-      if (res.data.role == "Enfant") {
-        this.router.navigateByUrl('enfant');
-      }
-      if (res.data.role == "Locataire") {
-        this.router.navigateByUrl('enfant');
-      }
+      console.log(res.role);
+     
       }
     })
     

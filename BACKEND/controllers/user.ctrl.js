@@ -74,7 +74,7 @@ router.post('/add-user', authorize,(req, res, next) => {
       res.status(400).json({ message: error.message })
   }
 }) */
-router.patch('/updatepass/:id',authorize, async (req, res) => {
+router.patch('/updatepass/:id', async (req, res) => {
   const { actuelpassword, newpassword} = req.body;
   console.log(req.body);
 try {
@@ -107,48 +107,7 @@ return res.status(200).json({message: 'modifier avec succes'});
 
 // Connexion
 router.post('/login', async(req, res, next) => {
-  // let getUser
-  // userSchema
-  //   .findOne({
-  //     email: req.body.email,
-  //   })
-  //   // Verifier si l'utilisateur existe
-  //   .then((user) => {
-  //     if (!user) {
-  //       return res.status(401).json({
-  //         message: 'Compte non existant !'})
-  //     }
-  //     getUser = user
-  //     return bcrypt.compare(req.body.password, user.password)
-  //   })
-  //   .then((response) => {
-  //     if (!response) {
-  //       return res.status(401).json({
-  //         message: 'Le mot de passe est incorrect !',
-  //       })
-  //     }else if(getUser.etat == false){
-  //       return res.status(401).json({
-  //         message: 'Le compte est désactivé !' ,
-  //       })
-  //     }
-  //     let jwtToken = jwt.sign({
-  //         email: getUser.email,
-  //         userId: getUser._id,
-  //       },
-  //       'longer-secret-is-better',{ expiresIn: '6h'
-  //     })
-  //     res.status(200).json({
-  //       token: jwtToken,
-  //       expiresIn: 3600,
-  //       _id: getUser._id,
-  //     })
-  //   })
-  //   .catch((err) => {
-  //     return res.status(401).json({
-  //       message: 'Authentication failed',
-  //     })
-  //   })
-
+  
   let { email, mot_pass } = req.body; 
 console.log(req.body);
     let existingUser;
@@ -198,7 +157,7 @@ else{
    return res
       .status(200)
       .json({
-        success: true,
+        /* success: true,
         data: {
           userId: existingUser.id,
           email: existingUser.email,
@@ -206,7 +165,14 @@ else{
           prenom: existingUser.prenom,
           token: token, 
           role:existingUser.role 
-        },
+        }, */
+        token: token,
+        expiresIn: 3600,
+        _id: existingUser.id,
+        email: existingUser.email,
+        nom: existingUser.nom,
+        prenom: existingUser.prenom,
+        role:existingUser.role 
       });
     }
   }
@@ -214,7 +180,7 @@ else{
 })
 
 // Recuperez tous les utilisateurs
-router.route('/').get(authorize,(req, res, next) => {
+router.route('/').get(  (req, res, next) => {
   userSchema.find((error, response)=> {
     if (error) {
       return next(error)

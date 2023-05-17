@@ -31,7 +31,7 @@ import { Router } from "@angular/router";
     GetDonnees(){
       return this.http.get(`${this.endpointIo}`);
     }
-
+  
      // Recuprer tous les utilisateurs
     GetUsers() {
         return this.http.get(`${this.endpoint}`);
@@ -89,10 +89,10 @@ import { Router } from "@angular/router";
         
     }
     getToken() {
-      return localStorage.getItem('access_token');
+      return localStorage.getItem('currentUser')?.replace(/"/g,  "");
     }
     get isLoggedIn(): boolean {
-      let authToken = localStorage.getItem('access_token');
+      let authToken = localStorage.getItem('token');
       return authToken !== null ? true : false;
     }
 
@@ -100,31 +100,39 @@ import { Router } from "@angular/router";
       getConnexion(user:User){
         console.log("test user: ", user);
         
-    return this.http.post<User>(`${this.endpoint}/login`,user).
+    return this.http.post<any>(`${this.endpoint}/login`,user).
       pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         //Ceci permet de garder l'utilisateur connecté entre les differentes pages
-        localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
+        /* localStorage.setItem('currentUser', JSON.stringify(user.data?.token));
         localStorage.setItem('id', JSON.stringify(user.data?.userId));
         localStorage.setItem('prenom', JSON.stringify(user.data?.prenom));
         localStorage.setItem('nom', JSON.stringify(user.data?.nom));
         localStorage.setItem('role', JSON.stringify(user.data?.role));
         localStorage.setItem('email', JSON.stringify(user.data?.email));
         localStorage.setItem('rfid', JSON.stringify(user.data?.rfid));
-        this.currentUserSubject.next(user);
+        this.currentUserSubject.next(user); */
+        
+  
+        localStorage.setItem('prenom', user.prenom);
+        localStorage.setItem('nom', user.nom);
+        localStorage.setItem('role', user.role);
+        localStorage.setItem('email', user.email);
+       
+        console.log(user);
+        localStorage.setItem('id',user._id);
+
+        
         return user;
       }));
 
   }
     
     doLogout() {
-      let removeToken = localStorage.removeItem('access_token');
-      if (removeToken == null) {
-        localStorage.removeItem('prenom')
-        localStorage.removeItem('id')
+      localStorage.clear();
         this.router.navigate(['login']);
       }
-    }
+    
 
     // User profile
     getUserProfile(id: any): Observable<any> {

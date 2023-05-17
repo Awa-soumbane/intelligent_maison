@@ -11,21 +11,23 @@ import { AcceuilComponent } from './acceuil/acceuil.component';
 import { ProfilComponent } from './profil/profil.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashbordParent } from './parent/dashbord-parent.component';
+import { AuthGuard } from './services/auth.guard';
 
 
 const routes: Routes = [
-  {component: InscriptionComponent, path:'inscription'},
-  {component: TableActifsComponent, path:'tableActif'},
-  {component: DashbordComponent, path:'home'},
- {component: ProfilComponent, path: 'profile'},
-  {component: DashbordComponent, path:'enfant'},
+  {component: InscriptionComponent, path:'inscription',canActivate: [AuthGuard] },
+  {component: TableActifsComponent, path:'tableActif' ,canActivate: [AuthGuard]},
+  {component: DashbordComponent, path:'home' ,canActivate: [AuthGuard]},
+ {component: ProfilComponent, path: 'profile' ,canActivate: [AuthGuard]},
+  {component: DashbordComponent, path:'enfant' ,canActivate: [AuthGuard]},
   {component: LoginComponent, path:'login'},
-  {component:  TableArchivesComponent, path:'tableArchive'},
-  { path:"localisation", component: LocalisationComponent},
-  {component:AcceuilComponent, path:'index'},
- {component: DashbordParent, path: 'parent'},
-{component:SidebarComponent, path: 'sidebar'},
-{component:LocalisationComponent, path: 'localisation'}
+  {component:  TableArchivesComponent, path:'tableArchive' ,canActivate: [AuthGuard]},
+  { path:"localisation", component: LocalisationComponent ,canActivate: [AuthGuard]},
+  {component:AcceuilComponent, path:'index' ,canActivate: [AuthGuard]},
+ {component: DashbordParent, path: 'parent' ,canActivate: [AuthGuard]},
+{component:SidebarComponent, path: 'sidebar' ,canActivate: [AuthGuard]},
+{component:LocalisationComponent, path: 'localisation' ,canActivate: [AuthGuard]},
+{ path: '*', redirectTo: '/login', pathMatch: 'full' },
 ];
 
 @NgModule({

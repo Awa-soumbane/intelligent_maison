@@ -17,7 +17,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if (this.authService.isLoggedIn !== true) {
       window.alert("Accès non autorisé!");
-      this.router.navigate(['log-in'])
+      this.router.navigate(['login'])
     }
     return true;
   }
