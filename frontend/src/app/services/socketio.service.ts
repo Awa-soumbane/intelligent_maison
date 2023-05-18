@@ -82,4 +82,39 @@ export class SocketioService {
   eteint(){
     this.socket.emit('lumiere', '5')
   }
+  tal(){
+    this.socket.emit('par', '6')
+  }
+
+  fey(){
+    this.socket.emit('par', '7')
+  }
+  enfon(){
+    this.socket.emit('enf', '8')
+  }
+
+  enfoff(){
+    this.socket.emit('enf', '9')
+  }
+  salon(){
+    this.socket.emit('Sal', '1')
+  }
+
+  saloff(){
+    this.socket.emit('sal', '0')
+  }
+  locon(){
+    this.socket.emit('loc', '2')
+  }
+
+  locoff(){
+    this.socket.emit('loc', '3')
+  }
+  switchon(){
+    this.socket.emit('switch', '1')
+  }
+
+  switchoff(){
+    this.socket.emit('switch', '0')
+  }
 }

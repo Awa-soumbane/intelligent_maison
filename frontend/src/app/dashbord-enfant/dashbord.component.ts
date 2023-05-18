@@ -11,7 +11,8 @@ import { SocketioService } from '../services/socketio.service';
 export class DashbordComponent implements OnInit{
 toi = false;
 toi1= true;
-od="1";
+toi2= true;
+role = localStorage.getItem('role')
 onSubmit() {
 throw new Error('Method not implemented.');
 }
@@ -29,12 +30,23 @@ content: any;
       }
       onlampe(){
         this.toi1= false; 
-        this.socketService.allum()
+        this.socketService.allum();
+        
        }
+       
        offlampe(){
          this.toi1= true; 
-         this.socketService.eteint()
+         this.socketService.eteint();
+         
         }
+        onlamp(){
+          this.toi2= false; 
+          this.socketService.switchon()
+         }
+         offlamp(){
+          this.toi2= true; 
+          this.socketService.switchoff()
+         }
     
 
   registerForm!: FormGroup

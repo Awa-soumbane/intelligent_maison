@@ -66,10 +66,10 @@ message:any
 ngOnInit(): void {
   
   this.formGroup = this.formBuilder.group({
-    id: [localStorage.getItem("id")?.replace(/"/g,  "")],
-    prenom: [localStorage.getItem("prenom")?.replace(/"/g,  ""), [Validators.required, UsernameValidator.cannotContainSpace]],
-    nom: [localStorage.getItem('nom')?.replace(/"/g,  ""), [Validators.required, UsernameValidator.cannotContainSpace]],
-    email: [localStorage.getItem('email')?.replace(/"/g,  ""), [Validators.required, Validators.email]],
+    id: [localStorage.getItem("id")],
+    prenom: [localStorage.getItem("prenom"), [Validators.required, UsernameValidator.cannotContainSpace]],
+    nom: [localStorage.getItem('nom'), [Validators.required, UsernameValidator.cannotContainSpace]],
+    email: [localStorage.getItem('email'), [Validators.required, Validators.email]],
   });
 }
 

@@ -88,14 +88,28 @@ const parser = portSerial.pipe(new ReadlineParser({ delimiter: '\r\n' }))
 portSerial.on('open', () => {
   io.on('connection', (socket) => {
 
-    socket.on('isOn', (msg) => {
-      console.log('lampe: ' + msg);
-      portSerial.write("1")
+    socket.on('enf', (msg) => {
+      portSerial.write(msg)
+      console.log(msg);
     });
 
-    socket.on('isOff', (msg) => {
-      console.log('lampe: ' + msg);
-      portSerial.write("0")
+    socket.on('sal', (msg) => {
+      portSerial.write(msg)
+      console.log(msg);
+    });
+
+    socket.on('loc', (msg) => {
+      portSerial.write(msg)
+      console.log(msg);
+    });
+
+    socket.on('par', (msg) => {
+      portSerial.write(msg)
+      console.log(msg);
+    });
+    socket.on('switch', (msg) => {
+      portSerial.write(msg)
+      console.log(msg);
     });
 
     socket.on('donn', (msg) => {

@@ -3,6 +3,7 @@
 import { Component, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { SocketioService } from '../services/socketio.service';
 
 @Component({
   selector: 'app-dashbord-parent',
@@ -15,40 +16,49 @@ top =true;
 topp=true;
 tops =true;
 toll=true;
+  /* socketService: any; */
 onSubmit() {
 throw new Error('Method not implemented.');
 }
 content: any;
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal, private socketService:SocketioService) {}
     
       lampe(){
         this.toll= false; 
+        this.socketService.tal()
        }
        oflampe(){
          this.toll= true; 
+         this.socketService.fey()
         }
     
 
         oN(){
           this.top= true; 
+          this.socketService.enfoff()
          }
          oF(){
            this.top= false; 
+           this.socketService.enfon()
 
           }
 
           offf(){
             this.topp= true; 
+            this.socketService.salon()
            }
            closes(){
              this.topp= false; 
+             this.socketService.saloff()
             }
 
             ofss(){
               this.tops= true; 
+              this.socketService.locoff()
              }
              clss(){
                this.tops= false; 
+               this.socketService.locon()
               }
           
 
