@@ -113,7 +113,7 @@ portSerial.on('open', () => {
     });
 
     socket.on('donn', (msg) => {
-      portSerial.write(1)
+      portSerial.write(msg)
       console.log(msg);
     });
     socket.on('lumiere', (msg) => {
@@ -127,6 +127,15 @@ portSerial.on('open', () => {
 //ECOUTER LES EVENNEMENTS DEPUIS ESP32,ARDUINO,MEGA...
 
 parser.on('data', (data) => {
+
+
+  /* const info = new this.information({
+    temperature: temperature,
+    humidite: humidity,
+    humidite_sol: humSol,
+    lumiere: lum,
+   
+  }); */
  /*  */
   //console.log(data); 
   
@@ -163,13 +172,13 @@ if(data!='fermer'){
     console.log('Received JSON:', jsonData);
     if (jsonData) {
 
-      io.emit('temp', jsonData.temperature);
-      io.emit('hum', jsonData.humidity); 
+      io.emit('realtime', jsonData);
+     /*  io.emit('hum', jsonData.humidity); 
       io.emit('lum', jsonData.lum);
       io.emit('humSol', jsonData.humSol);
       io.emit('buzzer', jsonData.buzzer);
       io.emit('toit', jsonData.toit);
-      io.emit('door', jsonData.door);
+      io.emit('door', jsonData.door); */
 
       let tempEtHum = {
         'temp': jsonData.temp,

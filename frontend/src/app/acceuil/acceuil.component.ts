@@ -16,15 +16,25 @@ import { Tem_Hum } from '../models/temp_hum';
 export class AcceuilComponent implements OnInit{
   realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;
   socket:any;
+  temperature:any;
+  humidity:any;
+  humSol:any;
+  lum:any;
   acces:boolean=false;
   constructor(private socketService:SocketioService){
     this.socket = io(`${environment.apiUrl}`);
   }
 
   ngOnInit() {
+    this.socketService.info().subscribe((data:any)=>{
+      this.realtimeTemp = data.temperature;
+      this.realtimeHum = data.humidity;
+      this.realtimeLum= data.humSol;
+      this.realtimeSol = data.lum;
+    })
 
 
-    this.socket.on('temp', (data: any) => {
+   /*  this.socket.on('temp', (data: any) => {
       console.log(data);
       this.realtimeTemp = data;
    
@@ -44,7 +54,7 @@ export class AcceuilComponent implements OnInit{
     this.socket.on('humSol', (data: number) => {
       console.log('humSol: '+data);
       this.realtimeSol = data;
-    });
+    }); */
 
     this.socketService.gethum().subscribe((data)=>{
       console.log(data);

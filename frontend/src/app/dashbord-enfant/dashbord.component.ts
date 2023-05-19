@@ -9,6 +9,7 @@ import { SocketioService } from '../services/socketio.service';
   styleUrls: ['./dashbord.component.css']
 })
 export class DashbordComponent implements OnInit{
+  realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;
 toi = false;
 toi1= true;
 toi2= true;
@@ -101,6 +102,13 @@ content: any;
   enfa = localStorage.getItem('benfant');
   ngOnInit(): void {
   console.log(this.enfa);
+
+  this.socketService.info().subscribe((data:any)=>{
+    this.realtimeTemp = data.temperature;
+    this.realtimeHum = data.humidity;
+    this.realtimeLum= data.humSol;
+    this.realtimeSol = data.lum;
+  })
   
   }
 

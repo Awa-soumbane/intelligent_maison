@@ -11,6 +11,7 @@ import { SocketioService } from '../services/socketio.service';
   styleUrls: ['./dashbord-parent.component.css']
 })
 export class DashbordParent{
+  realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;
   registerForm!: FormGroup
 top =true;
 topp=true;
@@ -98,6 +99,16 @@ content: any;
       return `with: ${reason}`;
     }
   }
+  ngOnInit(): void {
+  
+    this.socketService.info().subscribe((data:any)=>{
+      this.realtimeTemp = data.temperature;
+      this.realtimeHum = data.humidity;
+      this.realtimeLum= data.humSol;
+      this.realtimeSol = data.lum;
+    })
+    
+    }
 }
 
 

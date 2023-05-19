@@ -22,24 +22,24 @@ export class SocketioService {
   
   
   }
- /*  info(){
+  info(){
     return new Observable( observer => {
       this.socket.on('realtime',(data:any) => {
        observer.next(data);
           })
      })
 
-  } */
+  }
   
 
-  getTemp(){
+  /* getTemp(){
  
     this.socket.on('data', (data: string) => {
       console.log('temp: '+data);
       let temp = data;
       return temp
     });
-  }
+  } */
   gethum(){
     /* this.socket = io(`${environment.apiUrl}`);
     this.socket.on('donnee', (data: string) => {
@@ -51,7 +51,7 @@ export class SocketioService {
     return this.socket.fromEvent('donnee')
   }
 
-  getHum(){
+/*   getHum(){
   
     this.socket.on('hum', (data: string) => {
       console.log('hum: '+data);
@@ -65,7 +65,7 @@ export class SocketioService {
       console.log('lum: '+data);
       return data
     });
-  }
+  } */
 
   onnn(){
     this.socket.emit('donn', '2')
