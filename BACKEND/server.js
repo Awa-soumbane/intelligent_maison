@@ -113,7 +113,7 @@ portSerial.on('open', () => {
     });
 
     socket.on('donn', (msg) => {
-      portSerial.write(msg)
+      portSerial.write(1)
       console.log(msg);
     });
     socket.on('lumiere', (msg) => {

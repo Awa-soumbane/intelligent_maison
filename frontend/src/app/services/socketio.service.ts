@@ -90,11 +90,11 @@ export class SocketioService {
     this.socket.emit('par', '7')
   }
   enfon(){
-    this.socket.emit('enf', '8')
+    this.socket.emit('enf', '2')
   }
 
   enfoff(){
-    this.socket.emit('enf', '9')
+    this.socket.emit('enf', '3')
   }
   salon(){
     this.socket.emit('Sal', '1')
@@ -104,17 +104,17 @@ export class SocketioService {
     this.socket.emit('sal', '0')
   }
   locon(){
-    this.socket.emit('loc', '2')
+    this.socket.emit('loc', '8')
   }
 
   locoff(){
-    this.socket.emit('loc', '3')
+    this.socket.emit('loc', '9')
   }
   switchon(){
-    this.socket.emit('switch', '1')
+    this.socket.emit('switch', '8')
   }
 
   switchoff(){
-    this.socket.emit('switch', '0')
+    this.socket.emit('switch', '9')
   }
 }

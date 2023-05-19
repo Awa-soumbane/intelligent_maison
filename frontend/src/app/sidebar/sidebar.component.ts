@@ -24,7 +24,9 @@ export class SidebarComponent {
   spin= false;
   prenom!:any;
   nom!:any
-  router: any;
+  router: any;    
+  bloc: any
+  benfant= 'aaaaaaafhh'
   formGroup!: FormGroup;
 
 registerForm: FormGroup
@@ -34,16 +36,45 @@ userCollection: any;
 pass!: string;
 
 
-  fan :any;
+  fan =false;
+enfant =true;
 
   lampe(){
     this.fan= false; 
+    this.enfant= false; 
    }
    oflampe(){
      this.fan= true; 
+     this.enfant= true; 
     }
+    enf(){
+this.benfant = "unenfant";
+     localStorage.setItem('benfant',this.benfant );
+      this.bloc= true; 
+       
+      
+     }
+     loc(){
+      this.benfant = "unlocataire";
+     localStorage.setItem('benfant',this.benfant );
+       this.bloc= true; 
+       
+      }
+
+      
+    /* on(){
+      this.enfant= true; 
+      
+      
+     } */
+    /*  off(){
+       this.enfant= false; 
+       
+      } */
+
     isParent = false; // initial value
   isChild = false; // initial value
+  isLocataire = false; // initial value
   constructor(private activatedRoute: ActivatedRoute,
     private formBuilder: FormBuilder,
     public authService: AuthService) {
@@ -58,8 +89,10 @@ pass!: string;
     } else if (role === 'Enfant') {
       this.isChild = true;
     }
+   /*  if(role=='Locataire'){
+      this.isLocataire = true;
+    } */
     
-     
      this.prenom = localStorage.getItem('prenom')
     this.nom = localStorage.getItem('nom')
     console.log(this.prenom);
@@ -74,11 +107,13 @@ pass!: string;
         }, { validator: MustMatch('newpassword', 'confirmdp') }
         );
       }
+      
 
       ngOnInit(): void {
-  
-      }
-      
+       
+      } 
+      enfa = localStorage.getItem('benfant');
+
 
       //modification password
       update1User(){

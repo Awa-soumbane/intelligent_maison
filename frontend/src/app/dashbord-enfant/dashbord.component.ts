@@ -13,6 +13,7 @@ toi = false;
 toi1= true;
 toi2= true;
 role = localStorage.getItem('role')
+enfant=false;
 onSubmit() {
 throw new Error('Method not implemented.');
 }
@@ -20,14 +21,25 @@ content: any;
   constructor(private modalService: NgbModal, private socketService:SocketioService) {}
     onclick(){
       this.toi= true; 
-      this.socketService.onnn()
+      this.socketService.onnn();
+      this.enfant= false; 
       
      }
      on(){
        this.toi= false; 
        this.socketService.offf();
+       this.enfant= true; 
 
       }
+     /*  one(){
+        this.enfant= true; 
+        
+       } */
+     /*   off(){
+         this.enfant= false; 
+  
+        } */
+
       onlampe(){
         this.toi1= false; 
         this.socketService.allum();
@@ -86,9 +98,14 @@ content: any;
       return `with: ${reason}`;
     }
   }
+  enfa = localStorage.getItem('benfant');
   ngOnInit(): void {
+  console.log(this.enfa);
   
   }
+
+  
+  
  /* ledOn(){
     this.socketService.ledOn()
   } */ 
