@@ -12,15 +12,16 @@ export class DashbordComponent implements OnInit{
   realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;
 toi = false;
 toi1= true;
-toi2= true;
-role = localStorage.getItem('role')
+
+/* role = localStorage.getItem('role') */
 
 onSubmit() {
 throw new Error('Method not implemented.');
 }
 content: any;
   constructor(private modalService: NgbModal, private socketService:SocketioService) {}
-    onclick(){
+        //fonction pour allumer et éteindre la lampe 2 de page enfant(chambre)
+  onclick(){
       this.toi= true; 
       this.socketService.onnn();
      
@@ -32,26 +33,9 @@ content: any;
        
 
       }
-     /*  one(){
-        this.enfant= true; 
-        
-       } */
-     /*   off(){
-         this.enfant= false; 
-  
-        } */
 
-      onlampe(){
-        this.toi1= false; 
-        this.socketService.allum();
-        
-       }
-       
-       offlampe(){
-         this.toi1= true; 
-         this.socketService.eteint();
-         
-        }
+    
+        //fonction pour allumer et éteindre la lampe 2 de page enfant(chambre)
         onlamp(){
           this.toi1= false; 
           this.socketService.switchon()
@@ -99,9 +83,9 @@ content: any;
       return `with: ${reason}`;
     }
   }
-  enfa = localStorage.getItem('benfant');
+  /* enfa = localStorage.getItem('benfant'); */
   ngOnInit(): void {
-  console.log(this.enfa);
+ /*  console.log(this.enfa); */
 
   this.socketService.info().subscribe((data:any)=>{
     this.realtimeTemp = data.temperature;

@@ -6,7 +6,7 @@ import { LoginComponent } from './login/login.component';
 import { TableArchivesComponent } from './table-archive/table-archive.component';
 import { LocalisationComponent } from './localisation/localisation.component';
 import { DashbordComponent } from './dashbord-enfant/dashbord.component';
-
+import { DashboardLocataireComponent } from './dashboard-locataire/dashboard-locataire.component';
 import { AcceuilComponent } from './acceuil/acceuil.component';
 import { ProfilComponent } from './profil/profil.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -27,6 +27,7 @@ const routes: Routes = [
  {component: DashbordParent, path: 'parent' ,canActivate: [AuthGuard]},
 {component:SidebarComponent, path: 'sidebar' ,canActivate: [AuthGuard]},
 {component:LocalisationComponent, path: 'localisation' ,canActivate: [AuthGuard]},
+{component:DashboardLocataireComponent, path: 'locataire' ,canActivate: [AuthGuard]},
 { path: '*', redirectTo: '/login', pathMatch: 'full' },
 ];
 

@@ -118,7 +118,11 @@ portSerial.on('open', () => {
     });
     socket.on('lumiere', (msg) => {
       portSerial.write(msg)
-      console.log('msg');
+      console.log(msg);
+    });
+    socket.on('donnN', (msg) => {
+      portSerial.write(msg)
+      console.log(msg);
     });
 
   });
@@ -159,6 +163,27 @@ if(data!='fermer'){
     //console.error('Invalid value received from serial port:', data);
   }
   }
+
+  /* const rfid = data.toString();
+  if(data!='fermer'){
+    // Vérification de la valeur et recherche de l'enregistrement correspondant dans la base de données
+      userSchema.findOne({rfid})
+        .then((record) => {
+          if (record) {
+            portSerial.write('1');
+            console.log('Matching record found:', record);
+            io.emit("donnee",data);
+            // Effectuer des opérations supplémentaires si nécessaire
+          } else {
+            //console.log('No matching record found');
+          }
+        })
+        .catch((err) => console.error('Error finding record:', err));
+    }
+    else if(data=='fermer'){
+      io.emit("donnee",data);
+    } */
+
   io.emit("donnee",data);
   
   try {

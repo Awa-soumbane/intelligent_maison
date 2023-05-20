@@ -103,8 +103,8 @@
         id=sectTemp>
         <div class="d-flex justify-centent-center" style="gap: 12px;">
 
-          <div *ngIf="(role != 'Locataire' && enfa == 'unenfant')||(role=='Enfant')" class="d-flex justify-centent-center">
-           enfant <img *ngIf="!toi1" src="../../assets/lampeon.svg" alt=""
+          <div  class="d-flex justify-centent-center">
+           <img *ngIf="!toi1" src="../../assets/lampeon.svg" alt=""
               style="height: 65px;width: 45px; display: flex;justify-content: center;">
             <img *ngIf="toi1" src="../../assets/lampoff.svg" alt="">
 
@@ -113,7 +113,7 @@
             <button *ngIf="!toi1" style="height: 60px;width: 42px;"> <img src="../../assets/on.svg" alt=""
                 style="height: 55px;width: 35px; display: flex;justify-content: center;" (click)="offlamp()"></button>
           </div>
-          <div *ngIf="(role != 'Enfant' && enfa == 'unlocataire')||(role == 'Locataire')" class="d-flex justify-centent-center">
+  <!--         <div *ngIf="(role != 'Enfant' && enfa == 'unlocataire')||(role == 'Locataire')" class="d-flex justify-centent-center">
             loc<img *ngIf="!toi1" src="../../assets/lampeon.svg" alt=""
               style="height: 65px;width: 45px; display: flex;justify-content: center;">
             <img *ngIf="toi1" src="../../assets/lampoff.svg" alt="">
@@ -122,7 +122,7 @@
                 style="height: 55px;width: 35px; display: flex;justify-content: center;" (click)=" onlampe()"></button>
             <button *ngIf="!toi1" style="height: 60px;width: 42px;"> <img src="../../assets/on.svg" alt=""
                 style="height: 55px;width: 35px; display: flex;justify-content: center;" (click)="offlampe()"></button>
-          </div>
+          </div> -->
         </div>
       </div>
       <div

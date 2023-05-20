@@ -66,7 +66,7 @@ export class SocketioService {
       return data
     });
   } */
-
+//allumer et éteindre les lampes de la page enfant lampe1(couloire)
   onnn(){
     this.socket.emit('donn', '2')
 
@@ -75,12 +75,22 @@ export class SocketioService {
   offf(){
     this.socket.emit('donn', '3')
   }
+//allumer et éteindre les lampes de la page locataire lampe1(couloire)
+  oNNN(){
+    this.socket.emit('donnN', '6')
+
+
+  }
+  oFFF(){
+    this.socket.emit('donnN', '7')
+  }
+ //fonction pour allumer et éteindre la lampe 2 de page locataire(chambre)
   allum(){
-    this.socket.emit('lumiere', '4')
+    this.socket.emit('lumiere', '8')
   }
 
   eteint(){
-    this.socket.emit('lumiere', '5')
+    this.socket.emit('lumiere', '9')
   }
   tal(){
     this.socket.emit('par', '6')
@@ -90,31 +100,32 @@ export class SocketioService {
     this.socket.emit('par', '7')
   }
   enfon(){
-    this.socket.emit('enf', '2')
+    this.socket.emit('enf', '1')
   }
 
   enfoff(){
-    this.socket.emit('enf', '3')
+    this.socket.emit('enf', '0')
   }
   salon(){
-    this.socket.emit('Sal', '1')
+    this.socket.emit('sal', '1')
   }
 
   saloff(){
     this.socket.emit('sal', '0')
   }
   locon(){
-    this.socket.emit('loc', '8')
+    this.socket.emit('loc', '4')
   }
 
   locoff(){
-    this.socket.emit('loc', '9')
+    this.socket.emit('loc', '5')
   }
+   //fonction pour allumer et éteindre la lampe 2 de page enfant(chambre)
   switchon(){
-    this.socket.emit('switch', '8')
+    this.socket.emit('switch', '4')
   }
 
   switchoff(){
-    this.socket.emit('switch', '9')
+    this.socket.emit('switch', '5')
   }
 }

@@ -11,56 +11,42 @@ import { SocketioService } from '../services/socketio.service';
 export class DashboardLocataireComponent {
 
   realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;
-toi = false;
-toi1= true;
+
 toi2= true;
-role = localStorage.getItem('role')
+toi3= true;
+/* role = localStorage.getItem('role') */
 enfant=false;
 onSubmit() {
 throw new Error('Method not implemented.');
 }
 content: any;
   constructor(private modalService: NgbModal, private socketService:SocketioService) {}
-    onclick(){
-      this.toi= true; 
-      this.socketService.onnn();
-      this.enfant= false; 
-      
-     }
-     on(){
-       this.toi= false; 
-       this.socketService.offf();
-       this.enfant= true; 
-
-      }
-     /*  one(){
-        this.enfant= true; 
-        
-       } */
-     /*   off(){
-         this.enfant= false; 
-  
-        } */
-
-      onlampe(){
-        this.toi1= false; 
-        this.socketService.allum();
-        
-       }
+   //fonction pour allumer et éteindre la lampe 1 de page locataire(chambre)
+      clicke(){
+        this.toi2= true; 
+        this.socketService.oFFF();
        
-       offlampe(){
-         this.toi1= true; 
-         this.socketService.eteint();
+       }
+       noclicke(){
+         this.toi2= false; 
+         this.socketService.oNNN();
          
         }
-        onlamp(){
-          this.toi2= false; 
-          this.socketService.switchon()
-         }
-         offlamp(){
-          this.toi2= true; 
-          this.socketService.switchoff()
-         }
+    
+
+    //fonction pour allumer et éteindre la lampe 2 de page locataire(chambre)
+    onlampe(){
+      this.toi3= false; 
+      this.socketService.allum();
+      
+    }
+    
+    offlampe(){
+      this.toi3= true; 
+      this.socketService.eteint();
+      
+      }
+       
     
 
   registerForm!: FormGroup
@@ -100,9 +86,9 @@ content: any;
       return `with: ${reason}`;
     }
   }
-  enfa = localStorage.getItem('benfant');
+  /* enfa = localStorage.getItem('benfant'); */
   ngOnInit(): void {
-  console.log(this.enfa);
+  /* console.log(this.enfa); */
 
   this.socketService.info().subscribe((data:any)=>{
     this.realtimeTemp = data.temperature;

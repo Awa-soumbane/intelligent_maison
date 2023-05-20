@@ -84,7 +84,7 @@ getConnexion(){
           this.router.navigateByUrl('enfant');
         }
         if (res.role == "Locataire") {
-          this.router.navigateByUrl('enfant');
+          this.router.navigateByUrl('locataire');
         }
     
      if (res.statut == "email") {

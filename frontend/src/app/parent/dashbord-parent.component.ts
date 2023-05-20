@@ -23,7 +23,7 @@ throw new Error('Method not implemented.');
 }
 content: any;
   constructor(private modalService: NgbModal, private socketService:SocketioService) {}
-    
+    // allumer éteindre lampe enfant
       lampe(){
         this.toll= false; 
         this.socketService.tal()
@@ -33,7 +33,7 @@ content: any;
          this.socketService.fey()
         }
     
-
+//allumer et éteindre lampe parent
         oN(){
           this.top= true; 
           this.socketService.enfoff()
@@ -43,16 +43,16 @@ content: any;
            this.socketService.enfon()
 
           }
-
+//allumer et éteindre lampe salon
           offf(){
             this.topp= true; 
-            this.socketService.salon()
+            this.socketService.saloff()
            }
            closes(){
              this.topp= false; 
-             this.socketService.saloff()
+             this.socketService.salon() 
             }
-
+//allumer et éteindre lampe couloir
             ofss(){
               this.tops= true; 
               this.socketService.locoff()
