@@ -22,6 +22,7 @@ import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { ProfilComponent } from './profil/profil.component';
 import { DashbordParent } from './parent/dashbord-parent.component';
 import { AuthInterceptor } from './services/authconfig.interceptor';
+import { DashboardLocataireComponent } from './dashboard-locataire/dashboard-locataire.component';
 
 const config: SocketIoConfig = {
 	url: 'http://localhost:4002', // socket server url;
@@ -46,6 +47,7 @@ const config: SocketIoConfig = {
     DashbordComponent, 
     DashbordParent,
     ProfilComponent,
+    DashboardLocataireComponent,
    
     
 

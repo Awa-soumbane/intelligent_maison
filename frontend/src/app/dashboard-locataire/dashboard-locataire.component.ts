@@ -1,20 +1,21 @@
-
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SocketioService } from '../services/socketio.service';
+
 @Component({
-  selector: 'app-dashbord',
-  templateUrl: './dashbord.component.html',
-  styleUrls: ['./dashbord.component.css']
+  selector: 'app-dashboard-locataire',
+  templateUrl: './dashboard-locataire.component.html',
+  styleUrls: ['./dashboard-locataire.component.css']
 })
-export class DashbordComponent implements OnInit{
+export class DashboardLocataireComponent {
+
   realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;
 toi = false;
 toi1= true;
 toi2= true;
 role = localStorage.getItem('role')
-
+enfant=false;
 onSubmit() {
 throw new Error('Method not implemented.');
 }
@@ -23,13 +24,13 @@ content: any;
     onclick(){
       this.toi= true; 
       this.socketService.onnn();
-     
+      this.enfant= false; 
       
      }
      on(){
        this.toi= false; 
        this.socketService.offf();
-       
+       this.enfant= true; 
 
       }
      /*  one(){
@@ -53,12 +54,12 @@ content: any;
          
         }
         onlamp(){
-          this.toi1= false; 
+          this.toi2= false; 
           this.socketService.switchon()
          }
          offlamp(){
-          this.toi1= true; 
-          this.socketService.switchoff ()
+          this.toi2= true; 
+          this.socketService.switchoff()
          }
     
 
@@ -112,9 +113,5 @@ content: any;
   
   }
 
-  
-  
- /* ledOn(){
-    this.socketService.ledOn()
-  } */ 
 }
+  
