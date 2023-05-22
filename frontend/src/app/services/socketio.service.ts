@@ -51,6 +51,10 @@ export class SocketioService {
     return this.socket.fromEvent('donnee')
   }
 
+ portep(){
+  
+    return this.socket.fromEvent('porte')
+  }
 /*   getHum(){
   
     this.socket.on('hum', (data: string) => {
@@ -77,12 +81,12 @@ export class SocketioService {
   }
 //allumer et éteindre les lampes de la page locataire lampe1(couloire)
   oNNN(){
-    this.socket.emit('donnN', '6')
+    this.socket.emit('donnN', '2')
 
 
   }
   oFFF(){
-    this.socket.emit('donnN', '7')
+    this.socket.emit('donnN', '3')
   }
  //fonction pour allumer et éteindre la lampe 2 de page locataire(chambre)
   allum(){
@@ -93,11 +97,11 @@ export class SocketioService {
     this.socket.emit('lumiere', '9')
   }
   tal(){
-    this.socket.emit('par', '6')
+    this.socket.emit('par', '4')
   }
 
   fey(){
-    this.socket.emit('par', '7')
+    this.socket.emit('par', '5')
   }
   enfon(){
     this.socket.emit('enf', '1')
@@ -107,18 +111,18 @@ export class SocketioService {
     this.socket.emit('enf', '0')
   }
   salon(){
-    this.socket.emit('sal', '1')
+    this.socket.emit('sal', '6')
   }
 
   saloff(){
-    this.socket.emit('sal', '0')
+    this.socket.emit('sal', '7')
   }
-  locon(){
-    this.socket.emit('loc', '4')
+  coulon(){
+    this.socket.emit('loc', '2')
   }
 
-  locoff(){
-    this.socket.emit('loc', '5')
+  couloff(){
+    this.socket.emit('loc', '3')
   }
    //fonction pour allumer et éteindre la lampe 2 de page enfant(chambre)
   switchon(){
@@ -128,4 +132,15 @@ export class SocketioService {
   switchoff(){
     this.socket.emit('switch', '5')
   }
+
+    //fonction pour allumer la clim 
+    fanOn(){
+      this.socket.emit('fan', '1')
+    }
+  
+    fanOff(){
+      this.socket.emit('fan', '0')
+    }
+
+  
 }

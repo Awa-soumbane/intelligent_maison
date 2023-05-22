@@ -125,13 +125,19 @@ portSerial.on('open', () => {
       console.log(msg);
     });
 
+    socket.on('fan', (msg) => {
+      portSerial.write(msg)
+      console.log(msg);
+    });
+
   });
 });
 
 //ECOUTER LES EVENNEMENTS DEPUIS ESP32,ARDUINO,MEGA...
 
 parser.on('data', (data) => {
-
+  
+  //io.emit("parent",data);
 
   /* const info = new this.information({
     temperature: temperature,
@@ -144,9 +150,9 @@ parser.on('data', (data) => {
   //console.log(data); 
   
   const rfid = data.toString();
-if(data!='fermer'){
+/* if(rfid!='fermer'){ */
   // Vérification de la valeur et recherche de l'enregistrement correspondant dans la base de données
-  if (rfid) {
+  //if (rfid) {
     userSchema.findOne({rfid})
       .then((record) => {
         if (record) {
@@ -154,15 +160,16 @@ if(data!='fermer'){
           console.log('Matching record found:', record);
           io.emit("donnee",data);
           // Effectuer des opérations supplémentaires si nécessaire
-        } else {
-          //console.log('No matching record found');
+        } else if(rfid == 'fermer'){
+          io.emit("donnee",data);
         }
       })
-      .catch((err) => console.error('Error finding record:', err));
+      /* .catch((err) => console.error('Error finding record:', err));
   } else {
-    //console.error('Invalid value received from serial port:', data);
-  }
-  }
+    console.error('Invalid value received from serial port:', data);
+  } */
+  /* }
+  else */ 
 
   /* const rfid = data.toString();
   if(data!='fermer'){
@@ -180,11 +187,11 @@ if(data!='fermer'){
         })
         .catch((err) => console.error('Error finding record:', err));
     }
-    else if(data=='fermer'){
+    else if(data =='fermer'){
       io.emit("donnee",data);
-    } */
+    } 
 
-  io.emit("donnee",data);
+  io.emit("donnee",data);*/
   
   try {
   let dataStr = data.toString();

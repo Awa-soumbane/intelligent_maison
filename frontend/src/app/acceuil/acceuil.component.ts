@@ -62,7 +62,7 @@ export class AcceuilComponent implements OnInit{
         this.acces=false;
         console.log(data);
         
-      } else{
+      } else if(data != "fermer"){
          this.acces=true;
       } 
       

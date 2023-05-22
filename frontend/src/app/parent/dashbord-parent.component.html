@@ -155,12 +155,17 @@
         </div>
         <div class="d-flex justify-centent-center" style="margin-left: 12%;">
             <div class="d-flex ">
-                <img src="../../assets/portefermer.png" alt="" class="" style="height: 50px;"> 
+                <img *ngIf="parent" src="../../assets/portefermer.png" alt="" class="" style="height: 50px;"> 
+                <img *ngIf="!parent" src="../../assets/ffv.svg" alt=""style="height: 36px;width: 32px;">
                 &nbsp;&nbsp;
                 &nbsp;&nbsp;
                 
               <div style="height: 4px;">
-               <button (click)="open(content)" style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
+             <!--    <img *ngIf="parent" src="../../assets/FF.svg" alt="" class="icone"> 
+            <img *ngIf="!parent" src="../../assets/portefermer.png" alt="" class="icone"> -->
+               <button  (click)="open(content)" style="height: 45px;width: 42px;"><img parent src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
+               <img *ngIf="!parent" src="../../assets/portesouvert.png" alt="" class="icone"> 
+              
                <p class=" ">Parent</p>
               </div>
            </div>

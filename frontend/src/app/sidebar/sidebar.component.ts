@@ -8,6 +8,9 @@ import { FormGroup, FormBuilder, Validators, } from '@angular/forms';
 import { UsernameValidator } from 'src/app/username.validator';
 import Swal from 'sweetalert2';
 import { MustMatch } from 'src/app/must-match.validator';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { SocketioService } from '../services/socketio.service';
+
 /* import { Observable } from 'rxjs/internal/Observable'; */
 
 @Component({
@@ -37,17 +40,9 @@ pass!: string;
 
 
   fan =false;
-enfant =true;
+clim =true;
 
-  lampe(){
-    this.fan= false; 
-    this.enfant= false; 
-   }
-   oflampe(){
-     this.fan= true; 
-     this.enfant= true; 
-    }
-    enf(){
+ /*    enf(){
 this.benfant = "unenfant";
      localStorage.setItem('benfant',this.benfant );
       this.bloc= true; 
@@ -59,7 +54,7 @@ this.benfant = "unenfant";
      localStorage.setItem('benfant',this.benfant );
        this.bloc= true; 
        
-      }
+      } */
 
       
     /* on(){
@@ -76,7 +71,8 @@ this.benfant = "unenfant";
   isChild = false; // initial value
   isLocataire = false; // initial value
   constructor(private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,private modalService: NgbModal, 
+    private socketService:SocketioService,
     public authService: AuthService) {
     // this.authService.getConnexion(this.currentUser).subscribe((res: any) => {
     //   console.log(res);
@@ -107,12 +103,30 @@ this.benfant = "unenfant";
         }, { validator: MustMatch('newpassword', 'confirmdp') }
         );
       }
+
+      lampe(){
+        this.fan= false; 
+        
+       }
+       oflampe(){
+         this.fan= true; 
+         
+        }
+        onclim(){
+          this.clim= false; 
+             this.socketService.fanOn()
+          
+         }
+         ofclim(){
+           this.clim= true; 
+           this.socketService.fanOff()
+          }
       
 
       ngOnInit(): void {
        
       } 
-      enfa = localStorage.getItem('benfant');
+     //enfa = localStorage.getItem('benfant');
 
 
       //modification password

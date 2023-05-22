@@ -17,6 +17,7 @@ top =true;
 topp=true;
 tops =true;
 toll=true;
+  parent: boolean = true;
   /* socketService: any; */
 onSubmit() {
 throw new Error('Method not implemented.');
@@ -55,11 +56,11 @@ content: any;
 //allumer et éteindre lampe couloir
             ofss(){
               this.tops= true; 
-              this.socketService.locoff()
+              this.socketService.couloff()
              }
              clss(){
                this.tops= false; 
-               this.socketService.locon()
+               this.socketService.coulon()
               }
           
 
@@ -107,7 +108,19 @@ content: any;
       this.realtimeLum= data.humSol;
       this.realtimeSol = data.lum;
     })
-    
+
+    this.socketService.gethum().subscribe((data)=>{
+      console.log(data);
+      if(data == "7777"){
+        this.parent=true;
+        console.log(data);
+        
+      } else{
+         this.parent =false;
+      } 
+      
+      
+    })
     }
 }
 
