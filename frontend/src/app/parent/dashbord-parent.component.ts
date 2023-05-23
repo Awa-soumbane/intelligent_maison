@@ -11,13 +11,17 @@ import { SocketioService } from '../services/socketio.service';
   styleUrls: ['./dashbord-parent.component.css']
 })
 export class DashbordParent{
-  realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;
+  realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0; 
   registerForm!: FormGroup
 top =true;
 topp=true;
 tops =true;
 toll=true;
+buzz: any;
   parent: boolean = true;
+  realtimebuzzer: any;
+  socket: any;
+
   /* socketService: any; */
 onSubmit() {
 throw new Error('Method not implemented.');
@@ -103,13 +107,38 @@ content: any;
   ngOnInit(): void {
   
     this.socketService.info().subscribe((data:any)=>{
-      this.realtimeTemp = data.temperature;
-      this.realtimeHum = data.humidity;
-      this.realtimeLum= data.humSol;
-      this.realtimeSol = data.lum;
-    })
+      console.log(data?.buzzer);
+      
+      this.realtimeTemp = data?.temperature;
+      this.realtimeHum = data?.humidity;
+      this.realtimeLum= data?.humSol;
+      this.realtimeSol = data?.lum;
+      this.realtimebuzzer = data?.buzzer;
+    
+      /*   if(this.realtimebuzzer == 1){
+          this.buzz = true;
 
-    this.socketService.gethum().subscribe((data)=>{
+        }
+     else{
+     this.realtimebuzzer == 0;
+     this.buzz = false;
+     } */
+     this.socket.on('buzzer', (data: number) => {
+      console.log('buzzer: '+data);
+      this.realtimebuzzer = data;
+      if(this.realtimebuzzer == 1){
+        this.buzz = true;
+
+      }
+   else{
+   this.realtimebuzzer == 0;
+   this.buzz = false;
+   }
+    });
+      });
+    
+
+  /*   this.socketService.gethum().subscribe((data)=>{
       console.log(data);
       if(data == "7777"){
         this.parent=true;
@@ -120,7 +149,17 @@ content: any;
       } 
       
       
-    })
+    }) */
+
+
+    }
+
+    buzOn(){
+      this.socketService.buzzerOn()
+    }
+
+    buzOf(){
+      this.socketService.buzzerOff()
     }
 }
 

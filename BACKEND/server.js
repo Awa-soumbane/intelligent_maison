@@ -102,6 +102,10 @@ portSerial.on('open', () => {
       portSerial.write(msg)
       console.log(msg);
     });
+    socket.on('realtimebuzzer', (msg) => {
+      portSerial.write(msg)
+      console.log(msg);
+    });
 
     socket.on('par', (msg) => {
       portSerial.write(msg)
@@ -127,6 +131,11 @@ portSerial.on('open', () => {
 
     socket.on('fan', (msg) => {
       portSerial.write(msg)
+      console.log(msg);
+    });
+
+    socket.on('buzzer', (msg) => {
+     // portSerial.write(msg)
       console.log(msg);
     });
 

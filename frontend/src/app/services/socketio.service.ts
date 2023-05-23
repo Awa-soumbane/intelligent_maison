@@ -8,6 +8,9 @@ import { environment } from '../environment/environment';
   providedIn: 'root'
 })
 export class SocketioService {
+  on(arg0: string, arg1: (data: number) => void) {
+    throw new Error('Method not implemented.');
+  }
 
  
   localStatus = localStorage.getItem('currentUser');
@@ -26,6 +29,7 @@ export class SocketioService {
     return new Observable( observer => {
       this.socket.on('realtime',(data:any) => {
        observer.next(data);
+       
           })
      })
 
@@ -79,7 +83,7 @@ export class SocketioService {
   offf(){
     this.socket.emit('donn', '3')
   }
-//allumer et éteindre les lampes de la page locataire lampe1(couloire)
+//allumer et éteindre les lampes de la page locataire lampe1(couloire) valable aussi pourl'enfant et le parent
   oNNN(){
     this.socket.emit('donnN', '2')
 
@@ -96,6 +100,7 @@ export class SocketioService {
   eteint(){
     this.socket.emit('lumiere', '9')
   }
+  //fonction pour allumer et éteindre la lampe 2 de page locataire(chambre)
   tal(){
     this.socket.emit('par', '4')
   }
@@ -110,6 +115,15 @@ export class SocketioService {
   enfoff(){
     this.socket.emit('enf', '0')
   }
+
+  buzzerOn(){
+    this.socket.emit('buzzer', '1')
+  }
+  buzzerOff(){
+    this.socket.emit('buzzer', '0')
+  }
+
+
   salon(){
     this.socket.emit('sal', '6')
   }
@@ -142,5 +156,6 @@ export class SocketioService {
       this.socket.emit('fan', '0')
     }
 
+   
   
 }
