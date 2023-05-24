@@ -4,6 +4,7 @@ import { Component, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SocketioService } from '../services/socketio.service';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-dashbord-parent',
@@ -13,6 +14,7 @@ import { SocketioService } from '../services/socketio.service';
 export class DashbordParent {
   realtimeTemp = 0; realtimeHum = 0; realtimeLum = 0; realtimeSol = 0;
   registerForm!: FormGroup
+
   top = true;
   topp = true;
   tops = true;
@@ -22,18 +24,25 @@ export class DashbordParent {
   realtimefumer: any
   parent: boolean = true;
   realtimebuzzer: any;
-  socket: any;
+  
   presence: any;
   value: any;
+  port =true;
+errMsg:any ;
+message:any;
+messag: any;
+  errMs: any;
   
 
   /* socketService: any; */
-  onSubmit() {
-    throw new Error('Method not implemented.');
-  }
-  content: any;
-  constructor(private modalService: NgbModal, private socketService: SocketioService) { }
-  // allumer éteindre lampe enfant
+ 
+  /* socketService: any; */
+onSubmit() {
+throw new Error('Method not implemented.');
+}
+content: any;
+  constructor(private socket:Socket, private modalService: NgbModal, private socketService:SocketioService,private formBuilder: FormBuilder,) {}
+    // allumer éteindre lampe enfant
   lampe() {
     this.toll = false;
     this.socketService.tal()
@@ -73,33 +82,67 @@ export class DashbordParent {
   }
 
 
-  onCode() {
-    console.log(this.registerForm.value.codeAccess);
 
-    /*  if(this.registerForm.value.codeAccess == 7890){
-    this.socket.emit("openDoor", 1);
-    localStorage.setItem('door', '1')
-    this.toastr.info('Porte ouverte')
-   }else if(this.registerForm.value.codeAccess == 9078){
-    this.socket.emit("closeDoor", 0);
-    localStorage.setItem('door', '0')
-    this.toastr.info('Porte fermée')
-   }else{
-    this.toastr.error('Code d\'accès incorrect')
-   }		
-   */
-    /*  setTimeout(() => {
-      this.ngOnInit()
-     }, 2000); */
+
+ 
+  onCode(){
+    console.log(this.registerForm.value);
+
+     if(this.registerForm.value.codeAccess == 7777){
+     this.socket.emit("open", 'C');
+     this.port= true; 
+    console.log("code correct");
+    this.messag= "le message est correct"
+    this.errMsg = true;
+    setTimeout(()=>{ this.errMsg= false}, 3001);
+    // this.toastr.info('Porte ouverte')
+   }
+  //  else if(this.registerForm.value.codeAccess == 9078){
+  //   this.socket.emit("closeDoor", 0);
+  //   localStorage.setItem('door', '0')
+  //   this.toastr.info('Porte fermée')
+  //  }
+   else{
+    // this.toastr.error('Code d\'accès incorrect')
+    console.log("code incorrect");
+    this.port= false; 
+    this.errMs = true;
+    this.message= "le message est incorrect"
+    setTimeout(()=>{ this.errMs= false}, 3001);	
+   }
+   setTimeout(() => {
+    this.ngOnInit()
+   }, 3001);		
+   /* if(error == 'Unauthorized'){
+    this.errMsg ='Cette utilisateur est archivé'
+     this.spin = false
+     setTimeout(()=>{ this.errMsg = false}, 3001); 
+   }else {
+
+   this.errMsg ='Vous  etes pas dans la base de données'
+   this.spin = false
+   setTimeout(()=>{ this.errMsg= false}, 3001); 
+ } */
+  /*  setTimeout(() => {
+    this.ngOnInit()
+   }, 2000); */
   }
   open(content: any) {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       console.log(`Closed with: ${result}`);
     }, (reason) => {
       console.log(`Dismissed ${this.getDismissReason(reason)}`);
+      if(this.registerForm.value.codeAccess == 7777){
+        this.socket.emit("open", 'C');
+        this.port= true;
+    }
+    else{
+      this.port= false;
+    }
     });
+    
   }
-
+  
   private getDismissReason(reason: any): string {
     if (reason === ModalDismissReasons.ESC) {
       return 'by pressing ESC';

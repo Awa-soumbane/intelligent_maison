@@ -1,18 +1,18 @@
 
 <div class="p-4 bd-highlight" id="conteneurDash"> 
   
-    <div class="">
+  <div class="">
 
-        <h6 class="thh">Données  à l’instant</h6>
- <div class="" id="sections">
-    
-    <!-- section Temperature -->
-    &nbsp;
+      <h6 class="thh">Données  à l’instant</h6>
+<div class="" id="sections">
+  
+  <!-- section Temperature -->
+  &nbsp;
 <div class="d-flex  h-100 "  id="sect1">
-    <span class="flex-column">
-    <p class="mb-2 thhe">Température  Humidité </p>
-    <p class="mb-4 "> {{realtimeTemp}}°//{{realtimeHum}}%</p>
-   
+  <span class="flex-column">
+  <p class="mb-2 thhe">Température  Humidité </p>
+  <p class="mb-4 "> {{realtimeTemp}}°//{{realtimeHum}}%</p>
+ 
 
 </span>
 </div>
@@ -20,32 +20,31 @@
 
 </div>
 <div   class="d-flex  flex-column "  id="sect2">
-    <p class="thhe text-left">Detecteur de Fumée</p>
-   
-    <img *ngIf="!realtimefumer" src="../../assets/bell-solid.svg" alt="" class="fontaine">
-        <img *ngIf="realtimefumer" src="../../assets/gif ALarme.png" alt="" class="fontaine">
+  <p class="thhe text-left">Detecteur de Fumée</p>
+ 
+  <img *ngIf="!realtimefumer" src="../../assets/bell-solid.svg" alt="" class="fontaine">
+      <img *ngIf="realtimefumer" src="../../assets/gif ALarme.png" alt="" class="fontaine">
 </div>
 <div class="" style="width: 100px;">
 
 </div>
 <!-- deuxieme section -->
 <div class="d-flex flex-column "  id="sect3">
-   
-    <p class="thhe" >Visualisation Sonnerie
-    </p> 
+ 
+  <p class="thhe" >Visualisation Sonnerie
+  </p> 
 
- <div class="flex">
-  <img *ngIf="!realtimebuzzer" src="../../assets/bell-solid.svg" alt="" class="iconeTemp"  >
+<div class="flex">
+<img *ngIf="!realtimebuzzer" src="../../assets/bell-solid.svg" alt="" class="iconeTemp"  >
 
-  <img *ngIf="realtimebuzzer" src="../../assets/gif ALarme.png" alt="" style="background-color: red;" style="width: 50px;height: 50px;">
- </div>
+<img *ngIf="realtimebuzzer" src="../../assets/gif ALarme.png" alt="" style="background-color: red;" style="width: 50px;height: 50px;">
+</div>
 </div>
 </div>
 
 <div class="ll">
 </div>
- </div>
- 
+</div>
 
 
 
@@ -76,212 +75,237 @@
  </div>
   </div>
    </div>
+  <div class="d-flex  justify-centent-center mb-2" id="sectionsParam">
+  <!-- section Temperature -->
   
+<div class="deuxiemebloc">
+
+  <div class="d-flex  flex-column"  id="sectTemp">
+      <p class="thhe">Humidité du sol</p>
+      <p class="thhe">{{realtimeSol}}%</p>
+  </div>
+  <div   class="d-flex-  flex-column justify-centent-center align-items-center"  id="sectHum">
+      <p class="mb-2 thh">Etat Fontaine</p>
+      <img src="../../assets/fontainemars.png" alt="" class="fontaine mt-2">
+  </div>
+  <div class="d-flex flex-column justify-centent-center align-items-center"  id="sectHumSol">
+      <p class="thhe">Sécurité </p>
+      <img *ngIf="!realtimepresence" src="../../assets/bell-solid.svg" alt="" class="fontaine">
+      <img *ngIf="realtimepresence" src="../../assets/gif ALarme.png" alt="" class="fontaine">
+  </div>
+  <div class="d-flex  flex-column"  id="sectHumSol">
+   <p class="thhe">Ensoilemenent </p>
+   <p class="thhe">{{realtimeLum}}</p>
+</div>
+</div>
+ </div>
+
 <div style="display: flex; justify-content: center; ">
 <h1 class="mb-2 thh">Controle systeme</h1>
- </div>
- <div class="d-flex  justify-centent-center mb-2" id="section" style="height: 28vh;">
-    <div class="sect1" style=" height: 27vh; width: 35%;  box-shadow:  2px 2px 2px 2px #000000;">
-        <div style="display: flex; justify-content: center;  color: red;">
-            <h6>Lampes</h6>
-        </div>
-        <div class="d-flex justify-centent-center" style="margin-left: 12%;">
-          <div class="d-flex ">
-            <img *ngIf="!top" src="../../assets/lampeon.svg" alt=""  style="height: 65px;width: 45px; display: flex;justify-content: center;">
-            <img *ngIf="top"src="../../assets/lampoff.svg" alt=""style="height: 65px;width: 45px; display: flex;justify-content: center;">
-            &nbsp;&nbsp;
-           
-          <div style="height: 4px;">
-            <button *ngIf="top" style="height: 45px;width: 42px;"> 
-               <img src="../../assets/off.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content:
-                center;" (click)=" oF()"></button>
-            <button  *ngIf="!top" style="height: 45px;width: 42px;"> 
-               <img src="../../assets/on.svg" alt="" style="height:  36px;width: 35px;
-                display: flex;justify-content: center;" (click)="oN()"></button>  
-           <p class=" "> Parent</p>
-          </div>
-       </div>
-       &nbsp;&nbsp;
-            &nbsp;&nbsp;
-       <div class="d-flex">
-        <img *ngIf="!toll" src="../../assets/lampeon.svg" alt=""  style="height: 65px;width: 45px; display: flex;justify-content: center;">
-        <img *ngIf="toll"src="../../assets/lampoff.svg" alt="" style="height: 65px;width: 45px; display: flex;justify-content: center;">
-           &nbsp;&nbsp;
-           &nbsp;&nbsp;
-          <div  style="height: 4px;">
-            <button *ngIf="toll" style="height: 45px;width: 42px;">  <img src="../../assets/off.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)=" lampe()"></button>
-            <button  *ngIf="!toll" style="height: 45px;width: 42px;">  <img src="../../assets/on.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)="oflampe()"></button>  
-           <p class=" "> Enfant</p>
-          </div>
-  
-       </div>
-
-          </div>
-          &nbsp;
-        
-     
-          <div class="d-flex justify-centent-center mt-2"style="margin-left: 12%;">
-            <div class="d-flex ">
-              <img *ngIf="!topp" src="../../assets/lampeon.svg" alt=""  style="height: 52px; width: 40px; display: flex;justify-content: center;">
-              <img *ngIf="topp"src="../../assets/lampoff.svg" alt="" style="height: 52px; width: 40px; display: flex;justify-content: center;" >
-              &nbsp;&nbsp;
-           
-            <div style="height: 4px;">
-              <button *ngIf="topp" style="height: 45px;width: 42px;">  <img src="../../assets/off.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)=" closes()"></button>
-              <button  *ngIf="!topp" style="height: 45px;width: 42px;">  <img src="../../assets/on.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)="offf()"></button>  
-             <p class=" ">Salon</p>
-            </div>
-         </div>
-          &nbsp;&nbsp;
+</div>
+<div class="d-flex  justify-centent-center mb-2" id="section" style="height: 28vh;">
+  <div class="sect1" style=" height: 27vh; width: 35%;  box-shadow:  2px 2px 2px 2px #000000;">
+      <div style="display: flex; justify-content: center;  color: red;">
+          <h6>Lampes</h6>
+      </div>
+      <div class="d-flex justify-centent-center" style="margin-left: 12%;">
+        <div class="d-flex ">
+          <img *ngIf="!top" src="../../assets/lampeon.svg" alt=""  style="height: 65px;width: 45px; display: flex;justify-content: center;">
+          <img *ngIf="top"src="../../assets/lampoff.svg" alt=""style="height: 65px;width: 45px; display: flex;justify-content: center;">
           &nbsp;&nbsp;
          
-      
-         <div class="d-flex">
-          <img *ngIf="!tops" src="../../assets/lampeon.svg" alt=""  style="height: 52px; width: 40px; display: flex;justify-content: center;">
-          <img *ngIf="tops"src="../../assets/lampoff.svg" alt="" style="height: 52px; width: 40px; display: flex;justify-content: center;" >
-              &nbsp;&nbsp;
-              &nbsp;&nbsp;
-            
-            <div style="height: 4px;">
-              <button *ngIf="tops" style="height: 45px;width: 42px;">  <img src="../../assets/off.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)=" clss()"></button>
-              <button  *ngIf="!tops" style="height: 45px;width: 42px;">  <img src="../../assets/on.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)="ofss()"></button>  
-             <p class=" ">Couloir</p>
-            </div>
-         </div>
-            </div>
-    </div>
-
-    <div class="sect1" style=" box-shadow:  2px 2px 2px 2px #000000; height: 27vh; width: 35%;">
-        <div style="display: flex; justify-content: center;  color: red;">
-            <h6>Portes</h6>
+        <div style="height: 4px;">
+          <button *ngIf="top" style="height: 45px;width: 42px;"> 
+             <img src="../../assets/off.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content:
+              center;" (click)=" oF()"></button>
+          <button  *ngIf="!top" style="height: 45px;width: 42px;"> 
+             <img src="../../assets/on.svg" alt="" style="height:  36px;width: 35px;
+              display: flex;justify-content: center;" (click)="oN()"></button>  
+         <p class=" "> Parent</p>
         </div>
-        <div class="d-flex justify-centent-center" style="margin-left: 12%;">
-            <div class="d-flex ">
-                <img *ngIf="parent" src="../../assets/portefermer.png" alt="" class="" style="height: 50px;"> 
-                <img *ngIf="!parent" src="../../assets/ffv.svg" alt=""style="height: 36px;width: 32px;">
-                &nbsp;&nbsp;
-                &nbsp;&nbsp;
-                
-              <div style="height: 4px;">
-             <!--    <img *ngIf="parent" src="../../assets/FF.svg" alt="" class="icone"> 
-            <img *ngIf="!parent" src="../../assets/portefermer.png" alt="" class="icone"> -->
-               <button  (click)="open(content)" style="height: 45px;width: 42px;"><img parent src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
-               <img *ngIf="!parent" src="../../assets/portesouvert.png" alt="" class="icone"> 
-              
-               <p class=" ">Parent</p>
-              </div>
-           </div>
+     </div>
+     &nbsp;&nbsp;
+          &nbsp;&nbsp;
+     <div class="d-flex">
+      <img *ngIf="!toll" src="../../assets/lampeon.svg" alt=""  style="height: 65px;width: 45px; display: flex;justify-content: center;">
+      <img *ngIf="toll"src="../../assets/lampoff.svg" alt="" style="height: 65px;width: 45px; display: flex;justify-content: center;">
+         &nbsp;&nbsp;
+         &nbsp;&nbsp;
+        <div  style="height: 4px;">
+          <button *ngIf="toll" style="height: 45px;width: 42px;">  <img src="../../assets/off.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)=" lampe()"></button>
+          <button  *ngIf="!toll" style="height: 45px;width: 42px;">  <img src="../../assets/on.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)="oflampe()"></button>  
+         <p class=" "> Enfant</p>
+        </div>
 
-           &nbsp;&nbsp;
+     </div>
+
+        </div>
+        &nbsp;
+      
+   
+        <div class="d-flex justify-centent-center mt-2"style="margin-left: 12%;">
+          <div class="d-flex ">
+            <img *ngIf="!topp" src="../../assets/lampeon.svg" alt=""  style="height: 52px; width: 40px; display: flex;justify-content: center;">
+            <img *ngIf="topp"src="../../assets/lampoff.svg" alt="" style="height: 52px; width: 40px; display: flex;justify-content: center;" >
             &nbsp;&nbsp;
-            &nbsp;&nbsp;
-
-            <div class="d-flex ">
-                <img src="../../assets/portefermer.png" alt="" class="" style="height: 50px;"> 
-               
-                &nbsp;&nbsp;
-                &nbsp;&nbsp;
-
-              <div style="height: 4px;">
-               <button (click)="open(content)"style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
-               <p class=" ">Enfant</p>
-              </div>
-           </div>
+         
+          <div style="height: 4px;">
+            <button *ngIf="topp" style="height: 45px;width: 42px;">  <img src="../../assets/off.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)=" closes()"></button>
+            <button  *ngIf="!topp" style="height: 45px;width: 42px;">  <img src="../../assets/on.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)="offf()"></button>  
+           <p class=" ">Salon</p>
           </div>
-          &nbsp;&nbsp;
-          &nbsp;&nbsp;
-          <div class="d-flex justify-centent-center mt-2"style="margin-left: 12%;">
-            <div class="d-flex ">
-              <img src="../../assets/portefermer.png" alt="" class="" style="height: 50px;"> 
+       </div>
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+       
+    
+       <div class="d-flex">
+        <img *ngIf="!tops" src="../../assets/lampeon.svg" alt=""  style="height: 52px; width: 40px; display: flex;justify-content: center;">
+        <img *ngIf="tops"src="../../assets/lampoff.svg" alt="" style="height: 52px; width: 40px; display: flex;justify-content: center;" >
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
+          
+          <div style="height: 4px;">
+            <button *ngIf="tops" style="height: 45px;width: 42px;">  <img src="../../assets/off.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)=" clss()"></button>
+            <button  *ngIf="!tops" style="height: 45px;width: 42px;">  <img src="../../assets/on.svg" alt="" style="height: 36px;width: 35px; display: flex;justify-content: center;" (click)="ofss()"></button>  
+           <p class=" ">Couloir</p>
+          </div>
+       </div>
+          </div>
+  </div>
+
+  <div class="sect1" style=" box-shadow:  2px 2px 2px 2px #000000; height: 27vh; width: 35%;">
+      <div style="display: flex; justify-content: center;  color: red;">
+          <h6>Portes</h6>
+      </div>
+      <div class="d-flex justify-centent-center" style="margin-left: 12%;">
+          <div class="d-flex ">
+              <img *ngIf="parent" src="../../assets/portefermer.png" alt="" class="" style="height: 50px;"> 
+              <img *ngIf="!parent" src="../../assets/ffv.svg" alt=""style="height: 36px;width: 32px;">
               &nbsp;&nbsp;
               &nbsp;&nbsp;
+              
             <div style="height: 4px;">
-             <button (click)="open(content)" style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
-             <p class=" ">Salon</p>
+           <!--    <img *ngIf="parent" src="../../assets/FF.svg" alt="" class="icone"> 
+          <img *ngIf="!parent" src="../../assets/portefermer.png" alt="" class="icone"> -->
+             <button  (click)="open(content)" style="height: 45px;width: 42px;"><img parent src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
+             <img *ngIf="!parent" src="../../assets/portesouvert.png" alt="" class="icone"> 
+            
+             <p class=" ">Parent</p>
             </div>
          </div>
 
-          &nbsp;&nbsp;
-          &nbsp;&nbsp;
+         &nbsp;&nbsp;
           &nbsp;&nbsp;
           &nbsp;&nbsp;
 
+          <div class="d-flex ">
+              <img src="../../assets/portefermer.png" alt="" class="" style="height: 50px;"> 
+             
+              &nbsp;&nbsp;
+              &nbsp;&nbsp;
+
+            <div style="height: 4px;">
+             <button (click)="open(content)"style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
+             <p class=" ">Enfant</p>
+            </div>
+         </div>
+        </div>
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+        <div class="d-flex justify-centent-center mt-2"style="margin-left: 12%;">
           <div class="d-flex ">
             <img src="../../assets/portefermer.png" alt="" class="" style="height: 50px;"> 
             &nbsp;&nbsp;
             &nbsp;&nbsp;
-        
           <div style="height: 4px;">
-           <button style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
-           <p class=" ">Couloir</p>
+           <button (click)="open(content)" style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
+           <p class=" ">Salon</p>
           </div>
        </div>
-     </div>
-    </div>
 
-    
-    <div class="sect1" style=" box-shadow:  2px 2px 2px 2px #000000; height: 27vh; width: 35%;">
- <div style="display: flex; justify-content: center;  color: red;">
-            <h6>fenetres</h6>
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+
+        <div class="d-flex ">
+          <img src="../../assets/portefermer.png" alt="" class="" style="height: 50px;"> 
+          &nbsp;&nbsp;
+          &nbsp;&nbsp;
+      
+        <div style="height: 4px;">
+         <button style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
+         <p class=" ">Couloir</p>
         </div>
-        <div class="d-flex justify-centent-center" style="margin-left: 12%;">
-            <div class="d-flex ">
-                <img src="../../assets/fenetreferner.png" alt="" class="" style="height: 52px; width: 40px;"> 
-                &nbsp;&nbsp;
-                &nbsp;&nbsp;
-                
-              <div style="height: 4px;">
-               <button (click)="open(content)" style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 34px;width: 32px;"></button>
-               <p class=" ">Parent</p>
-              </div>
-           </div>
+     </div>
+   </div>
+  </div>
 
-           &nbsp;&nbsp;
+  
+  <div class="sect1" style=" box-shadow:  2px 2px 2px 2px #000000; height: 27vh; width: 35%;">
+<div style="display: flex; justify-content: center;  color: red;">
+          <h6>fenetres</h6>
+      </div>
+      <div class="d-flex justify-centent-center" style="margin-left: 12%;">
+        <div class="d-flex ">
+            <img src="../../assets/portefermer.png" alt="" class="" style="height: 50px;"  *ngIf="port"> 
+            <img src="../../assets/portesouvert.png" alt="" class="" style="height: 50px;"  *ngIf="!port"> 
             &nbsp;&nbsp;
             &nbsp;&nbsp;
-
-            <div class="d-flex ">
-                <img src="../../assets/fenetreferner.png" alt="" class="" style="height: 52px; width: 40px;"> 
-               
-                &nbsp;&nbsp;
-               
-                
-              <div style="height: 4px;">
-               <button (click)="open(content)"style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
-               <p class=" ">Enfant</p>
-              </div>
-           </div>
+            
+          <div style="height: 4px;">
+           <button (click)="open(content)" style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
+           <p class=" ">Parent</p>
           </div>
-          &nbsp;&nbsp;
-          
-          <div class="d-flex justify-centent-center mt-2"style="margin-left: 12%;">
-            <div class="d-flex ">
-              <img src="../../assets/fenetresouvert.png" alt="" class="" style="height: 52px; width: 40px;"> 
-              &nbsp;&nbsp;
-              &nbsp;&nbsp;
-            <div style="height: 4px;">
-             <button (click)="open(content)" style="height: 45px;width: 42px;"><img src="../../assets/ffv.svg" alt=""style="height: 36px;width: 32px;"></button>
-             <p class=" ">Salon</p>
-            </div>
-         </div>
+       </div>
 
+         &nbsp;&nbsp;
           &nbsp;&nbsp;
           &nbsp;&nbsp;
-          &nbsp;&nbsp;
-       
 
           <div class="d-flex ">
-            <img src="../../assets/fenetreferner.png" alt="" class=""style="height: 52px; width: 40px;"> 
-            &nbsp;&nbsp;
-            &nbsp;&nbsp;
+              <img src="../../assets/fenetreferner.png" alt="" class="" style="height: 52px; width: 40px;"> 
+             
+              &nbsp;&nbsp;
+             
+              
+            <div style="height: 4px;">
+             <button (click)="open(content)"style="height: 45px;width: 42px;"><img src="../../assets/FF.svg" alt=""style="height: 36px;width: 32px;"></button>
+             <p class=" ">Enfant</p>
+            </div>
+         </div>
+        </div>
+        &nbsp;&nbsp;
         
+        <div class="d-flex justify-centent-center mt-2"style="margin-left: 12%;">
+          <div class="d-flex ">
+            <img src="../../assets/fenetresouvert.png" alt="" class="" style="height: 52px; width: 40px;"> 
+            &nbsp;&nbsp;
+            &nbsp;&nbsp;
           <div style="height: 4px;">
-           <button (click)="open(content)"style="height: 45px;width: 42px;"><img src="../../assets/ffv.svg" alt=""style="height: 36px;width: 32px;"></button>
-           <p class=" ">Couloir</p>
+           <button (click)="open(content)" style="height: 45px;width: 42px;"><img src="../../assets/ffv.svg" alt=""style="height: 36px;width: 32px;"></button>
+           <p class=" ">Salon</p>
           </div>
        </div>
+
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+        &nbsp;&nbsp;
+     
+
+        <div class="d-flex ">
+          <img src="../../assets/fenetreferner.png" alt="" class=""style="height: 52px; width: 40px;"> 
+          &nbsp;&nbsp;
+          &nbsp;&nbsp;
+      
+        <div style="height: 4px;">
+         <button (click)="open(content)"style="height: 45px;width: 42px;"><img src="../../assets/ffv.svg" alt=""style="height: 36px;width: 32px;"></button>
+         <p class=" ">Couloir</p>
+        </div>
      </div>
-    </div> 
+   </div>
+  </div> 
 </div>
 </div>
 
@@ -289,31 +313,30 @@
 
 <!-- code d'accées  -->
 <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title align-items-center d-flex justify-centent-center" id="modal-basic-title">Entrez votre code </h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
- 
-        <form [formGroup] = "registerForm">
-            <div class="mb-3">
-              <!-- <label for="code" class="text text-center">CODE ACCES</label> -->
-              <div class="input-group d-flex">
-    
-                <input
-                  id="dateOfBirth"
-                  class="form-control"
-                  placeholder="code acces"
-                  formControlName="codeAccess"
-                  type="text"
-                />
-                <button  type="button" class="btn btn-secondary bi bi-calendar3" (click)="modal.close('Close click')" type="button">OK</button>
-              </div>
-            </div>
-          </form>
-    <!--   <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button> -->
-    </div>
-  </ng-template>
+  <div class="modal-header">
+    <h4 class="modal-title align-items-center d-flex justify-centent-center" id="modal-basic-title">Entrez votre code </h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+      <form [formGroup] = "registerForm">
+          <div class="mb-3">
+            <!-- <label for="code" class="text text-center">CODE ACCES</label> -->
+            <div class="input-group d-flex">
   
+              <input
+                id="dateOfBirth"
+                class="form-control"
+                placeholder="code acces"
+                formControlName="codeAccess"
+                type="text"
+              />
+              <button  type="button" class="btn btn-secondary bi bi-calendar3" (click)="modal.close('Close click')" type="button">OK</button>
+            </div>
+          </div>
+        </form>
+  <!--   <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button> -->
+  </div>
+</ng-template>
