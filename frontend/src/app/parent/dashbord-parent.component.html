@@ -48,32 +48,9 @@
 
 
 
- <div style="display: flex; justify-content: center;">
-    <h6 class="mt-2 thh">Information du jardin</h6>
-     </div>
-    <div class="d-flex  justify-centent-center mb-2" id="sectionsParam">
-    <!-- section Temperature -->
-    
-  <div class="deuxiemebloc">
- 
-    <div class="d-flex  flex-column"  id="sectTemp">
-        <p class="thhe">Humidité du sol</p>
-        <p class="thhe">{{realtimeSol}}%</p>
-    </div>
-    <div   class="d-flex-  flex-column justify-centent-center align-items-center"  id="sectHum">
-        <p class="mb-2 thh">Etat Fontaine</p>
-        <img src="../../assets/fontainemars.png" alt="" class="fontaine mt-2">
-    </div>
-    <div class="d-flex flex-column justify-centent-center align-items-center"  id="sectHumSol">
-        <p class="thhe">Sécurité </p>
-        <img *ngIf="!realtimepresence" src="../../assets/bell-solid.svg" alt="" class="fontaine">
-        <img *ngIf="realtimepresence" src="../../assets/gif ALarme.png" alt="" class="fontaine">
-    </div>
-    <div class="d-flex  flex-column"  id="sectHumSol">
-     <p class="thhe">Ensoilemenent </p>
-     <p class="thhe">{{realtimeLum}} LUX</p>
- </div>
-  </div>
+
+<div style="display: flex; justify-content: center;">
+  <h6 class="mt-2 thh">Information du jardin</h6>
    </div>
   <div class="d-flex  justify-centent-center mb-2" id="sectionsParam">
   <!-- section Temperature -->
