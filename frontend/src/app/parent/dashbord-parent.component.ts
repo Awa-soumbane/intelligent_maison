@@ -4,6 +4,7 @@ import { Component, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { SocketioService } from '../services/socketio.service';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-dashbord-parent',
@@ -17,12 +18,17 @@ top =true;
 topp=true;
 tops =true;
 toll=true;
+port =true;
+errMsg:any ;
+message:any;
+messag: any;
+  errMs: any;
   /* socketService: any; */
 onSubmit() {
 throw new Error('Method not implemented.');
 }
 content: any;
-  constructor(private modalService: NgbModal, private socketService:SocketioService) {}
+  constructor(private socket:Socket, private modalService: NgbModal, private socketService:SocketioService,private formBuilder: FormBuilder,) {}
     
       lampe(){
         this.toll= false; 
@@ -62,22 +68,51 @@ content: any;
                this.socketService.locon()
               }
           
+              porteON(){
+               
+              }
+
+
+
 
   onCode(){
-    console.log(this.registerForm.value.codeAccess);
+    console.log(this.registerForm.value);
 
-    /*  if(this.registerForm.value.codeAccess == 7890){
-    this.socket.emit("openDoor", 1);
-    localStorage.setItem('door', '1')
-    this.toastr.info('Porte ouverte')
-   }else if(this.registerForm.value.codeAccess == 9078){
-    this.socket.emit("closeDoor", 0);
-    localStorage.setItem('door', '0')
-    this.toastr.info('Porte fermée')
-   }else{
-    this.toastr.error('Code d\'accès incorrect')
-   }		
-   */
+     if(this.registerForm.value.codeAccess == 7777){
+     this.socket.emit("open", 'C');
+     this.port= true; 
+    console.log("code correct");
+    this.messag= "le message est correct"
+    this.errMsg = true;
+    setTimeout(()=>{ this.errMsg= false}, 3001);
+    // this.toastr.info('Porte ouverte')
+   }
+  //  else if(this.registerForm.value.codeAccess == 9078){
+  //   this.socket.emit("closeDoor", 0);
+  //   localStorage.setItem('door', '0')
+  //   this.toastr.info('Porte fermée')
+  //  }
+   else{
+    // this.toastr.error('Code d\'accès incorrect')
+    console.log("code incorrect");
+    this.port= false; 
+    this.errMs = true;
+    this.message= "le message est incorrect"
+    setTimeout(()=>{ this.errMs= false}, 3001);	
+   }
+   setTimeout(() => {
+    this.ngOnInit()
+   }, 3001);		
+   /* if(error == 'Unauthorized'){
+    this.errMsg ='Cette utilisateur est archivé'
+     this.spin = false
+     setTimeout(()=>{ this.errMsg = false}, 3001); 
+   }else {
+
+   this.errMsg ='Vous  etes pas dans la base de données'
+   this.spin = false
+   setTimeout(()=>{ this.errMsg= false}, 3001); 
+ } */
   /*  setTimeout(() => {
     this.ngOnInit()
    }, 2000); */
@@ -87,7 +122,15 @@ content: any;
       console.log(`Closed with: ${result}`);
     }, (reason) => {
       console.log(`Dismissed ${this.getDismissReason(reason)}`);
+      if(this.registerForm.value.codeAccess == 7777){
+        this.socket.emit("open", 'C');
+        this.port= true;
+    }
+    else{
+      this.port= false;
+    }
     });
+    
   }
   
   private getDismissReason(reason: any): string {
@@ -101,6 +144,9 @@ content: any;
   }
   ngOnInit(): void {
   
+    this.registerForm = this.formBuilder.group({
+      codeAccess:['', [Validators.required]],
+    });
     this.socketService.info().subscribe((data:any)=>{
       this.realtimeTemp = data.temperature;
       this.realtimeHum = data.humidity;

@@ -117,4 +117,12 @@ export class SocketioService {
   switchoff(){
     this.socket.emit('switch', '9')
   }
+
+  /* porteON(){
+    this.socket.emit('openDoor', '1')
+  }
+
+  porteOff(){
+    this.socket.emit('openDoor', '0')
+  } */
 }

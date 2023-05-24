@@ -155,7 +155,8 @@
         </div>
         <div class="d-flex justify-centent-center" style="margin-left: 12%;">
             <div class="d-flex ">
-                <img src="../../assets/portefermer.png" alt="" class="" style="height: 50px;"> 
+                <img src="../../assets/portefermer.png" alt="" class="" style="height: 50px;"  *ngIf="port"> 
+                <img src="../../assets/portesouvert.png" alt="" class="" style="height: 50px;"  *ngIf="!port"> 
                 &nbsp;&nbsp;
                 &nbsp;&nbsp;
                 
@@ -290,7 +291,13 @@
     </div>
     <div class="modal-body">
  
-        <form [formGroup] = "registerForm">
+        <form [formGroup]="registerForm" >
+          <ng-container *ngIf="this.errMsg">
+            <div class="alert alert-success" role="alert">{{messag}}</div>
+          </ng-container>
+          <ng-container *ngIf="this.errMs">
+            <div class="alert alert-danger" role="alert"><strong> {{message}} </strong></div>
+        </ng-container>
             <div class="mb-3">
               <!-- <label for="code" class="text text-center">CODE ACCES</label> -->
               <div class="input-group d-flex">
@@ -302,7 +309,7 @@
                   formControlName="codeAccess"
                   type="text"
                 />
-                <button  type="button" class="btn btn-secondary bi bi-calendar3" (click)="modal.close('Close click')" type="button">OK</button>
+                <button  type="button" class="btn btn-secondary " (click)="onCode()" type="button">OK</button>
               </div>
             </div>
           </form>

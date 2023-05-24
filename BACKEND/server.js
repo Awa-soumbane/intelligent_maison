@@ -75,7 +75,7 @@ const io = require('socket.io')(http, {
      }
    });
 
-var portSerial = new SerialPort({ path:'/dev/ttyACM0',
+var portSerial = new SerialPort({ path:'/dev/ttyACM1',
         baudRate: 9600,
         dataBits: 8,
         parity: 'none',
@@ -120,7 +120,12 @@ portSerial.on('open', () => {
       portSerial.write(msg)
       console.log('msg');
     });
-
+    
+    socket.on('open', (msg) => {
+      console.log('open: ' + msg);
+      portSerial.write(msg)
+    });
+ 
   });
 });
 
@@ -167,7 +172,7 @@ if(data!='fermer'){
   
 
     let jsonData = JSON.parse(dataStr)
-    //console.log(jsonData)
+    console.log(jsonData)
     // If parsing succeeds, process the JSON data
     console.log('Received JSON:', jsonData);
     if (jsonData) {

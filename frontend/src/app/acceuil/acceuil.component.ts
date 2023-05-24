@@ -14,12 +14,13 @@ import { Tem_Hum } from '../models/temp_hum';
   styleUrls: ['./acceuil.component.css']
 })
 export class AcceuilComponent implements OnInit{
-  realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;
+  realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0; realtimebuzzer=0;
   socket:any;
   temperature:any;
   humidity:any;
   humSol:any;
   lum:any;
+  buzz: any;
   acces:boolean=false;
   constructor(private socketService:SocketioService){
     this.socket = io(`${environment.apiUrl}`);
@@ -31,8 +32,19 @@ export class AcceuilComponent implements OnInit{
       this.realtimeHum = data.humidity;
       this.realtimeLum= data.humSol;
       this.realtimeSol = data.lum;
-    })
+      this.realtimebuzzer = data.buzzer;
 
+    })
+if(this.realtimebuzzer == 1){
+          this.buzz = true;
+          
+        }
+     else{
+     this.realtimebuzzer == 0;
+     this.buzz = false;
+     }
+   
+     
 
    /*  this.socket.on('temp', (data: any) => {
       console.log(data);
