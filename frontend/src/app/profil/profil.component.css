@@ -17,3 +17,7 @@ p{
     box-shadow: 7px 2px 2px blue;
  
 }
+#exampleModalLabel h5{
+    display: flex;
+    justify-content: center;
+}

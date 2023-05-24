@@ -216,7 +216,7 @@ parser.on('data', (data) => {
   
 
     let jsonData = JSON.parse(dataStr)
-    //console.log(jsonData)
+    console.log(jsonData)
     // If parsing succeeds, process the JSON data
     console.log('Received JSON:', jsonData);
     if (jsonData) {
