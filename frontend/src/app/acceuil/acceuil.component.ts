@@ -20,6 +20,12 @@ export class AcceuilComponent implements OnInit{
   humidity:any;
   humSol:any;
   lum:any;
+  buzz: any;
+  realtimepresence:any;
+realtimebuzzer: any;
+realtimefumer: any;
+presence: any;
+value: any;
   acces:boolean=false;
   constructor(private socketService:SocketioService){
     this.socket = io(`${environment.apiUrl}`);
@@ -27,11 +33,60 @@ export class AcceuilComponent implements OnInit{
 
   ngOnInit() {
     this.socketService.info().subscribe((data:any)=>{
-      this.realtimeTemp = data.temperature;
-      this.realtimeHum = data.humidity;
-      this.realtimeLum= data.humSol;
-      this.realtimeSol = data.lum;
-    })
+      console.log(data?.buzzer);
+      
+      this.realtimeTemp = data?.temperature;
+      this.realtimeHum = data?.humidity;
+      this.realtimeLum = data?.humSol;
+      this.realtimeSol = data?.lum;
+      this.realtimebuzzer = data?.buzzer;
+      this.realtimepresence = data?.presennce;
+      this.realtimefumer = data?.value;
+    
+    
+     this.socket.on('buzzer', (data: number) => {
+      console.log('buzzer: '+data);
+      this.realtimebuzzer = data;
+      if(this.realtimebuzzer == 1){
+        this.buzz = true;
+
+      }
+   else{
+   this.realtimebuzzer == 0;
+   this.buzz = false;
+   }
+    });
+
+
+    this.socket.on('presennce', (data: number) => {
+      console.log('presennce: ' + data);
+      this.realtimepresence = data;
+      if (this.realtimepresence == 1) {
+        this.presence = true;
+
+      }
+      else {
+        this.realtimepresence == 0;
+        this.presence = false;
+      }
+      this.socket.on('value', (data: number) => {
+        console.log('value: ' + data);
+        this.realtimefumer = data;
+        if (this.realtimefumer == 1) {
+          this.value = true;
+
+        }
+        else {
+          this.realtimefumer == 0;
+          this.value = false;
+        }
+      });
+
+    });
+      });
+    
+
+  
 
 
    /*  this.socket.on('temp', (data: any) => {

@@ -14,6 +14,14 @@ export class DashboardLocataireComponent {
 
 toi2= true;
 toi3= true;
+buzz: any;
+realtimepresence:any;
+realtimebuzzer: any;
+realtimefumer: any;
+presence: any;
+value: any;
+
+  socket: any;
 /* role = localStorage.getItem('role') */
 enfant=false;
 onSubmit() {
@@ -88,16 +96,77 @@ content: any;
   }
   /* enfa = localStorage.getItem('benfant'); */
   ngOnInit(): void {
-  /* console.log(this.enfa); */
-
-  this.socketService.info().subscribe((data:any)=>{
-    this.realtimeTemp = data.temperature;
-    this.realtimeHum = data.humidity;
-    this.realtimeLum= data.humSol;
-    this.realtimeSol = data.lum;
-  })
   
-  }
+    this.socketService.info().subscribe((data:any)=>{
+      console.log(data?.buzzer);
+      
+      this.realtimeTemp = data?.temperature;
+      this.realtimeHum = data?.humidity;
+      this.realtimeLum = data?.humSol;
+      this.realtimeSol = data?.lum;
+      this.realtimebuzzer = data?.buzzer;
+      this.realtimepresence = data?.presennce;
+      this.realtimefumer = data?.value;
+    
+    
+     this.socket.on('buzzer', (data: number) => {
+      console.log('buzzer: '+data);
+      this.realtimebuzzer = data;
+      if(this.realtimebuzzer == 1){
+        this.buzz = true;
 
+      }
+   else{
+   this.realtimebuzzer == 0;
+   this.buzz = false;
+   }
+    });
+
+
+    this.socket.on('presennce', (data: number) => {
+      console.log('presennce: ' + data);
+      this.realtimepresence = data;
+      if (this.realtimepresence == 1) {
+        this.presence = true;
+
+      }
+      else {
+        this.realtimepresence == 0;
+        this.presence = false;
+      }
+      this.socket.on('value', (data: number) => {
+        console.log('value: ' + data);
+        this.realtimefumer = data;
+        if (this.realtimefumer == 1) {
+          this.value = true;
+
+        }
+        else {
+          this.realtimefumer == 0;
+          this.value = false;
+        }
+      });
+    });
+      });
+    
+
+  
+
+
+    }
+
+
+    /* buzOn(){
+      this.socketService.buzzerOn()
+    }
+
+    buzOf(){
+      this.socketService.buzzerOff()
+    } */
 }
+
+
+
+
+
   

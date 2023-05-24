@@ -21,7 +21,8 @@
 <div   class="d-flex  flex-column "  id="sect2">
     <p class="thhe text-left">Detecteur de Fumée</p>
    
-    <img src="../../assets/bell-solid.svg" alt="" class="iconeTemp">
+    <img *ngIf="!realtimefumer" src="../../assets/bell-solid.svg" alt="" class="fontaine">
+        <img *ngIf="realtimefumer" src="../../assets/gif ALarme.png" alt="" class="fontaine">
 </div>
 <div class="" style="width: 100px;">
 
@@ -29,13 +30,13 @@
 <!-- deuxieme section -->
 <div class="d-flex flex-column "  id="sect3">
    
-    <p class="thhe" >Accées<img src="../../assets/bell-solid.svg" alt="" class="acces">
+    <p class="thhe" >Visualisation Sonnerie
     </p> 
 
  <div class="flex">
-    <img src="../../assets/stop.png" alt="" class="start">
-    &nbsp;&nbsp;
-    <img src="../../assets/start.png" alt="" class="start">
+  <img *ngIf="!realtimebuzzer" src="../../assets/bell-solid.svg" alt="" class="iconeTemp"  >
+
+  <img *ngIf="realtimebuzzer" src="../../assets/gif alarme.jpg" alt="" style="background-color: red;" style="width: 50px;height: 50px;">
  </div>
 </div>
 </div>
@@ -65,7 +66,8 @@
     </div>
     <div class="d-flex flex-column justify-centent-center align-items-center"  id="sectHumSol">
         <p class="thhe">Sécurité </p>
-        <img src="../../assets/bell-solid.svg" alt="" class="fontaine">
+        <img *ngIf="!realtimepresence" src="../../assets/bell-solid.svg" alt="" class="fontaine">
+        <img *ngIf="realtimepresence" src="../../assets/gif ALarme.png" alt="" class="fontaine">
     </div>
     <div class="d-flex  flex-column"  id="sectHumSol">
      <p class="thhe">Ensoilemenent </p>
