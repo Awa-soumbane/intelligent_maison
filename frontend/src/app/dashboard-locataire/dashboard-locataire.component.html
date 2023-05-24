@@ -21,23 +21,24 @@
         <div class="d-flex  flex-column " id="sect2">
           <p class="thhe text-left">Detecteur de Fumée</p>
   
-          <img src="../../assets/bell-solid.svg" alt="" class="iconeTemp">
+          <img *ngIf="!realtimefumer" src="../../assets/bell-solid.svg" alt="" class="fontaine">
+          <img *ngIf="realtimefumer" src="../../assets/gif ALarme.png" alt="" class="fontaine">
         </div>
         <div class="" style="width: 100px;">
   
         </div>
         <!-- deuxieme section -->
-        <div class="d-flex flex-column " id="sect3">
-  
-          <p class="thhe">Accées<img src="../../assets/bell-solid.svg" alt="" class="acces">
-          </p>
-  
-          <div class="flex">
-            <img src="../../assets/stop.png" alt="" class="start">
-            &nbsp;&nbsp;
-            <img src="../../assets/start.png" alt="" class="start">
-          </div>
-        </div>
+        <div class="d-flex flex-column "  id="sect3">
+   
+          <p class="thhe" >Visualisation Sonnerie
+          </p> 
+      
+       <div class="flex">
+        <img *ngIf="!realtimebuzzer" src="../../assets/bell-solid.svg" alt="" class="iconeTemp"  >
+
+  <img *ngIf="realtimebuzzer" src="../../assets/gif ALarme.png" alt="" style="background-color: red;" style="width: 50px;height: 50px;">
+       </div>
+      </div>
       </div>
   
       <div class="ll">
@@ -65,7 +66,8 @@
         </div>
         <div class="d-flex flex-column justify-centent-center align-items-center" id="sectHumSol">
           <p class="thhe">Sécurité </p>
-          <img src="../../assets/bell-solid.svg" alt="" class="fontaine">
+          <img *ngIf="!realtimepresence" src="../../assets/bell-solid.svg" alt="" class="fontaine">
+          <img *ngIf="realtimepresence" src="../../assets/gif ALarme.png" alt="" class="fontaine">
         </div>
         <div class="d-flex  flex-column" id="sectHumSol">
           <p class="thhe">Ensoilemenent </p>
@@ -120,7 +122,7 @@
           <div class="d-flex justify-centent-center" style="gap: 12px;">
   
             <div  class="d-flex justify-centent-center">
-              loc<img *ngIf="!toi3" src="../../assets/lampeon.svg" alt=""
+             <img *ngIf="!toi3" src="../../assets/lampeon.svg" alt=""
                 style="height: 65px;width: 45px; display: flex;justify-content: center;">
               <img *ngIf="toi3" src="../../assets/lampoff.svg" alt="">
   

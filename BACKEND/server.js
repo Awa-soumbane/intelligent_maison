@@ -102,10 +102,14 @@ portSerial.on('open', () => {
       portSerial.write(msg)
       console.log(msg);
     });
-    socket.on('realtimebuzzer', (msg) => {
+   /*  socket.on('realtimebuzzer', (msg) => {
       portSerial.write(msg)
       console.log(msg);
-    });
+    }); */
+    /* socket.on('realtimepresence', (msg) => {
+      portSerial.write(msg)
+      console.log(msg);
+    }); */
 
     socket.on('par', (msg) => {
       portSerial.write(msg)
@@ -139,6 +143,10 @@ portSerial.on('open', () => {
       console.log(msg);
     });
 
+    socket.on('presence', (msg) => {
+      // portSerial.write(msg)
+       console.log(msg);
+     });
   });
 });
 

@@ -12,6 +12,13 @@ export class DashbordComponent implements OnInit{
   realtimeTemp=0; realtimeHum=0; realtimeLum=0; realtimeSol=0;
 toi = false;
 toi1= true;
+realtimepresence:any;
+realtimebuzzer: any;
+realtimefumer: any
+buzz: any;
+socket: any;
+presence: any;
+value: any;
 
 /* role = localStorage.getItem('role') */
 
@@ -85,16 +92,65 @@ content: any;
   }
   /* enfa = localStorage.getItem('benfant'); */
   ngOnInit(): void {
- /*  console.log(this.enfa); */
-
-  this.socketService.info().subscribe((data:any)=>{
-    this.realtimeTemp = data.temperature;
-    this.realtimeHum = data.humidity;
-    this.realtimeLum= data.humSol;
-    this.realtimeSol = data.lum;
-  })
   
-  }
+    this.socketService.info().subscribe((data:any)=>{
+      console.log(data?.buzzer);
+      
+      this.realtimeTemp = data?.temperature;
+      this.realtimeHum = data?.humidity;
+      this.realtimeLum = data?.humSol;
+      this.realtimeSol = data?.lum;
+      this.realtimebuzzer = data?.buzzer;
+      this.realtimepresence = data?.presennce;
+      this.realtimefumer = data?.value;
+    
+    
+     this.socket.on('buzzer', (data: number) => {
+      console.log('buzzer: '+data);
+      this.realtimebuzzer = data;
+      if(this.realtimebuzzer == 1){
+        this.buzz = true;
+
+      }
+   else{
+   this.realtimebuzzer == 0;
+   this.buzz = false;
+   }
+    });
+
+
+    this.socket.on('presennce', (data: number) => {
+      console.log('presennce: ' + data);
+      this.realtimepresence = data;
+      if (this.realtimepresence == 1) {
+        this.presence = true;
+
+      }
+      else {
+        this.realtimepresence == 0;
+        this.presence = false;
+      }
+
+      this.socket.on('value', (data: number) => {
+        console.log('value: ' + data);
+        this.realtimefumer = data;
+        if (this.realtimefumer == 1) {
+          this.value = true;
+
+        }
+        else {
+          this.realtimefumer == 0;
+          this.value = false;
+        }
+      });
+    });
+      });
+    
+
+  
+
+
+    }
 
   
   

@@ -116,12 +116,12 @@ export class SocketioService {
     this.socket.emit('enf', '0')
   }
 
-  buzzerOn(){
+ /*  buzzerOn(){
     this.socket.emit('buzzer', '1')
   }
   buzzerOff(){
     this.socket.emit('buzzer', '0')
-  }
+  } */
 
 
   salon(){
@@ -149,11 +149,11 @@ export class SocketioService {
 
     //fonction pour allumer la clim 
     fanOn(){
-      this.socket.emit('fan', '1')
+      this.socket.emit('fan', 'A')
     }
   
     fanOff(){
-      this.socket.emit('fan', '0')
+      this.socket.emit('fan', 'B')
     }
 
    
